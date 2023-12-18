@@ -108,10 +108,17 @@ public class Player : MonoBehaviour {
         controller.Move(velocity * Time.deltaTime);
     }
 
-    public void TakeHealing (float heals) {
+    public void ReceiveHealing (float heals) {
         currentHealth += heals;
         if (currentHealth > maxHealth){ 
             currentHealth = maxHealth;
+        }
+    }
+
+    public void ReceiveStamina (float stamina) {
+        currentStamina += stamina;
+        if (currentStamina > maxStamina) {
+            currentStamina = maxStamina;
         }
     }
 
@@ -122,13 +129,6 @@ public class Player : MonoBehaviour {
         }
         if (currentHealth <= 0) {
             Death();
-        }
-    }
-
-    public void ReceiveStamina (float stamina) {
-        currentStamina += stamina;
-        if (currentStamina > maxStamina) {
-            currentStamina = maxStamina;
         }
     }
 

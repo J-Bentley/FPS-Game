@@ -26,7 +26,7 @@ public class Healthpack : MonoBehaviour {
         if(cHealth != mHealth) {
             if(collider.gameObject.transform.tag == "Player"){
 
-                playerScript.TakeHealing(healingAmount);
+                playerScript.ReceiveHealing(healingAmount);
                 audioSource[4].Play(); //heal sound
 
                 if(destroyAfterUse) {
