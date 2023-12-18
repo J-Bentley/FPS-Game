@@ -119,7 +119,7 @@ public class Gun : MonoBehaviour {
             gunObject.transform.rotation = adsPoint.transform.rotation;
             fpsCam.fieldOfView = adsFov;
             
-        } else if (gunEquipped && !Input.GetButton("Fire2")) {
+        } else if (gunEquipped && !gunSounds[2].isPlaying && !Input.GetButton("Fire2")) {
             gunObject.transform.position = equipPoint.transform.position;
             gunObject.transform.rotation = equipPoint.transform.rotation;
             fpsCam.fieldOfView = defaultFov;

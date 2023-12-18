@@ -4,21 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
-    public CharacterController controller;
-    public Camera fpsCam;
-    public Transform groundCheck;
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private Camera fpsCam;
+    [SerializeField] private Transform groundCheck;
     private float defaultFov;
     public float maxHealth = 100f;
     public float currentHealth;
-    public float speed = 8f;
-    public float gravity = -35f;
-    public float jumpHeight = 3f;
-    public float sprintSpeed = 16f;
-    public float sprintFov = 100f;
+    [SerializeField] private float speed = 8f;
+    [SerializeField] private float gravity = -35f;
+    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float sprintSpeed = 16f;
+    [SerializeField] private float sprintFov = 100f;
     public float maxStamina = 10f;
-    public float staminaRegen = 1f;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask; //layers that trigger groundcheck
+    [SerializeField] private float staminaRegen = 1f;
+    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private LayerMask groundMask; //layers that trigger groundcheck
     public Slider staminaBar;
     public Slider healthBar;
     private Vector3 velocity;
