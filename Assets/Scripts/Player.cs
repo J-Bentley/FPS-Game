@@ -64,25 +64,30 @@ public class Player : MonoBehaviour {
         controller.Move(move * speed * Time.deltaTime);
     
         if (Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) { //Prevents using stamina if standing still.
-            if (currentStamina > 0) {
+            if (currentStamina > 0f) {
                 speed = sprintSpeed;
                 currentStamina -= Time.deltaTime;
                 fpsCam.fieldOfView = sprintFov;
 
                 if (gunEquipped) {
                     animator.SetTrigger("onSprint");
-                }
-                
-            } else {
+                }    
+            }
+
+            if (currentStamina <= 0f) {
+                speed = originalSpeed;
+                fpsCam.fieldOfView = defaultFov;
                 currentStamina = 0;
-                audioSources[1].Play(); //no stamina sound
+                if (!audioSources[1].isPlaying) {
+                    audioSources[1].Play(); //no stamina sound
+                }
             }
 
         } else if (currentStamina < maxStamina) {
             currentStamina += staminaRegen * Time.deltaTime;
         }
 
-        if(!Input.GetKey("left shift")) {
+        if (!Input.GetKey("left shift")) {
             fpsCam.fieldOfView = defaultFov;
             speed = originalSpeed;
         }
@@ -130,6 +135,10 @@ public class Player : MonoBehaviour {
         if (currentHealth <= 0) {
             Death();
         }
+    }
+
+    public void Jumpad(float jumpadHeight) {
+        velocity.y = jumpadHeight;
     }
 
     void Death() {
