@@ -7,27 +7,27 @@ public class Player : MonoBehaviour {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Camera fpsCam;
     [SerializeField] private Transform groundCheck;
-    private float defaultFov;
-    public float maxHealth = 100f;
-    public float currentHealth;
+    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private LayerMask groundMask;
     [SerializeField] private float speed = 8f;
     [SerializeField] private float gravity = -35f;
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float sprintSpeed = 16f;
     [SerializeField] private float sprintFov = 100f;
-    public float maxStamina = 10f;
     [SerializeField] private float staminaRegen = 1f;
-    [SerializeField] private float groundDistance = 0.4f;
-    [SerializeField] private LayerMask groundMask; //layers that trigger groundcheck
-    public Slider staminaBar;
-    public Slider healthBar;
     private Vector3 velocity;
     private bool isGrounded;
+    private float defaultFov;
+    public float maxHealth = 100f;
     public float currentStamina;
-    private AudioSource[] audioSources; //order: footsteps, out of breath, jump, take damage, heal, background music
-    public Animator animator = null;
+    public float maxStamina = 10f;
+    public float currentHealth;
+    public Slider staminaBar;
+    public Slider healthBar;
     public bool gunEquipped = false;
     private float originalSpeed;
+    private AudioSource[] audioSources; //order: footsteps, out of breath, jump, take damage, heal, background music
+    public Animator animator = null;
 
     void Start () {
         defaultFov = fpsCam.fieldOfView;
@@ -47,6 +47,9 @@ public class Player : MonoBehaviour {
                 audioSources[5].Play(); //loops background music
         }
 
+        healthBar.value = currentHealth;
+        staminaBar.value = currentStamina;
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0) {
@@ -59,11 +62,8 @@ public class Player : MonoBehaviour {
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
-
-        healthBar.value = currentHealth;
-        staminaBar.value = currentStamina;
     
-        if (Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) { //Only sprint if moving and holding shift. Prevents using stamina if standing still.
+        if (Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) { //Prevents using stamina if standing still.
             if (currentStamina > 0) {
                 speed = sprintSpeed;
                 currentStamina -= Time.deltaTime;
