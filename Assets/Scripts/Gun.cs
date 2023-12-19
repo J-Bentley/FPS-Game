@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Gun : MonoBehaviour {
 
     public Camera fpsCam;
-    private float defaultFov;
     [SerializeField] private float adsFov = 60f;
     public Transform equipPoint;
     [SerializeField] private Transform adsPoint;
@@ -31,10 +30,6 @@ public class Gun : MonoBehaviour {
     private float usedAmmo = 0f;
     private RaycastHit grab;
     public Player playerScript;
-
-    void Start() {
-        defaultFov = fpsCam.fieldOfView;
-    }
 
     void Update() {
         if (gunEquipped == false && Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out grab, equipRange, gunLayers)) {   
@@ -114,7 +109,7 @@ public class Gun : MonoBehaviour {
             usedAmmo = 0f;
         }
 
-        if (gunEquipped && Input.GetButton("Fire2")) {
+        if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
             gunObject.transform.position = adsPoint.transform.position;
             gunObject.transform.rotation = adsPoint.transform.rotation;
             fpsCam.fieldOfView = adsFov;
@@ -122,7 +117,6 @@ public class Gun : MonoBehaviour {
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
             gunObject.transform.position = equipPoint.transform.position;
             gunObject.transform.rotation = equipPoint.transform.rotation;
-            fpsCam.fieldOfView = defaultFov;
         }
     }
 

@@ -63,12 +63,11 @@ public class Player : MonoBehaviour {
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
     
-        if (Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) { //Prevents using stamina if standing still.
+        if (Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f && !Input.GetButton("Fire2")) {
             if (currentStamina > 0f) {
                 speed = sprintSpeed;
-                currentStamina -= Time.deltaTime;
                 fpsCam.fieldOfView = sprintFov;
-
+                currentStamina -= Time.deltaTime;
                 if (gunEquipped) {
                     animator.SetTrigger("onSprint");
                 }    
@@ -82,7 +81,6 @@ public class Player : MonoBehaviour {
                     audioSources[1].Play(); //no stamina sound
                 }
             }
-
         } else if (currentStamina < maxStamina) {
             currentStamina += staminaRegen * Time.deltaTime;
         }
