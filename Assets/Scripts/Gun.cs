@@ -1,11 +1,9 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class Gun : MonoBehaviour {
 
-    [SerializeField] private Rigidbody bulletObject;
     public Camera fpsCam;
     [SerializeField] private float adsFov = 60f;
     public Transform equipPoint;
