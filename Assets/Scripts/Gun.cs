@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour {
 
-    public Camera fpsCam;
+    [SerializeField] private Camera fpsCam;
     [SerializeField] private float adsFov = 60f;
-    public Transform equipPoint;
+    [SerializeField] private Transform equipPoint;
     [SerializeField] private Transform adsPoint;
-    public TextMeshProUGUI equipUI;
-    public TextMeshProUGUI clipAmmoText;
-    public Image crosshair;
-    public float equipRange = 5;
-    public LayerMask gunLayers;
-    public LayerMask shootableLayers;
-    public float gunRange = 1000f;
+    [SerializeField] private TextMeshProUGUI equipUI;
+    [SerializeField] private TextMeshProUGUI clipAmmoText;
+    [SerializeField] private Image crosshair;
+    [SerializeField] private float equipRange = 5;
+    [SerializeField] private LayerMask gunLayers;
+    [SerializeField] private LayerMask shootableLayers;
+    [SerializeField] private float gunRange = 1000f;
     private GameObject gunObject;
     public ParticleSystem impactEffect;
     private GameObject muzzleFlashObject;
