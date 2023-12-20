@@ -10,10 +10,4 @@ public class EnemyProjectile : MonoBehaviour {
             playerScript.TakeDamage(damage);
         }
     }
-
-    void OnTriggerStay(Collider collider) {
-        if(collider.transform.tag == "Player") {
-            playerScript.TakeDamage(damage);
-        }
-    }
 }
