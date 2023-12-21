@@ -7431,11 +7431,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1486626734}
   - {fileID: 295627393}
   - {fileID: 1305827114}
   - {fileID: 1795454713}
   - {fileID: 899911977}
-  - {fileID: 1486626734}
   - {fileID: 154859645}
   - {fileID: 1310589569}
   - {fileID: 1327031074}
@@ -8947,6 +8947,7 @@ GameObject:
   - component: {fileID: 1486626737}
   - component: {fileID: 1486626736}
   - component: {fileID: 1486626735}
+  - component: {fileID: 1486626738}
   m_Layer: 7
   m_Name: ResumeGame
   m_TagString: Untagged
@@ -9017,7 +9018,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1486626736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1486626738}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1486626736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9056,6 +9069,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486626733}
   m_CullTransparentMesh: 1
+--- !u!114 &1486626738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486626733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f277ceefd035fd4cbcad5d4904cb0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 671464492}
 --- !u!1 &1523173600
 GameObject:
   m_ObjectHideFlags: 0
@@ -22652,6 +22678,7 @@ GameObject:
   - component: {fileID: 2257173539321837437}
   - component: {fileID: 6597763200590041486}
   - component: {fileID: 7529857375457173721}
+  - component: {fileID: 8316277167977690166}
   - component: {fileID: 4153841662275262007}
   - component: {fileID: 748938608561656408}
   - component: {fileID: 2257963781558455484}
@@ -22659,7 +22686,6 @@ GameObject:
   - component: {fileID: 2815878263775147769}
   - component: {fileID: 4954176954151590338}
   - component: {fileID: 4954176954151590346}
-  - component: {fileID: 8316277167977690166}
   m_Layer: 7
   m_Name: First Person Character Controller
   m_TagString: Player
@@ -24592,7 +24618,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5161659342787115844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34dc2d11a714d724ea3695c82390a416, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f277ceefd035fd4cbcad5d4904cb0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 671464492}
