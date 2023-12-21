@@ -18,7 +18,6 @@ public class SpawnEnemies : MonoBehaviour {
             timer = 0;
             int randomSpawnpoint = Random.Range(0, spawnPoints.Length);
             int randomEnemy = Random.Range(0, 2);
-            Debug.Log(randomEnemy);
             if (randomEnemy == 0) {
                 Instantiate(runnerEnemy, spawnPoints[randomSpawnpoint].position, Quaternion.identity);
             } else if (randomEnemy == 1) {

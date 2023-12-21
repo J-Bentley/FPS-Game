@@ -10,10 +10,6 @@ public class ShootPlayer : MonoBehaviour {
     [SerializeField] private float bulletLifetime = 10f;
     private float timer;
 
-    void Start() {
-
-    }
-
     void Update() {
         timer += Time.deltaTime;
         if(timer >= shootInterval) {

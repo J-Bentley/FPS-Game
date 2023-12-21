@@ -28,7 +28,6 @@ public class Player : MonoBehaviour {
     private float originalSpeed;
     private AudioSource[] audioSources; //order: footsteps, out of breath, jump, take damage, heal, background music
     public Animator animator = null;
-    private bool gamePaused = false;
 
     void Start () {
         defaultFov = fpsCam.fieldOfView;
@@ -110,14 +109,6 @@ public class Player : MonoBehaviour {
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-        if (gamePaused == false && Input.GetKey(KeyCode.Escape)) {
-            PauseGame();
-            gamePaused = true;
-        } else if (gamePaused == true && Input.GetKey(KeyCode.Escape)) {
-            ResumeGame();
-            gamePaused = false;
-        }
     }
 
     public void ReceiveHealing (float heals) {
@@ -150,13 +141,5 @@ public class Player : MonoBehaviour {
 
     void Death() {
         SceneManager.LoadScene(2); //loads gameOver scene
-    }
-
-    void PauseGame () {
-        Time.timeScale = 0;
-    }
-
-    void ResumeGame () {
-        Time.timeScale = 1;
     }
 }

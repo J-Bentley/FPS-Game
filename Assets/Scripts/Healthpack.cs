@@ -19,7 +19,6 @@ public class Healthpack : MonoBehaviour {
     void Update() {
         cHealth = playerScript.currentHealth;
         mHealth = playerScript.maxHealth;
-        //Debug.Log("Max health:" + mHealth + "Current health:" + cHealth);
     }
 
     void OnTriggerEnter(Collider collider){
