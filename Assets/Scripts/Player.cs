@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
     private float originalSpeed;
     private AudioSource[] audioSources; //order: footsteps, out of breath, jump, take damage, heal, background music
     public Animator animator = null;
+    public static float money = 0f;
 
     void Start () {
         defaultFov = fpsCam.fieldOfView;
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour {
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
     
-        if (Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f && !Input.GetButton("Fire2")) {
+        if (!GameManager.gamePaused && Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f && !Input.GetButton("Fire2")) {
             if (currentStamina > 0f) {
                 speed = sprintSpeed;
                 fpsCam.fieldOfView = sprintFov;
@@ -90,7 +91,7 @@ public class Player : MonoBehaviour {
             speed = originalSpeed;
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded) {
+        if (!GameManager.gamePaused && Input.GetButtonDown("Jump") && isGrounded) {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             audioSources[2].Play(); //jump sound
         }
