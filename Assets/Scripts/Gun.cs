@@ -19,8 +19,8 @@ public class Gun : MonoBehaviour {
     public ParticleSystem impactEffect;
     private GameObject muzzleFlashObject;
     private Animator animator;
-    private AudioSource[] gunSounds; //order: gunshot sound, no ammo sound, reload sound, cock sound
-    private AudioSource[] impactSounds; //order: flesh impact, random impact sounds
+    private AudioSource[] gunSounds;
+    private AudioSource[] impactSounds;
     private float nextTimeToFire = 0;
     private bool gunEquipped = false;
     private float damage;
@@ -135,12 +135,10 @@ public class Gun : MonoBehaviour {
 
                 if (target != null) {
                     target.TakeTargetDamage(damage);
-                    if(target.transform.tag == "Enemy") {
-                        impactSounds[0].Play(); //play flesh impact sound -- target must have enemy tag
-                    }
-                } else if (target == null) {
+                    impactSounds[0].Play(); //flesh impact sound
+                } else {
                     int randomIndex = Random.Range(1, impactSounds.Length); //excludes 0 as that is flesh impact
-                    impactSounds[randomIndex].Play(); //play random impact sounds
+                    impactSounds[randomIndex].Play(); //random impact sounds
                 }
 
                 if (shot.rigidbody != null) {

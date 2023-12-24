@@ -27,7 +27,7 @@ public class Player : MonoBehaviour {
     public Slider healthBar;
     public bool gunEquipped = false;
     private float originalSpeed;
-    private AudioSource[] audioSources; //order: footsteps, out of breath, jump, take damage, heal, background music
+    private AudioSource[] audioSources;
     public Animator animator = null;
     public static float totalMoney = 0f;
     [SerializeField] private TextMeshProUGUI moneyText;
@@ -50,14 +50,12 @@ public class Player : MonoBehaviour {
                 audioSources[5].Play(); //loops background music
         }
 
-        healthBar.value = currentHealth;
         staminaBar.value = currentStamina;
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0) {
             velocity.y = -2f;
-            //resets velocity when grounded, -2 for reasons
         }
 
         float x = Input.GetAxis("Horizontal");
@@ -100,14 +98,14 @@ public class Player : MonoBehaviour {
 
         if (controller.velocity.magnitude > 0.1f) {
             if (isGrounded && !audioSources[0].isPlaying) {
-                audioSources[0].Play(); //play footsteps when moving and grounded
+                audioSources[0].Play(); //footsteps sound
             }
         } else {
-            audioSources[0].Stop(); //stop footsteps if not grounded or not moving
+            audioSources[0].Stop(); 
         }
         
         if (!isGrounded && audioSources[0].isPlaying) {
-            audioSources[0].Stop(); //stop footsteps when not grounded
+            audioSources[0].Stop(); 
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -116,9 +114,10 @@ public class Player : MonoBehaviour {
 
     public void ReceiveHealing (float heals) {
         currentHealth += heals;
-        if (currentHealth > maxHealth){ 
+        if (currentHealth > maxHealth) { 
             currentHealth = maxHealth;
         }
+        healthBar.value = currentHealth;
     }
 
     public void ReceiveStamina (float stamina) {
@@ -135,12 +134,13 @@ public class Player : MonoBehaviour {
 
     public void TakeDamage (float damage) {
         currentHealth -= damage;
+        healthBar.value = currentHealth;
         if(!audioSources[3].isPlaying) { 
             audioSources[3].Play(); //take damage sound
         }
         if (currentHealth <= 0) {
             Death();
-        }
+        }   
     }
 
     public void Jumpad(float jumpadHeight) {
