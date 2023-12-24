@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player : MonoBehaviour {
 
@@ -28,7 +29,8 @@ public class Player : MonoBehaviour {
     private float originalSpeed;
     private AudioSource[] audioSources; //order: footsteps, out of breath, jump, take damage, heal, background music
     public Animator animator = null;
-    public static float money = 0f;
+    public static float totalMoney = 0f;
+    [SerializeField] private TextMeshProUGUI moneyText;
 
     void Start () {
         defaultFov = fpsCam.fieldOfView;
@@ -124,6 +126,11 @@ public class Player : MonoBehaviour {
         if (currentStamina > maxStamina) {
             currentStamina = maxStamina;
         }
+    }
+
+    public void ReceiveMoney(float money) {
+        totalMoney += money;
+        moneyText.text = "$" + totalMoney;
     }
 
     public void TakeDamage (float damage) {

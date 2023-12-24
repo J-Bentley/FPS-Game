@@ -16,7 +16,7 @@ public class Target : MonoBehaviour {
     [SerializeField] private bool giveMoneyOnDeath = true;
     [SerializeField] private int minRandomMoney = 10;
     [SerializeField] private int maxRandomMoney = 30;
-    [SerializeField] private TextMeshProUGUI moneyText;
+    public Player playerScript;
     private AudioSource hurtSound;
     private AudioSource deathSound;
 
@@ -50,8 +50,7 @@ public class Target : MonoBehaviour {
 
         if (giveMoneyOnDeath) {
             int randomAmount = Random.Range(minRandomMoney, maxRandomMoney);
-            Player.money += randomAmount;
-            moneyText.text = "$" + Player.money;
+            playerScript.ReceiveMoney(randomAmount);
         }
 
         if (playDeathSound) {

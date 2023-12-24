@@ -74,7 +74,7 @@ public class Gun : MonoBehaviour {
             equipUI.enabled = false;
         }
 
-        if (gunEquipped == true && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) {
+        if (!GameManager.gamePaused & gunEquipped == true && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f/fireRate;
             if (usedAmmo < clipAmmo) {
                 Shoot();
