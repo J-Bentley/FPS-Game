@@ -6,12 +6,22 @@ public class GameManager : MonoBehaviour {
     
     public static bool gamePaused = false;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject MainMenu;
 
     void Update() {
         if(!gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
-            PauseGame();
+            try {
+                PauseGame();
+            } catch {
+                Debug.Log("error lol");
+            }
         } else if (gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
-            ResumeGame();
+                        try {
+                ResumeGame();
+            } catch {
+                Debug.Log("error lol");
+            }
         }
     }
 
@@ -38,6 +48,19 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Menu() {
+        Time.timeScale = 1;
+        gamePaused = false;
+        pauseMenu.SetActive(false);
         SceneManager.LoadScene(0); 
+    }
+
+    public void OptionsMenu() {
+        MainMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+    }
+
+    public void BackButton() {
+        optionsMenu.SetActive(false);
+        MainMenu.SetActive(true);
     }
 }

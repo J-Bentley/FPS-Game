@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseLook : MonoBehaviour {
     
-    public Transform playerBody;
-    public float mouseSensitivity = 500f;
-    float xRotation = 0f;
+    [SerializeField] private Transform playerBody;
+    public static float lookSensitivity = 500f;
+    private float xRotation = 0f;
 
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;
@@ -12,8 +13,9 @@ public class MouseLook : MonoBehaviour {
     }
 
     void Update() {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        Debug.Log(lookSensitivity);
+        float mouseX = Input.GetAxis("Mouse X") * lookSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

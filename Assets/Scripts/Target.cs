@@ -15,7 +15,7 @@ public class Target : MonoBehaviour {
     [SerializeField] private bool spawnStaminapackOnDeath = true;
     [SerializeField] private bool giveMoneyOnDeath = true;
     [SerializeField] private int minRandomMoney = 10;
-    [SerializeField] private int maxRandomMoney = 30;
+    [SerializeField] private int maxRandomMoney = 20;
     public Player playerScript;
     private AudioSource hurtSound;
     private AudioSource deathSound;
