@@ -4864,10 +4864,10 @@ AudioSource:
   m_GameObject: {fileID: 8157604140115820845}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5099401977227105765, guid: 96da0a47a8f1f134bafa37d1fb775405, type: 2}
   m_audioClip: {fileID: 8300000, guid: a0d825ab0cd800e4498752c71487540b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.18
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5035,10 +5035,10 @@ AudioSource:
   m_GameObject: {fileID: 8157604140115820845}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5099401977227105765, guid: 96da0a47a8f1f134bafa37d1fb775405, type: 2}
   m_audioClip: {fileID: 8300000, guid: 763b5a1f914f995478e54e14b0e896fe, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.182
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5047,7 +5047,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -5131,10 +5131,10 @@ AudioSource:
   m_GameObject: {fileID: 8157604140115820845}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5099401977227105765, guid: 96da0a47a8f1f134bafa37d1fb775405, type: 2}
   m_audioClip: {fileID: 8300000, guid: ff4897797d159464db645aed89f5c478, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.182
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5143,7 +5143,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -5227,10 +5227,10 @@ AudioSource:
   m_GameObject: {fileID: 8157604140115820845}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5099401977227105765, guid: 96da0a47a8f1f134bafa37d1fb775405, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0a9d9dcc8714ddd468b9dcac8c751fde, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.182
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5239,7 +5239,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
