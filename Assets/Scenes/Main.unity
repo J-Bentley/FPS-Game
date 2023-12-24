@@ -445,9 +445,11 @@ MonoBehaviour:
   playDeathSound: 1
   enemyHealthbar: {fileID: 2023129549}
   staminapack: {fileID: 1964156809}
-  coin: {fileID: 271072273}
   spawnStaminapackOnDeath: 0
-  spawnCoinOnDeath: 1
+  giveMoneyOnDeath: 1
+  minRandomMoney: 10
+  maxRandomMoney: 30
+  playerScript: {fileID: 0}
 --- !u!136 &92684645
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1138,38 +1140,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258341370}
   m_CullTransparentMesh: 1
---- !u!1 &271072273
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 271072274}
-  m_Layer: 0
-  m_Name: CoinObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &271072274
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271072273}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4553.116, y: -48.877, z: 272.917}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 543450652214681054}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &294836832
 GameObject:
   m_ObjectHideFlags: 0
@@ -9214,6 +9184,7 @@ MonoBehaviour:
   shooterEnemy: {fileID: 92684641}
   waveText: {fileID: 1351886642}
   timeBetweenWaves: 10
+  playerController: {fileID: 2257173539321837437}
 --- !u!4 &1430238869
 Transform:
   m_ObjectHideFlags: 0
@@ -10615,64 +10586,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 204.16, y: 15.363998}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!135 &2039523416
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148492240740}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.013025074
-  m_Center: {x: 0.00077063206, y: 0.000000029802322, z: 0.004889965}
---- !u!114 &2039523421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148492240740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654776274a8d08144b6d7f4c9b90352e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minAmount: 10
-  maxAmount: 30
-  moneyText: {fileID: 736155408}
-  playerController: {fileID: 2257173539321837437}
---- !u!95 &2039523422
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148492240740}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab6b3e424c1caf04d9aa56abd4e7fffe, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2094927921
 GameObject:
   m_ObjectHideFlags: 0
@@ -11118,21 +11031,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &543450652214681054
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148492240740}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.015066391, y: -0, z: 0.9998865, w: 0}
-  m_LocalPosition: {x: 0.008609772, y: 0.96, z: 0.010620117}
-  m_LocalScale: {x: 100, y: 100, z: 10}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 271072274}
-  m_LocalEulerAnglesHint: {x: 180, y: -178.273, z: 0}
 --- !u!4 &544796803747816522
 Transform:
   m_ObjectHideFlags: 0
@@ -11346,27 +11244,6 @@ GameObject:
   - component: {fileID: 8554925645659092362}
   m_Layer: 0
   m_Name: EnemyCanvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &919132148492240740
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 543450652214681054}
-  - component: {fileID: 3469287838145237627}
-  - component: {fileID: 1711813854417790641}
-  - component: {fileID: 2039523416}
-  - component: {fileID: 2039523421}
-  - component: {fileID: 2039523422}
-  m_Layer: 0
-  m_Name: coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11777,49 +11654,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!23 &1711813854417790641
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148492240740}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 4283939744012322380, guid: f0e09582908f6c1459c1ebe2dd011c5c, type: 3}
-  - {fileID: -6553421623686224557, guid: f0e09582908f6c1459c1ebe2dd011c5c, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1730143512955008217
 GameObject:
   m_ObjectHideFlags: 0
@@ -12752,14 +12586,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4039148663235229086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3469287838145237627
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148492240740}
-  m_Mesh: {fileID: 2534964839176971238, guid: f0e09582908f6c1459c1ebe2dd011c5c, type: 3}
 --- !u!198 &3554914294820883084
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -23752,9 +23578,11 @@ MonoBehaviour:
   playDeathSound: 1
   enemyHealthbar: {fileID: 1817339466238794264}
   staminapack: {fileID: 1964156809}
-  coin: {fileID: 271072273}
   spawnStaminapackOnDeath: 0
-  spawnCoinOnDeath: 1
+  giveMoneyOnDeath: 1
+  minRandomMoney: 10
+  maxRandomMoney: 30
+  playerScript: {fileID: 0}
 --- !u!33 &6232553908742248313
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24059,6 +23887,7 @@ MonoBehaviour:
   healthBar: {fileID: 1459451059804427979}
   gunEquipped: 0
   animator: {fileID: 0}
+  moneyText: {fileID: 0}
 --- !u!4 &6628616772418742137
 Transform:
   m_ObjectHideFlags: 0
@@ -30472,7 +30301,6 @@ SceneRoots:
   - {fileID: 1964156810}
   - {fileID: 92684648}
   - {fileID: 526512215}
-  - {fileID: 271072274}
   - {fileID: 1355309410}
   - {fileID: 1430238869}
   - {fileID: 10384535418991009}
