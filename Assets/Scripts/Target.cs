@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Target : MonoBehaviour {
 
@@ -11,9 +12,11 @@ public class Target : MonoBehaviour {
     [SerializeField] private bool playDeathSound = false;
     [SerializeField] private Slider enemyHealthbar = null;
     [SerializeField] private GameObject staminapack;
-    [SerializeField] private GameObject coin;
     [SerializeField] private bool spawnStaminapackOnDeath = true;
-    [SerializeField] private bool spawnCoinOnDeath = true;
+    [SerializeField] private bool giveMoneyOnDeath = true;
+    [SerializeField] private int minRandomMoney = 10;
+    [SerializeField] private int maxRandomMoney = 30;
+    [SerializeField] private TextMeshProUGUI moneyText;
     private AudioSource hurtSound;
     private AudioSource deathSound;
 
@@ -37,7 +40,7 @@ public class Target : MonoBehaviour {
     }
 
     void Die () {
-        SpawnEnemies.enemiesKilled++;
+        SpawnEnemies.enemiesKilledThisRound++;
         Destroy(gameObject);
         GameObject destroyedGO = Instantiate(destroyedVersion, transform.position, transform.rotation);
 
@@ -45,8 +48,10 @@ public class Target : MonoBehaviour {
             Instantiate(staminapack, transform.position, transform.rotation);
         }
 
-        if (spawnCoinOnDeath) {
-            Instantiate(coin, transform.position, transform.rotation);
+        if (giveMoneyOnDeath) {
+            int randomAmount = Random.Range(minRandomMoney, maxRandomMoney);
+            Player.money += randomAmount;
+            moneyText.text = "$" + Player.money;
         }
 
         if (playDeathSound) {

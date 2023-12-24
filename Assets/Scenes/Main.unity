@@ -440,7 +440,7 @@ MonoBehaviour:
   targetHealth: 50
   destroyedVersion: {fileID: 6401426111777032779, guid: ca21ef9d903e4dc41825ed7a0fceb682, type: 3}
   destroyPeices: 1
-  destroyPeicesTimer: 30
+  destroyPeicesTimer: 10
   playHurtSound: 1
   playDeathSound: 1
   enemyHealthbar: {fileID: 2023129549}
@@ -530,7 +530,7 @@ Transform:
   m_GameObject: {fileID: 92684641}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.88, y: -45.93, z: 275.49725}
+  m_LocalPosition: {x: 4560.101, y: -45.93, z: 275.49725}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1163,7 +1163,7 @@ Transform:
   m_GameObject: {fileID: 271072273}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.895, y: -48.877, z: 272.917}
+  m_LocalPosition: {x: 4553.116, y: -48.877, z: 272.917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6588,7 +6588,7 @@ Transform:
   m_GameObject: {fileID: 526512211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.006462, y: -48.91, z: 275.73727}
+  m_LocalPosition: {x: 4549.2275, y: -48.91, z: 275.73727}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7769,7 +7769,7 @@ Transform:
   m_GameObject: {fileID: 943180070}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49.77923, y: -45.195267, z: 275.46}
+  m_LocalPosition: {x: 4556, y: -45.195267, z: 275.46}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9190,6 +9190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1430238869}
   - component: {fileID: 1430238868}
+  - component: {fileID: 1430238870}
   m_Layer: 0
   m_Name: EnemySpawns
   m_TagString: Untagged
@@ -9212,6 +9213,7 @@ MonoBehaviour:
   runnerEnemy: {fileID: 3744715360584334938}
   shooterEnemy: {fileID: 92684641}
   waveText: {fileID: 1351886642}
+  timeBetweenWaves: 10
 --- !u!4 &1430238869
 Transform:
   m_ObjectHideFlags: 0
@@ -9237,6 +9239,102 @@ Transform:
   - {fileID: 1171648592}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1430238870
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430238867}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 43369308ad8ada74da626f3452bbf275, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.192
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1486626733
 GameObject:
   m_ObjectHideFlags: 0
@@ -10421,7 +10519,7 @@ Transform:
   m_GameObject: {fileID: 1964156809}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.297, y: -45.863003, z: 277.89}
+  m_LocalPosition: {x: 4545.518, y: -45.863003, z: 277.89}
   m_LocalScale: {x: 35, y: 35, z: 35}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10536,8 +10634,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.01
-  m_Center: {x: 0, y: 0.000000029802322, z: 0}
+  m_Radius: 0.013025074
+  m_Center: {x: 0.00077063206, y: 0.000000029802322, z: 0.004889965}
 --- !u!114 &2039523421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23649,7 +23747,7 @@ MonoBehaviour:
   targetHealth: 30
   destroyedVersion: {fileID: 6401426111777032779, guid: ca21ef9d903e4dc41825ed7a0fceb682, type: 3}
   destroyPeices: 1
-  destroyPeicesTimer: 30
+  destroyPeicesTimer: 10
   playHurtSound: 1
   playDeathSound: 1
   enemyHealthbar: {fileID: 1817339466238794264}
@@ -24804,7 +24902,7 @@ Transform:
   m_GameObject: {fileID: 3744715360584334938}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45.37, y: -45.624, z: 275.49725}
+  m_LocalPosition: {x: 4551.591, y: -45.624, z: 275.49725}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30374,8 +30472,8 @@ SceneRoots:
   - {fileID: 1964156810}
   - {fileID: 92684648}
   - {fileID: 526512215}
+  - {fileID: 271072274}
   - {fileID: 1355309410}
   - {fileID: 1430238869}
   - {fileID: 10384535418991009}
   - {fileID: 1523173605}
-  - {fileID: 271072274}

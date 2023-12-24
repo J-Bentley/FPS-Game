@@ -128,7 +128,7 @@ public class Player : MonoBehaviour {
 
     public void TakeDamage (float damage) {
         currentHealth -= damage;
-        if(!audioSources[3].isPlaying) { //stops audio from being triggered multiple times and not play
+        if(!audioSources[3].isPlaying) { 
             audioSources[3].Play(); //take damage sound
         }
         if (currentHealth <= 0) {
