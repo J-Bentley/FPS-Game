@@ -5,6 +5,7 @@ public class SpawnEnemies : MonoBehaviour {
 
     [SerializeField] private GameObject runnerEnemy;
     [SerializeField] private GameObject shooterEnemy;
+    private GameObject enemyObject;
     private Transform[] spawnPoints;
     private int wave = 1;
     private int enemiesToSpawnThisRound = 2;
@@ -38,10 +39,11 @@ public class SpawnEnemies : MonoBehaviour {
             int randomSpawn = Random.Range(0, spawnPoints.Length);
             int randomEnemy = Random.Range(0, 2);
             if (randomEnemy == 0) {
-                Instantiate(shooterEnemy, spawnPoints[randomSpawn].transform.position, spawnPoints[randomSpawn].transform.rotation);
+                enemyObject = shooterEnemy;
             } else if (randomEnemy == 1) {
-                Instantiate(runnerEnemy, spawnPoints[randomSpawn].transform.position, spawnPoints[randomSpawn].transform.rotation);
+                enemyObject = runnerEnemy;
             }
+            Instantiate(enemyObject, spawnPoints[randomSpawn].transform.position, spawnPoints[randomSpawn].transform.rotation);
         }
     }
 }
