@@ -1,10 +1,10 @@
-
 using UnityEngine;
 
 public class Jumpad : MonoBehaviour {
     public Player playerScript;
     [SerializeField] private float jumpadHeight;
     private AudioSource audioSource;
+    [SerializeField] private bool playSound = true;
 
     void Start() {
         audioSource = GetComponent<AudioSource>();
@@ -13,7 +13,9 @@ public class Jumpad : MonoBehaviour {
     void OnTriggerEnter(Collider collider) {
         if (collider.transform.tag == "Player") {
             playerScript.Jumpad(jumpadHeight);
-            audioSource.Play();
+            if (playSound) {
+                audioSource.Play();
+            }
         }
     }
 }

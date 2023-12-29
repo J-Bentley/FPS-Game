@@ -148,6 +148,6 @@ public class Player : MonoBehaviour {
     }
 
     void Death() {
-        SceneManager.LoadScene(2); //loads gameOver scene
+        SceneManager.LoadScene(2);
     }
 }

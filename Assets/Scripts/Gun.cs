@@ -65,7 +65,6 @@ public class Gun : MonoBehaviour {
                     impactForce = 100f;
                     clipAmmo = 16;
                 }
-
                 clipAmmoText.enabled = true;
                 clipAmmoText.text = clipAmmo.ToString();
             }
@@ -137,7 +136,7 @@ public class Gun : MonoBehaviour {
                     target.TakeTargetDamage(damage);
                     impactSounds[0].Play(); //flesh impact sound
                 } else {
-                    int randomIndex = Random.Range(1, impactSounds.Length); //excludes 0 as that is flesh impact
+                    int randomIndex = Random.Range(1, impactSounds.Length);
                     impactSounds[randomIndex].Play(); //random impact sounds
                 }
 

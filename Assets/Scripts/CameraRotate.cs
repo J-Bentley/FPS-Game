@@ -1,8 +1,9 @@
 using UnityEngine;
 
 public class CameraRotate : MonoBehaviour {
-    [SerializeField] private Transform target;
+    [SerializeField] private Transform subject;
+    [SerializeField] private float speed = 10f;
     void Update() {
-        transform.RotateAround(target.position, target.right, Time.deltaTime * 10f);
+        transform.RotateAround(subject.position, subject.right, Time.deltaTime * speed);
     }
 }

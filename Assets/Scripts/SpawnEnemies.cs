@@ -7,9 +7,9 @@ public class SpawnEnemies : MonoBehaviour {
     [SerializeField] private GameObject shooterEnemy;
     private GameObject enemyObject;
     private Transform[] spawnPoints;
-    private int wave = 1;
-    private int enemiesToSpawnThisRound = 2;
-    public static int enemiesKilledThisRound = 0; //is incremented by target script
+    private int wave;
+    private int enemiesToSpawnThisRound;
+    public static int enemiesKilledThisRound;
     private AudioSource[] audioSource;
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private float timeBetweenWaves = 10f;
@@ -18,6 +18,9 @@ public class SpawnEnemies : MonoBehaviour {
     void Start() {
         spawnPoints = GetComponentsInChildren<Transform>();
         audioSource = playerController.GetComponents<AudioSource>();
+        enemiesKilledThisRound = 0;
+        enemiesToSpawnThisRound = 2;
+        wave = 1;
         waveText.text = "Wave: " + wave;
         SpawnEnemy();
     }

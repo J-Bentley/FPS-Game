@@ -1,11 +1,13 @@
 using UnityEngine;
 
 public class Staminapack : MonoBehaviour {
-    public Player playerScript;
-    public CharacterController playerController;
-    private AudioSource[] audioSource; //order: footsteps, out of breath, jump, take damage, heal, bg, receivestamina
-    public float staminaAmount = 5f;
-    public bool destroyAfterUse = true;
+    [SerializeField] private Player playerScript;
+    [SerializeField] private CharacterController playerController;
+    private AudioSource[] audioSource;
+    [SerializeField] private float staminaAmount = 5f;
+    [SerializeField] private bool destroyAfterUse = true;
+    [SerializeField] private bool playSound = true;
+
 
     void Start() {
         audioSource = playerController.GetComponents<AudioSource>();
@@ -14,7 +16,9 @@ public class Staminapack : MonoBehaviour {
     void OnTriggerEnter(Collider collider) {
         if (collider.transform.tag == "Player") {
             playerScript.ReceiveStamina(staminaAmount);
-            audioSource[6].Play();
+            if (playSound) {
+                audioSource[6].Play(); //stamina pack sound
+            }
             if (destroyAfterUse) {
                 Destroy(gameObject);
             }

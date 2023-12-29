@@ -3,32 +3,24 @@ using UnityEngine;
 public class Healthpack : MonoBehaviour {
 
     public Player playerScript;
-    public CharacterController playerController;
-
-    public float healingAmount = 50f;
-    public bool destroyAfterUse = true;
-
-    private AudioSource[] audioSource; //order: footsteps, out of breath, jump, take damage, heal, bg, receivestamina
-    private float cHealth;
-    private float mHealth;
+    private AudioSource[] audioSource; 
+    [SerializeField] private CharacterController playerController;
+    [SerializeField] private float healingAmount = 50f;
+    [SerializeField] private bool destroyAfterUse = true;
+    [SerializeField] private bool playSound = true;
 
     void Start() {
-        audioSource = playerController.GetComponents<AudioSource>(); //gets the heal sound component from the players gameobject. reason: if the component is on healthpack object, wont play after destroy
+        audioSource = playerController.GetComponents<AudioSource>();
     }
 
-    void Update() {
-        cHealth = playerScript.currentHealth;
-        mHealth = playerScript.maxHealth;
-    }
-
-    void OnTriggerEnter(Collider collider){
-        if(cHealth != mHealth) {
-            if(collider.gameObject.transform.tag == "Player"){
-
+    void OnTriggerEnter (Collider collider) {
+        if (collider.gameObject.transform.tag == "Player") {
+            if (playerScript.currentHealth != playerScript.maxHealth) {
                 playerScript.ReceiveHealing(healingAmount);
-                audioSource[4].Play(); //heal sound
-
-                if(destroyAfterUse) {
+                if (playSound) {
+                    audioSource[4].Play(); //heal sound
+                }
+                if (destroyAfterUse) {
                     Destroy(gameObject);
                 }
             }
