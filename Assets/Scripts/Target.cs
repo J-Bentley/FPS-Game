@@ -3,19 +3,19 @@ using UnityEngine.UI;
 
 public class Target : MonoBehaviour {
 
-    [SerializeField] private float targetHealth = 50f;
+    public Player playerScript;
     [SerializeField] private GameObject destroyedVersion;
-    [SerializeField] private bool destroyPeices = false;
-    [SerializeField] private float destroyPeicesTimer = 10;
-    [SerializeField] private bool playHurtSound = false;
-    [SerializeField] private bool playDeathSound = false;
-    [SerializeField] private Slider enemyHealthbar = null;
     [SerializeField] private GameObject staminapack;
     [SerializeField] private bool spawnStaminapackOnDeath = true;
     [SerializeField] private bool giveMoneyOnDeath = true;
+    [SerializeField] private bool destroyPeices = false;
+    [SerializeField] private bool playHurtSound = false;
+    [SerializeField] private bool playDeathSound = false;
+    [SerializeField] private float destroyPeicesTimer = 10;
+    [SerializeField] private float targetHealth = 50f;
     [SerializeField] private int minRandomMoney = 10;
     [SerializeField] private int maxRandomMoney = 20;
-    public Player playerScript;
+    [SerializeField] private Slider enemyHealthbar = null;
     private AudioSource hurtSound;
     private AudioSource deathSound;
 
@@ -40,6 +40,8 @@ public class Target : MonoBehaviour {
 
     void Die () {
         SpawnEnemies.enemiesKilledThisRound++;
+        SpawnEnemies.totalEnemiesKilled++;
+        
         Destroy(gameObject);
         GameObject destroyedGO = Instantiate(destroyedVersion, transform.position, transform.rotation);
 

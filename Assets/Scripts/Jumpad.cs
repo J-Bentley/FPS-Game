@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Jumpad : MonoBehaviour {
     public Player playerScript;
-    [SerializeField] private float jumpadHeight;
     private AudioSource audioSource;
+    [SerializeField] private float jumpadHeight;
     [SerializeField] private bool playSound = true;
 
     void Start() {

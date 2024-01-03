@@ -7,9 +7,10 @@ public class SpawnEnemies : MonoBehaviour {
     [SerializeField] private GameObject shooterEnemy;
     private GameObject enemyObject;
     private Transform[] spawnPoints;
-    private int wave;
+    public static int wave;
     private int enemiesToSpawnThisRound;
     public static int enemiesKilledThisRound;
+    public static int totalEnemiesKilled;
     private AudioSource[] audioSource;
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private float timeBetweenWaves = 10f;
