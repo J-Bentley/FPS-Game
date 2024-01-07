@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,20 +6,20 @@ public class GameManager : MonoBehaviour {
     public static bool gamePaused = false;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
-    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject mainMenu;
 
     void Update() {
-        if(!gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
+        if (!gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
             try {
                 PauseGame();
             } catch {
-                Debug.Log("error lol");
+                Debug.Log("Error lol");
             }
         } else if (gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
-                        try {
+            try {
                 ResumeGame();
             } catch {
-                Debug.Log("error lol");
+                Debug.Log("Error lol");
             }
         }
     }
@@ -55,12 +54,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OptionsMenu() {
-        MainMenu.SetActive(false);
+        mainMenu.SetActive(false);
         optionsMenu.SetActive(true);
     }
 
     public void BackButton() {
+        mainMenu.SetActive(true);
         optionsMenu.SetActive(false);
-        MainMenu.SetActive(true);
     }
 }

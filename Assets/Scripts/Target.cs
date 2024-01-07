@@ -41,7 +41,6 @@ public class Target : MonoBehaviour {
     void Die () {
         SpawnEnemies.enemiesKilledThisRound++;
         SpawnEnemies.totalEnemiesKilled++;
-        
         Destroy(gameObject);
         GameObject destroyedObject = Instantiate(destroyedVersion, transform.position, transform.rotation);
 

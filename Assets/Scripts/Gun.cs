@@ -73,7 +73,7 @@ public class Gun : MonoBehaviour {
             equipUI.enabled = false;
         }
 
-        if (!GameManager.gamePaused & gunEquipped == true && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) {
+        if (!GameManager.gamePaused && gunEquipped == true && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f/fireRate;
             if (usedAmmo < clipAmmo) {
                 Shoot();
@@ -112,7 +112,8 @@ public class Gun : MonoBehaviour {
             gunObject.transform.position = adsPoint.transform.position;
             gunObject.transform.rotation = adsPoint.transform.rotation;
             fpsCam.fieldOfView = adsFov;
-            
+            //gunObject.transform.localPosition = Vector3.Lerp(equipPoint.localPosition, adsPoint.localPosition, 2f * Time.deltaTime);
+
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
             gunObject.transform.position = equipPoint.transform.position;
             gunObject.transform.rotation = equipPoint.transform.rotation;
@@ -122,15 +123,15 @@ public class Gun : MonoBehaviour {
     void Shoot() {
         RaycastHit shot;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out shot, gunRange, shootableLayers)) {
-            if (!gunSounds[2].isPlaying) {
+            if (!gunSounds[2].isPlaying) { // this is dumb
                 usedAmmo++;
-                Target target = shot.transform.GetComponent<Target>();
                 clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
                 animator.SetTrigger("onShoot");
                 gunSounds[0].Play();
                 muzzleFlashObject.GetComponent<ParticleSystem>().Play();
                 ParticleSystem impactInstance = Instantiate(impactEffect, shot.point, Quaternion.LookRotation(shot.normal)); impactInstance.Play(); Destroy(impactInstance.gameObject, 2f);
                 impactSounds = impactInstance.GetComponents<AudioSource>();
+                Target target = shot.transform.GetComponent<Target>();
 
                 if (target != null) {
                     target.TakeTargetDamage(damage);

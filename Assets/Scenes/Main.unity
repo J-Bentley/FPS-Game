@@ -659,7 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 671464492}
   optionsMenu: {fileID: 0}
-  MainMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!1 &181667892
 GameObject:
   m_ObjectHideFlags: 0
@@ -7471,7 +7471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 671464492}
   optionsMenu: {fileID: 0}
-  MainMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!114 &1053719402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13207,7 +13207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1430238868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13396,7 +13396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 671464492}
   optionsMenu: {fileID: 0}
-  MainMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!1 &1713900522
 GameObject:
   m_ObjectHideFlags: 0
@@ -26329,7 +26329,7 @@ Transform:
   m_GameObject: {fileID: 6043375166526513441}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.79248, y: -28.132418, z: 334.05255}
+  m_LocalPosition: {x: -55.79248, y: -28.132418, z: 290.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28255,7 +28255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 671464492}
   optionsMenu: {fileID: 0}
-  MainMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!82 &8316277167977690167
 AudioSource:
   m_ObjectHideFlags: 0
