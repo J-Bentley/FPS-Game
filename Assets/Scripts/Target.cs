@@ -43,7 +43,7 @@ public class Target : MonoBehaviour {
         SpawnEnemies.totalEnemiesKilled++;
         
         Destroy(gameObject);
-        GameObject destroyedGO = Instantiate(destroyedVersion, transform.position, transform.rotation);
+        GameObject destroyedObject = Instantiate(destroyedVersion, transform.position, transform.rotation);
 
         if (spawnStaminapackOnDeath) {
             Instantiate(staminapack, transform.position, transform.rotation);
@@ -55,12 +55,12 @@ public class Target : MonoBehaviour {
         }
 
         if (playDeathSound) {
-            deathSound = destroyedGO.GetComponent<AudioSource>(); 
+            deathSound = destroyedObject.GetComponent<AudioSource>(); 
             deathSound.Play();
         }
 
         if(destroyPeices) {
-            Destroy(destroyedGO, destroyPeicesTimer);
+            Destroy(destroyedObject, destroyPeicesTimer);
         }
     }
 }
