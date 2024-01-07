@@ -733,7 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   optionsMenu: {fileID: 0}
-  MainMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!95 &424169461
 Animator:
   serializedVersion: 5
@@ -809,7 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   optionsMenu: {fileID: 784778164}
-  MainMenu: {fileID: 1875832275}
+  mainMenu: {fileID: 1875832275}
 --- !u!114 &433148064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6497,7 +6497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   optionsMenu: {fileID: 784778164}
-  MainMenu: {fileID: 1875832275}
+  mainMenu: {fileID: 1875832275}
 --- !u!114 &1041106273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6781,7 +6781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   optionsMenu: {fileID: 0}
-  MainMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!114 &1118869360
 MonoBehaviour:
   m_ObjectHideFlags: 0

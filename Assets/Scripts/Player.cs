@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
     public Animator animator = null;
     public static float totalMoney = 0f;
     [SerializeField] private TextMeshProUGUI moneyText;
+    public GameManager gameManagerScript;
 
     void Start () {
         defaultFov = fpsCam.fieldOfView;
@@ -45,11 +46,10 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
-
         if (!audioSources[5].isPlaying) {
             audioSources[5].Play(); //loop background music
         }
-
+        
         staminaBar.value = currentStamina;
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -58,13 +58,13 @@ public class Player : MonoBehaviour {
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
+        float x = Input.GetAxis("Horizontal"); 
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
     
-        if (!GameManager.gamePaused && Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f && !Input.GetButton("Fire2")) {
+        if (!GameManager.gamePaused && Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) {
             if (currentStamina > 0f) {
                 speed = sprintSpeed;
                 fpsCam.fieldOfView = sprintFov;
@@ -104,9 +104,7 @@ public class Player : MonoBehaviour {
             audioSources[0].Stop(); 
         }
         
-        if (!isGrounded && audioSources[0].isPlaying) {
-            audioSources[0].Stop(); 
-        }
+        if (!isGrounded && audioSources[0].isPlaying) audioSources[0].Stop();
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);

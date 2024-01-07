@@ -109,15 +109,23 @@ public class Gun : MonoBehaviour {
         }
 
         if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
-            gunObject.transform.position = adsPoint.transform.position;
-            gunObject.transform.rotation = adsPoint.transform.rotation;
-            fpsCam.fieldOfView = adsFov;
-            //gunObject.transform.localPosition = Vector3.Lerp(equipPoint.localPosition, adsPoint.localPosition, 2f * Time.deltaTime);
+            AimIn();
 
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
-            gunObject.transform.position = equipPoint.transform.position;
-            gunObject.transform.rotation = equipPoint.transform.rotation;
+            AimOut();
         }
+    }
+
+    void AimIn() {
+        gunObject.transform.position = adsPoint.transform.position;
+        gunObject.transform.rotation = adsPoint.transform.rotation;
+        fpsCam.fieldOfView = adsFov;
+        //gunObject.transform.localPosition = Vector3.Lerp(equipPoint.localPosition, adsPoint.localPosition, 2f * Time.deltaTime);
+    }
+
+    void AimOut() {
+        gunObject.transform.position = equipPoint.transform.position;
+        gunObject.transform.rotation = equipPoint.transform.rotation;
     }
 
     void Shoot() {

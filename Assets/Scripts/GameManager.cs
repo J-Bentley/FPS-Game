@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour {
             try {
                 PauseGame();
             } catch {
-                Debug.Log("Error lol");
+                Debug.Log("Cannot pause in the menu!");
             }
         } else if (gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
             try {
                 ResumeGame();
             } catch {
-                Debug.Log("Error lol");
+                Debug.Log("Cannot pause in the menu!");
             }
         }
     }
