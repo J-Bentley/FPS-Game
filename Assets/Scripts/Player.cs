@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private CharacterController controller;
     [SerializeField] private Camera fpsCam;
+    [SerializeField] private float fovSpeed = 2f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
@@ -28,7 +29,6 @@ public class Player : MonoBehaviour {
     public bool gunEquipped = false;
     private float originalSpeed;
     private AudioSource[] audioSources;
-    public Animator animator = null;
     public static float totalMoney = 0f;
     [SerializeField] private TextMeshProUGUI moneyText;
     public GameManager gameManagerScript;
@@ -67,16 +67,16 @@ public class Player : MonoBehaviour {
         if (!GameManager.gamePaused && Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) {
             if (currentStamina > 0f) {
                 speed = sprintSpeed;
-                fpsCam.fieldOfView = sprintFov;
+                //fpsCam.fieldOfView = sprintFov;
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sprintFov, fovSpeed * Time.deltaTime);
                 currentStamina -= Time.deltaTime;
-                if (gunEquipped) {
-                    animator.SetTrigger("onSprint");
-                }    
+                   
             }
 
             if (currentStamina <= 0f) {
                 speed = originalSpeed;
-                fpsCam.fieldOfView = defaultFov;
+                //fpsCam.fieldOfView = defaultFov;
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, defaultFov, fovSpeed * Time.deltaTime);
                 currentStamina = 0;
                 if (!audioSources[1].isPlaying) {
                     audioSources[1].Play(); //no stamina sound
@@ -87,7 +87,8 @@ public class Player : MonoBehaviour {
         }
 
         if (!Input.GetKey("left shift")) {
-            fpsCam.fieldOfView = defaultFov;
+            //fpsCam.fieldOfView = defaultFov;
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, defaultFov, fovSpeed * Time.deltaTime);
             speed = originalSpeed;
         }
 

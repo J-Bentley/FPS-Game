@@ -40,7 +40,6 @@ public class Gun : MonoBehaviour {
                 gunSounds = gunObject.GetComponents<AudioSource>();
                 muzzleFlashObject = gunObject.transform.Find("Muzzleflash").gameObject;
                 animator = gunObject.transform.Find("Model").GetComponent<Animator>();
-                playerScript.animator = animator;
                 Physics.IgnoreCollision(gunObject.GetComponent<Collider>(), GetComponent<Collider>(), true);
                 grab.rigidbody.useGravity = false;
                 grab.rigidbody.isKinematic = true;
@@ -109,23 +108,14 @@ public class Gun : MonoBehaviour {
         }
 
         if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
-            AimIn();
+            gunObject.transform.position = adsPoint.transform.position;
+            gunObject.transform.rotation = adsPoint.transform.rotation;
+            fpsCam.fieldOfView = adsFov;
 
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
-            AimOut();
+            gunObject.transform.position = equipPoint.transform.position;
+            gunObject.transform.rotation = equipPoint.transform.rotation;
         }
-    }
-
-    void AimIn() {
-        gunObject.transform.position = adsPoint.transform.position;
-        gunObject.transform.rotation = adsPoint.transform.rotation;
-        fpsCam.fieldOfView = adsFov;
-        //gunObject.transform.localPosition = Vector3.Lerp(equipPoint.localPosition, adsPoint.localPosition, 2f * Time.deltaTime);
-    }
-
-    void AimOut() {
-        gunObject.transform.position = equipPoint.transform.position;
-        gunObject.transform.rotation = equipPoint.transform.rotation;
     }
 
     void Shoot() {

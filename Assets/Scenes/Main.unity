@@ -1172,8 +1172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24c693128b03cd459b34e67a60ef872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 4
-  swayMultiplier: 15
+  smooth: 3
+  swayMultiplier: 20
 --- !u!1 &390974751
 GameObject:
   m_ObjectHideFlags: 0
@@ -10809,7 +10809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restPosition: {x: 0, y: 1.257, z: 0}
   bobSpeed: 9
-  bobAmount: 0.2
+  bobAmount: 0.3
 --- !u!4 &3418563258728456143
 Transform:
   m_ObjectHideFlags: 0
@@ -16553,8 +16553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24c693128b03cd459b34e67a60ef872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 8
-  swayMultiplier: 15
+  smooth: 10
+  swayMultiplier: 20
 --- !u!198 &5129183989321988728
 ParticleSystem:
   m_ObjectHideFlags: 0

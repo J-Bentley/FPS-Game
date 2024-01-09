@@ -5,7 +5,6 @@ public class GunSway : MonoBehaviour {
     [SerializeField] private float smooth;
     [SerializeField] private float swayMultiplier;
 
-
     void Update() {
         float mouseX = Input.GetAxisRaw("Mouse X") * swayMultiplier;
         float mouseY = Input.GetAxisRaw("Mouse Y") * swayMultiplier;
