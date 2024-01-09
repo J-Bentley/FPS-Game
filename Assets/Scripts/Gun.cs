@@ -110,7 +110,7 @@ public class Gun : MonoBehaviour {
         if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
             gunObject.transform.position = adsPoint.transform.position;
             gunObject.transform.rotation = adsPoint.transform.rotation;
-            fpsCam.fieldOfView = adsFov;
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, 1f * Time.deltaTime);
 
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
             gunObject.transform.position = equipPoint.transform.position;

@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class GunSway : MonoBehaviour {
 
-    [SerializeField] private float smooth;
+    [SerializeField] private float smoothing;
     [SerializeField] private float swayMultiplier;
 
     void Update() {
+        LookSway();
+    }
+
+    void LookSway() {
         float mouseX = Input.GetAxisRaw("Mouse X") * swayMultiplier;
         float mouseY = Input.GetAxisRaw("Mouse Y") * swayMultiplier;
 
@@ -14,6 +18,6 @@ public class GunSway : MonoBehaviour {
 
         Quaternion targetRot = rotX * rotY;
 
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRot, smooth * Time.deltaTime);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRot, smoothing * Time.deltaTime);
     }
 }

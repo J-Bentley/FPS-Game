@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Player : MonoBehaviour {
-
     [SerializeField] private CharacterController controller;
     [SerializeField] private Camera fpsCam;
     [SerializeField] private float fovSpeed = 2f;
@@ -51,7 +50,6 @@ public class Player : MonoBehaviour {
         }
         
         staminaBar.value = currentStamina;
-
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0) {
@@ -101,7 +99,7 @@ public class Player : MonoBehaviour {
         } else {
             audioSources[0].Stop(); 
         }
-        
+
         if (!isGrounded && audioSources[0].isPlaying) audioSources[0].Stop();
 
         velocity.y += gravity * Time.deltaTime;
