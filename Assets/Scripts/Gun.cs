@@ -6,7 +6,10 @@ public class Gun : MonoBehaviour {
 
     [SerializeField] private Camera fpsCam;
     [SerializeField] private float adsFov = 60f;
+    [SerializeField] private float adsFovSpeed = 1f;
     [SerializeField] private Transform equipPoint;
+    private Vector3 originalEquipPoint;
+    [SerializeField] private Transform equipPoint2;
     [SerializeField] private Transform adsPoint;
     [SerializeField] private TextMeshProUGUI equipUI;
     [SerializeField] private TextMeshProUGUI clipAmmoText;
@@ -30,6 +33,10 @@ public class Gun : MonoBehaviour {
     private float usedAmmo = 0f;
     private RaycastHit grab;
     public Player playerScript;
+    
+    void Start() {
+        originalEquipPoint = equipPoint2.transform.localPosition;
+    }
 
     void Update() {
         if (gunEquipped == false && Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out grab, equipRange, gunLayers)) {   
@@ -108,13 +115,11 @@ public class Gun : MonoBehaviour {
         }
 
         if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
-            gunObject.transform.position = adsPoint.transform.position;
-            gunObject.transform.rotation = adsPoint.transform.rotation;
-            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, 1f * Time.deltaTime);
-
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 8f * Time.deltaTime);
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
-            gunObject.transform.position = equipPoint.transform.position;
-            gunObject.transform.rotation = equipPoint.transform.rotation;
+            equipPoint.transform.localPosition = equipPoint2.localPosition;
+            //equipPoint.transform.localPosition = Vector3.Lerp(adsPoint.transform.localPosition, originalEquipPoint, 8f * Time.deltaTime);
         }
     }
 

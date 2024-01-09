@@ -6,7 +6,7 @@ using TMPro;
 public class Player : MonoBehaviour {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Camera fpsCam;
-    [SerializeField] private float fovSpeed = 2f;
+    [SerializeField] private float fovSpeed = 1f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;

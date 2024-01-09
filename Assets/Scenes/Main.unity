@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24c693128b03cd459b34e67a60ef872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 3
+  smoothing: 3
   swayMultiplier: 20
 --- !u!1 &390974751
 GameObject:
@@ -8729,6 +8729,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774164352}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1887343798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1887343799}
+  - component: {fileID: 1887343800}
+  m_Layer: 7
+  m_Name: Equip Point 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1887343799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887343798}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.348, y: -0.418, z: 0.689}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4039148663235229086}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887343800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887343798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24c693128b03cd459b34e67a60ef872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothing: 5
+  swayMultiplier: 20
 --- !u!1 &1899025482
 GameObject:
   m_ObjectHideFlags: 0
@@ -10808,7 +10854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restPosition: {x: 0, y: 1.257, z: 0}
-  bobSpeed: 9
+  bobSpeed: 10
   bobAmount: 0.3
 --- !u!4 &3418563258728456143
 Transform:
@@ -15791,6 +15837,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3418563258728456143}
+  - {fileID: 1887343799}
   - {fileID: 331076039}
   m_Father: {fileID: 6784628029564242092}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16553,7 +16600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24c693128b03cd459b34e67a60ef872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 10
+  smoothing: 5
   swayMultiplier: 20
 --- !u!198 &5129183989321988728
 ParticleSystem:
@@ -22122,6 +22169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 2257173539321837437}
   fpsCam: {fileID: 4878622789021262278}
+  fovSpeed: 4
   groundCheck: {fileID: 3070458821382002859}
   groundDistance: 0.6
   groundMask:
@@ -22131,7 +22179,7 @@ MonoBehaviour:
   gravity: -35
   jumpHeight: 4
   sprintSpeed: 16
-  sprintFov: 100
+  sprintFov: 110
   staminaRegen: 1.5
   maxHealth: 100
   currentStamina: 0
@@ -22140,7 +22188,6 @@ MonoBehaviour:
   staminaBar: {fileID: 6980647217165045129}
   healthBar: {fileID: 1459451059804427979}
   gunEquipped: 0
-  animator: {fileID: 0}
   moneyText: {fileID: 736155408}
   gameManagerScript: {fileID: 0}
 --- !u!4 &6628616772418742137
@@ -22713,8 +22760,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsCam: {fileID: 4878622789021262278}
-  adsFov: 60
+  adsFov: 40
+  adsFovSpeed: 4
   equipPoint: {fileID: 3418563258728456143}
+  equipPoint2: {fileID: 1887343799}
   adsPoint: {fileID: 331076039}
   equipUI: {fileID: 2058670876220108545}
   clipAmmoText: {fileID: 3571368389688124579}
