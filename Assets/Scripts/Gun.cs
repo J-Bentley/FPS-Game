@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Gun : MonoBehaviour {
 
@@ -8,7 +9,6 @@ public class Gun : MonoBehaviour {
     [SerializeField] private float adsFov = 60f;
     [SerializeField] private float adsFovSpeed = 1f;
     [SerializeField] private Transform equipPoint;
-    private Vector3 originalEquipPoint;
     [SerializeField] private Transform equipPoint2;
     [SerializeField] private Transform adsPoint;
     [SerializeField] private TextMeshProUGUI equipUI;
@@ -33,10 +33,6 @@ public class Gun : MonoBehaviour {
     private float usedAmmo = 0f;
     private RaycastHit grab;
     public Player playerScript;
-    
-    void Start() {
-        originalEquipPoint = equipPoint2.transform.localPosition;
-    }
 
     void Update() {
         if (gunEquipped == false && Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out grab, equipRange, gunLayers)) {   
@@ -115,12 +111,25 @@ public class Gun : MonoBehaviour {
         }
 
         if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
-            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 8f * Time.deltaTime);
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 9f * Time.deltaTime);
             fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
             equipPoint.transform.localPosition = equipPoint2.localPosition;
-            //equipPoint.transform.localPosition = Vector3.Lerp(adsPoint.transform.localPosition, originalEquipPoint, 8f * Time.deltaTime);
+            //equipPoint.transform.localPosition = Vector3.Lerp(adsPoint.transform.localPosition, equipPoint2.transform.localPosition, 8f * Time.deltaTime);
         }
+    }
+
+    public IEnumerator CameraShake(float duration, float magnitude) {
+        Vector3 orignalPosition = fpsCam.transform.localPosition;
+        float elapsed = 0f;
+        while(elapsed < duration) {
+            float randomX = Random.Range(-0.5f, 0.5f) * magnitude;
+            float randomZ = Random.Range(-1f, 1f) * magnitude;
+            fpsCam.transform.localPosition = new Vector3(randomX, fpsCam.transform.localPosition.y, randomZ);
+            elapsed += Time.deltaTime;
+            yield return 0;
+        }
+        fpsCam.transform.localPosition = orignalPosition;
     }
 
     void Shoot() {
@@ -135,7 +144,8 @@ public class Gun : MonoBehaviour {
                 ParticleSystem impactInstance = Instantiate(impactEffect, shot.point, Quaternion.LookRotation(shot.normal)); impactInstance.Play(); Destroy(impactInstance.gameObject, 2f);
                 impactSounds = impactInstance.GetComponents<AudioSource>();
                 Target target = shot.transform.GetComponent<Target>();
-
+                StartCoroutine(CameraShake(0.1f, 0.6f));
+                
                 if (target != null) {
                     target.TakeTargetDamage(damage);
                     impactSounds[0].Play(); //flesh impact sound
