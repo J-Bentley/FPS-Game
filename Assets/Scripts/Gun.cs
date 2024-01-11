@@ -111,15 +111,14 @@ public class Gun : MonoBehaviour {
         }
 
         if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
-            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 9f * Time.deltaTime);
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 5f * Time.deltaTime);
             fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
-            equipPoint.transform.localPosition = equipPoint2.localPosition;
-            //equipPoint.transform.localPosition = Vector3.Lerp(adsPoint.transform.localPosition, equipPoint2.transform.localPosition, 8f * Time.deltaTime);
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, equipPoint2.transform.localPosition, 5f * Time.deltaTime);
         }
     }
 
-    public IEnumerator CameraShake(float duration, float magnitude) {
+    private IEnumerator CameraShake(float duration, float magnitude) {
         Vector3 orignalPosition = fpsCam.transform.localPosition;
         float elapsed = 0f;
         while(elapsed < duration) {
