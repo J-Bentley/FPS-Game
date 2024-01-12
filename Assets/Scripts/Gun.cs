@@ -18,6 +18,10 @@ public class Gun : MonoBehaviour {
     [SerializeField] private LayerMask gunLayers;
     [SerializeField] private LayerMask shootableLayers;
     [SerializeField] private float gunRange = 1000f;
+    [SerializeField] private float swayAmount = 0.02f;
+    [SerializeField] private float swaySpeed = 2f;
+    [SerializeField] private float swaySmoothing;
+    [SerializeField] private float swayMultiplier;
     private GameObject gunObject;
     public ParticleSystem impactEffect;
     private GameObject muzzleFlashObject;
@@ -32,9 +36,10 @@ public class Gun : MonoBehaviour {
     private float clipAmmo = 1f;
     private float usedAmmo = 0f;
     private RaycastHit grab;
-    public Player playerScript;
 
     void Update() {
+        IdleSway();
+        LookSway();
         if (gunEquipped == false && Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out grab, equipRange, gunLayers)) {   
             equipUI.text = "[E] Equip";
             equipUI.enabled = true;
@@ -50,7 +55,6 @@ public class Gun : MonoBehaviour {
                 gunObject.transform.rotation = equipPoint.transform.rotation;
                 gunObject.transform.parent = equipPoint.transform;
                 crosshair.enabled = true;
-                playerScript.gunEquipped = true;
                 gunEquipped = true;
                 gunSounds[3].Play(); //cock sound
 
@@ -105,16 +109,15 @@ public class Gun : MonoBehaviour {
             gunObject.transform.parent = null;
             grab.rigidbody.useGravity = true;
             grab.rigidbody.isKinematic = false;
-            playerScript.gunEquipped = false;
             gunEquipped = false;
             usedAmmo = 0f;
         }
 
         if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
-            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 5f * Time.deltaTime);
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
             fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
-            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, equipPoint2.transform.localPosition, 5f * Time.deltaTime);
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, equipPoint2.transform.localPosition, 9f * Time.deltaTime);
         }
     }
 
@@ -129,6 +132,26 @@ public class Gun : MonoBehaviour {
             yield return 0;
         }
         fpsCam.transform.localPosition = orignalPosition;
+    }
+
+    void IdleSway() {
+        if (gunEquipped) {
+            float swayX = Mathf.Sin(Time.time * swaySpeed) * swayAmount;
+            float swayY = Mathf.Cos(Time.time * swaySpeed) * swayAmount;
+            Vector3 sway = new Vector3(swayX, swayY, 0);
+            gunObject.transform.localPosition = equipPoint.localPosition + sway;
+        }
+    }
+
+    void LookSway() {
+        if (gunEquipped) {
+            float mouseX = Input.GetAxisRaw("Mouse X") * swayMultiplier;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * swayMultiplier;
+            Quaternion rotX = Quaternion.AngleAxis(-mouseY, Vector3.right);
+            Quaternion rotY = Quaternion.AngleAxis(mouseX, Vector3.up);
+            Quaternion targetRot = rotX * rotY;
+            equipPoint.localRotation = Quaternion.Slerp(equipPoint.localRotation, targetRot, swaySmoothing * Time.deltaTime);
+        }
     }
 
     void Shoot() {

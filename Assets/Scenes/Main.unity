@@ -1001,7 +1001,7 @@ Transform:
   m_GameObject: {fileID: 331076038}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.51, z: 0.567}
+  m_LocalPosition: {x: 0, y: -0.259, z: 0.567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8033,7 +8033,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430238867}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a21aed79d787254b98c3fdca0773d24, type: 3}
   m_Name: 
@@ -8586,7 +8586,7 @@ Transform:
   m_GameObject: {fileID: 1887343798}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.348, y: -0.418, z: 0.689}
+  m_LocalPosition: {x: 0.272, y: -0.325, z: 0.542}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10753,7 +10753,7 @@ Transform:
   m_GameObject: {fileID: 5121208940302258850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.348, y: -0.418, z: 0.689}
+  m_LocalPosition: {x: 0.272, y: -0.325, z: 0.542}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16468,7 +16468,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3418563258728456143}
-  - component: {fileID: 5121208940302258851}
   m_Layer: 7
   m_Name: Equip Point
   m_TagString: Untagged
@@ -16476,22 +16475,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5121208940302258851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121208940302258850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24c693128b03cd459b34e67a60ef872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smoothing: 5
-  swayMultiplier: 20
-  swayAmount: 0.02
-  swaySpeed: 2
 --- !u!198 &5129183989321988728
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -22077,7 +22060,6 @@ MonoBehaviour:
   currentHealth: -40.199997
   staminaBar: {fileID: 6980647217165045129}
   healthBar: {fileID: 1459451059804427979}
-  gunEquipped: 0
   moneyText: {fileID: 736155408}
   gameManagerScript: {fileID: 0}
 --- !u!4 &6628616772418742137
@@ -22669,8 +22651,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 264
   gunRange: 1000
+  swayAmount: 0.02
+  swaySpeed: 2
+  swaySmoothing: 5
+  swayMultiplier: 20
   impactEffect: {fileID: 1673712406583481907, guid: 2d890e5155f7ad743a00d0ef728b3049, type: 3}
-  playerScript: {fileID: 6597763200590041486}
 --- !u!1 &7554696283012786344
 GameObject:
   m_ObjectHideFlags: 0

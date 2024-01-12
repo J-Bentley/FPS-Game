@@ -25,7 +25,6 @@ public class Player : MonoBehaviour {
     public float currentHealth;
     public Slider staminaBar;
     public Slider healthBar;
-    public bool gunEquipped = false;
     private float originalSpeed;
     private AudioSource[] audioSources;
     public static float totalMoney = 0f;
@@ -58,7 +57,6 @@ public class Player : MonoBehaviour {
 
         float x = Input.GetAxis("Horizontal"); 
         float z = Input.GetAxis("Vertical");
-
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
     
@@ -100,8 +98,9 @@ public class Player : MonoBehaviour {
             audioSources[0].Stop(); 
         }
 
-        if (!isGrounded && audioSources[0].isPlaying) audioSources[0].Stop();
-
+        if (!isGrounded && audioSources[0].isPlaying) { 
+            audioSources[0].Stop();
+        }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
