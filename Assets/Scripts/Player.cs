@@ -45,7 +45,7 @@ public class Player : MonoBehaviour {
 
     void Update() {
         if (!audioSources[5].isPlaying) {
-            audioSources[5].Play(); //loop background music
+            audioSources[5].Play(); //loops background music
         }
         
         staminaBar.value = currentStamina;
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
 
         if (!GameManager.gamePaused && Input.GetButtonDown("Jump") && isGrounded) {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            audioSources[2].Play(); //jump sound
+            audioSources[2].pitch = Random.Range(0.8f, 1.2f); audioSources[2].Play(); //jump sound
         }
 
         if (controller.velocity.magnitude > 0.1f) {

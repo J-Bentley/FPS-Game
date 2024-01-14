@@ -121,7 +121,7 @@ public class Gun : MonoBehaviour {
         }
     }
 
-    private IEnumerator CameraShake(float duration, float magnitude) {
+    IEnumerator CameraShake(float duration, float magnitude) {
         Vector3 orignalPosition = fpsCam.transform.localPosition;
         float elapsed = 0f;
         while(elapsed < duration) {
@@ -139,7 +139,7 @@ public class Gun : MonoBehaviour {
             float swayX = Mathf.Sin(Time.time * swaySpeed) * swayAmount;
             float swayY = Mathf.Cos(Time.time * swaySpeed) * swayAmount;
             Vector3 sway = new Vector3(swayX, swayY, 0);
-            gunObject.transform.localPosition = equipPoint.localPosition + sway;
+            gunObject.transform.localPosition = equipPoint.transform.localPosition + sway;
         }
     }
 
@@ -157,23 +157,25 @@ public class Gun : MonoBehaviour {
     void Shoot() {
         RaycastHit shot;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out shot, gunRange, shootableLayers)) {
-            if (!gunSounds[2].isPlaying) { // this is dumb
-                usedAmmo++;
-                clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
-                animator.SetTrigger("onShoot");
-                gunSounds[0].Play();
-                muzzleFlashObject.GetComponent<ParticleSystem>().Play();
+            if (!gunSounds[2].isPlaying) { // this is dumb but it works - cannot shoot when reloading
+                Target target = shot.transform.GetComponent<Target>();
                 ParticleSystem impactInstance = Instantiate(impactEffect, shot.point, Quaternion.LookRotation(shot.normal)); impactInstance.Play(); Destroy(impactInstance.gameObject, 2f);
                 impactSounds = impactInstance.GetComponents<AudioSource>();
-                Target target = shot.transform.GetComponent<Target>();
+                muzzleFlashObject.GetComponent<ParticleSystem>().Play();
+                animator.SetTrigger("onShoot");
+                clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
                 StartCoroutine(CameraShake(0.1f, 0.6f));
-                
+                gunSounds[0].pitch = Random.Range(0.8f, 1.2f);;
+                gunSounds[0].Play();
+                usedAmmo++;
+
                 if (target != null) {
                     target.TakeTargetDamage(damage);
+                    impactSounds[0].pitch = Random.Range(0.8f, 1.2f);;
                     impactSounds[0].Play(); //flesh impact sound
                 } else {
-                    int randomIndex = Random.Range(1, impactSounds.Length);
-                    impactSounds[randomIndex].Play(); //random impact sounds
+                    impactSounds[1].pitch = Random.Range(0.8f, 1.2f);;
+                    impactSounds[1].Play(); //impact sound
                 }
 
                 if (shot.rigidbody != null) {
