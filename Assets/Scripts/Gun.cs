@@ -17,8 +17,8 @@ public class Gun : MonoBehaviour {
     [SerializeField] private LayerMask gunLayers;
     [SerializeField] private LayerMask shootableLayers;
     [SerializeField] private float gunRange = 1000f;
-    [SerializeField] private float idleSwayAmount = 0.02f;
-    [SerializeField] private float idleSwaySpeed = 2f;
+    [SerializeField] private float SwayAmount = 0.02f;
+    [SerializeField] private float SwaySpeed = 2f;
     [SerializeField] private float swaySmoothing;
     [SerializeField] private float swayMultiplier;
     private GameObject gunObject;
@@ -35,6 +35,7 @@ public class Gun : MonoBehaviour {
     private float clipAmmo = 1f;
     private float usedAmmo = 0f;
     private RaycastHit grab;
+    public Player playerScript;
 
     void Update() {
         IdleSway();
@@ -112,7 +113,7 @@ public class Gun : MonoBehaviour {
             usedAmmo = 0f;
         }
 
-        if (gunEquipped && Input.GetButton("Fire2") && !Input.GetKey("left shift")) {
+        if (gunEquipped && Input.GetButton("Fire2")) {
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
             fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
@@ -136,13 +137,19 @@ public class Gun : MonoBehaviour {
     void IdleSway() {
         if (gunEquipped) {
             if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
-                float swayX = Mathf.Sin(Time.time * (idleSwaySpeed * 2)) * (idleSwayAmount * 2);
-                float swayY = Mathf.Cos(Time.time * (idleSwaySpeed * 2)) * (idleSwayAmount * 2);
-                Vector3 moveSway = new Vector3(swayX, swayY, 0);
+                float swayX = Mathf.Sin(Time.time * SwaySpeed) * SwayAmount;
+                float swayY = Mathf.Cos(Time.time * (SwaySpeed * 4f)) * (SwayAmount * 2.5f);
+                Vector3 moveSway = new Vector3(swayX, swayY, 0f);
                 gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, moveSway, Time.deltaTime * 6f);
+                if (Input.GetKey("left shift") && playerScript.currentStamina > 1) {
+                    float sprintSwayX = Mathf.Sin(Time.time * (SwaySpeed * 2f)) * (SwayAmount * 2f);
+                    float sprintSwayY = Mathf.Cos(Time.time * (SwaySpeed * 8f)) * (SwayAmount * 5f);
+                    Vector3 sprintSway = new Vector3(sprintSwayX, sprintSwayY, 0f);
+                    gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, sprintSway, Time.deltaTime * 6f);
+                }
             } else {
-                float swayX = Mathf.Sin(Time.time * idleSwaySpeed) * idleSwayAmount;
-                float swayY = Mathf.Cos(Time.time * idleSwaySpeed) * idleSwayAmount;
+                float swayX = Mathf.Sin(Time.time * SwaySpeed) * SwayAmount;
+                float swayY = Mathf.Cos(Time.time * SwaySpeed) * SwayAmount;
                 Vector3 idleSway = new Vector3(swayX, swayY, 0);
                 gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, idleSway, Time.deltaTime * 6f);
             }
@@ -169,19 +176,16 @@ public class Gun : MonoBehaviour {
                 impactSounds = impactInstance.GetComponents<AudioSource>();
                 muzzleFlashObject.GetComponent<ParticleSystem>().Play();
                 animator.SetTrigger("onShoot");
-                clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
                 StartCoroutine(CameraShake(0.1f, 0.6f));
-                gunSounds[0].pitch = Random.Range(0.7f, 1.3f);;
-                gunSounds[0].Play();
+                gunSounds[0].pitch = Random.Range(0.7f, 1.3f); gunSounds[0].Play();
                 usedAmmo++;
+                clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
 
                 if (target != null) {
                     target.TakeTargetDamage(damage);
-                    impactSounds[0].pitch = Random.Range(0.8f, 1.2f);;
-                    impactSounds[0].Play(); //flesh impact sound
+                    impactSounds[0].pitch = Random.Range(0.8f, 1.2f); impactSounds[0].Play(); //flesh impact sound
                 } else {
-                    impactSounds[1].pitch = Random.Range(0.8f, 1.2f);;
-                    impactSounds[1].Play(); //impact sound
+                    impactSounds[1].pitch = Random.Range(0.8f, 1.2f); impactSounds[1].Play(); //impact sound
                 }
 
                 if (shot.rigidbody != null) {
