@@ -137,9 +137,9 @@ public class Gun : MonoBehaviour {
     void IdleSway() {
         if (gunEquipped) {
             if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
-                float swayX = Mathf.Sin(Time.time * SwaySpeed) * SwayAmount;
-                float swayY = Mathf.Cos(Time.time * (SwaySpeed * 4f)) * (SwayAmount * 2.5f);
-                Vector3 moveSway = new Vector3(swayX, swayY, 0f);
+                float moveSwayX = Mathf.Sin(Time.time * SwaySpeed) * SwayAmount;
+                float moveSwayY = Mathf.Cos(Time.time * (SwaySpeed * 4f)) * (SwayAmount * 2.5f);
+                Vector3 moveSway = new Vector3(moveSwayX, moveSwayY, 0f);
                 gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, moveSway, Time.deltaTime * 6f);
                 if (Input.GetKey("left shift") && playerScript.currentStamina > 1) {
                     float sprintSwayX = Mathf.Sin(Time.time * (SwaySpeed * 2f)) * (SwayAmount * 2f);
@@ -163,7 +163,7 @@ public class Gun : MonoBehaviour {
             Quaternion rotX = Quaternion.AngleAxis(-mouseY, Vector3.right);
             Quaternion rotY = Quaternion.AngleAxis(mouseX, Vector3.up);
             Quaternion targetRot = rotX * rotY;
-            equipPoint.localRotation = Quaternion.Slerp(equipPoint.localRotation, targetRot, swaySmoothing * Time.deltaTime);
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRot, swaySmoothing * Time.deltaTime);
         }
     }
 
