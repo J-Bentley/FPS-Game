@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Gun : MonoBehaviour {
-
     [SerializeField] private Camera fpsCam;
     [SerializeField] private float adsFov = 60f;
     [SerializeField] private float adsFovSpeed = 1f;
@@ -18,8 +17,8 @@ public class Gun : MonoBehaviour {
     [SerializeField] private LayerMask gunLayers;
     [SerializeField] private LayerMask shootableLayers;
     [SerializeField] private float gunRange = 1000f;
-    [SerializeField] private float swayAmount = 0.02f;
-    [SerializeField] private float swaySpeed = 2f;
+    [SerializeField] private float idleSwayAmount = 0.02f;
+    [SerializeField] private float idleSwaySpeed = 2f;
     [SerializeField] private float swaySmoothing;
     [SerializeField] private float swayMultiplier;
     private GameObject gunObject;
@@ -136,10 +135,17 @@ public class Gun : MonoBehaviour {
 
     void IdleSway() {
         if (gunEquipped) {
-            float swayX = Mathf.Sin(Time.time * swaySpeed) * swayAmount;
-            float swayY = Mathf.Cos(Time.time * swaySpeed) * swayAmount;
-            Vector3 sway = new Vector3(swayX, swayY, 0);
-            gunObject.transform.localPosition = equipPoint.transform.localPosition + sway;
+            if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
+                float swayX = Mathf.Sin(Time.time * (idleSwaySpeed * 2)) * (idleSwayAmount * 2);
+                float swayY = Mathf.Cos(Time.time * (idleSwaySpeed * 2)) * (idleSwayAmount * 2);
+                Vector3 moveSway = new Vector3(swayX, swayY, 0);
+                gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, moveSway, Time.deltaTime * 6f);
+            } else {
+                float swayX = Mathf.Sin(Time.time * idleSwaySpeed) * idleSwayAmount;
+                float swayY = Mathf.Cos(Time.time * idleSwaySpeed) * idleSwayAmount;
+                Vector3 idleSway = new Vector3(swayX, swayY, 0);
+                gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, idleSway, Time.deltaTime * 6f);
+            }
         }
     }
 
@@ -165,7 +171,7 @@ public class Gun : MonoBehaviour {
                 animator.SetTrigger("onShoot");
                 clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
                 StartCoroutine(CameraShake(0.1f, 0.6f));
-                gunSounds[0].pitch = Random.Range(0.8f, 1.2f);;
+                gunSounds[0].pitch = Random.Range(0.7f, 1.3f);;
                 gunSounds[0].Play();
                 usedAmmo++;
 
