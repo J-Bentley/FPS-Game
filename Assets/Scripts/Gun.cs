@@ -8,7 +8,6 @@ public class Gun : MonoBehaviour {
     [SerializeField] private float adsFov = 60f;
     [SerializeField] private float adsFovSpeed = 1f;
     [SerializeField] private Transform equipPoint;
-    [SerializeField] private Transform equipPoint2;
     [SerializeField] private Transform adsPoint;
     [SerializeField] private TextMeshProUGUI equipUI;
     [SerializeField] private TextMeshProUGUI clipAmmoText;
@@ -21,6 +20,7 @@ public class Gun : MonoBehaviour {
     [SerializeField] private float SwaySpeed = 2f;
     [SerializeField] private float swaySmoothing;
     [SerializeField] private float swayMultiplier;
+    private Vector3 originalEquipPoint;
     private GameObject gunObject;
     public ParticleSystem impactEffect;
     private GameObject muzzleFlashObject;
@@ -37,6 +37,10 @@ public class Gun : MonoBehaviour {
     private RaycastHit grab;
     public Player playerScript;
 
+    void Start() {
+        originalEquipPoint = equipPoint.transform.localPosition;
+    }
+
     void Update() {
         IdleSway();
         LookSway();
@@ -49,8 +53,8 @@ public class Gun : MonoBehaviour {
                 muzzleFlashObject = gunObject.transform.Find("Muzzleflash").gameObject;
                 animator = gunObject.transform.Find("Model").GetComponent<Animator>();
                 Physics.IgnoreCollision(gunObject.GetComponent<Collider>(), GetComponent<Collider>(), true);
-                grab.rigidbody.useGravity = false;
-                grab.rigidbody.isKinematic = true;
+                gunObject.GetComponent<Rigidbody>().useGravity = false;
+                gunObject.GetComponent<Rigidbody>().isKinematic = true;
                 gunObject.transform.position = equipPoint.transform.position;
                 gunObject.transform.rotation = equipPoint.transform.rotation;
                 gunObject.transform.parent = equipPoint.transform;
@@ -117,7 +121,7 @@ public class Gun : MonoBehaviour {
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
             fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
-            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, equipPoint2.transform.localPosition, 9f * Time.deltaTime);
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, originalEquipPoint, 6f * Time.deltaTime);
         }
     }
 
@@ -126,7 +130,7 @@ public class Gun : MonoBehaviour {
         float elapsed = 0f;
         while(elapsed < duration) {
             float randomX = Random.Range(-0.5f, 0.5f) * magnitude;
-            float randomZ = Random.Range(-1f, 1f) * magnitude;
+            float randomZ = Random.Range(-3f, 3f) * magnitude;
             fpsCam.transform.localPosition = new Vector3(randomX, fpsCam.transform.localPosition.y, randomZ);
             elapsed += Time.deltaTime;
             yield return 0;
@@ -176,7 +180,7 @@ public class Gun : MonoBehaviour {
                 impactSounds = impactInstance.GetComponents<AudioSource>();
                 muzzleFlashObject.GetComponent<ParticleSystem>().Play();
                 animator.SetTrigger("onShoot");
-                StartCoroutine(CameraShake(0.1f, 0.6f));
+                StartCoroutine(CameraShake(0.1f, 0.1f));
                 gunSounds[0].pitch = Random.Range(0.7f, 1.3f); gunSounds[0].Play();
                 usedAmmo++;
                 clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
@@ -185,7 +189,7 @@ public class Gun : MonoBehaviour {
                     target.TakeTargetDamage(damage);
                     impactSounds[0].pitch = Random.Range(0.8f, 1.2f); impactSounds[0].Play(); //flesh impact sound
                 } else {
-                    impactSounds[1].pitch = Random.Range(0.8f, 1.2f); impactSounds[1].Play(); //impact sound
+                    impactSounds[1].pitch = Random.Range(0.6f, 1.3f); impactSounds[1].Play(); //impact sound
                 }
 
                 if (shot.rigidbody != null) {

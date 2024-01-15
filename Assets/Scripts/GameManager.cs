@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
     public static bool gamePaused = false;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject creditsMenu;
     [SerializeField] private GameObject mainMenu;
 
     void Update() {
@@ -58,8 +59,14 @@ public class GameManager : MonoBehaviour {
         optionsMenu.SetActive(true);
     }
 
+    public void CreditsMenu() {
+        mainMenu.SetActive(false);
+        creditsMenu.SetActive(true);
+    }
+
     public void BackButton() {
         mainMenu.SetActive(true);
         optionsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
     }
 }

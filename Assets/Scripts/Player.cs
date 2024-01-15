@@ -64,8 +64,7 @@ public class Player : MonoBehaviour {
             if (currentStamina > 0f) {
                 speed = sprintSpeed;
                 fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sprintFov, fovSpeed * Time.deltaTime);
-                currentStamina -= Time.deltaTime;
-                   
+                currentStamina -= Time.deltaTime;   
             }
 
             if (currentStamina <= 0f) {
@@ -129,7 +128,7 @@ public class Player : MonoBehaviour {
         currentHealth -= damage;
         healthBar.value = currentHealth;
         if(!audioSources[3].isPlaying) { 
-            audioSources[3].Play(); //take damage sound
+            audioSources[3].pitch = Random.Range(0.8f, 1.2f); audioSources[3].Play(); //take damage sound
         }
         if (currentHealth <= 0) {
             Death();
