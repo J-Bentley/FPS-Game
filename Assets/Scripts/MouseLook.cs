@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour {
     
-    [SerializeField] private Transform playerBody;
+    [SerializeField] private Transform playerTransform;
     public static float lookSensitivity = 300f;
     private float xRotation = 0f;
 
@@ -16,6 +16,6 @@ public class MouseLook : MonoBehaviour {
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
+        playerTransform.Rotate(Vector3.up * mouseX);
     }
 }
