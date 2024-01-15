@@ -22620,8 +22620,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 264
   gunRange: 1000
-  SwayAmount: 0.02
-  SwaySpeed: 2
+  SwayAmount: 0.01
+  SwaySpeed: 1
   swaySmoothing: 5
   swayMultiplier: 20
   impactEffect: {fileID: 1673712406583481907, guid: 2d890e5155f7ad743a00d0ef728b3049, type: 3}

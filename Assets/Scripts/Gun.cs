@@ -130,7 +130,7 @@ public class Gun : MonoBehaviour {
         float elapsed = 0f;
         while(elapsed < duration) {
             float randomX = Random.Range(-0.5f, 0.5f) * magnitude;
-            float randomZ = Random.Range(-3f, 3f) * magnitude;
+            float randomZ = Random.Range(-1f, 1f) * magnitude;
             fpsCam.transform.localPosition = new Vector3(randomX, fpsCam.transform.localPosition.y, randomZ);
             elapsed += Time.deltaTime;
             yield return 0;
@@ -138,16 +138,34 @@ public class Gun : MonoBehaviour {
         fpsCam.transform.localPosition = orignalPosition;
     }
 
+     IEnumerator GunRecoil() {
+        Quaternion targetRotation = Quaternion.Euler(-100f, 0f, 0f);
+        float elapsedTime = 0f;
+        while (elapsedTime < 0.1) {
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 4f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        //yield return new WaitForSeconds(0.1f);
+        targetRotation = Quaternion.Euler(0f, 0f, 0f);
+        elapsedTime = 0f;
+        while (elapsedTime < 1) {
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 1f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     void IdleSway() { // TODO: clean up redundant code and change values depending on gun picked up.
         if (gunEquipped) {
             if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
                 float moveSwayX = Mathf.Sin(Time.time * SwaySpeed) * SwayAmount;
-                float moveSwayY = Mathf.Cos(Time.time * (SwaySpeed * 4f)) * (SwayAmount * 2.5f);
+                float moveSwayY = Mathf.Cos(Time.time * (SwaySpeed * 6f)) * (SwayAmount * 4f);
                 Vector3 moveSway = new Vector3(moveSwayX, moveSwayY, 0f);
                 gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, moveSway, Time.deltaTime * 6f);
                 if (Input.GetKey("left shift") && playerScript.currentStamina > 0) {
-                    float sprintSwayX = Mathf.Sin(Time.time * (SwaySpeed * 2f)) * (SwayAmount * 2f);
-                    float sprintSwayY = Mathf.Cos(Time.time * (SwaySpeed * 8f)) * (SwayAmount * 5f);
+                    float sprintSwayX = Mathf.Sin(Time.time * (SwaySpeed * 4f)) * (SwayAmount * 4f);
+                    float sprintSwayY = Mathf.Cos(Time.time * (SwaySpeed * 10f)) * (SwayAmount * 8f);
                     Vector3 sprintSway = new Vector3(sprintSwayX, sprintSwayY, 0f);
                     gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, sprintSway, Time.deltaTime * 6f);
                 }
@@ -168,24 +186,6 @@ public class Gun : MonoBehaviour {
             Quaternion rotY = Quaternion.AngleAxis(mouseX, Vector3.up);
             Quaternion targetRot = rotX * rotY;
             gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRot, swaySmoothing * Time.deltaTime);
-        }
-    }
-
-    IEnumerator GunRecoil() {
-        Quaternion targetRotation = Quaternion.Euler(-100f, 0f, 0f);
-        float elapsedTime = 0f;
-        while (elapsedTime < 0.1) {
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 4f);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        //yield return new WaitForSeconds(0.1f);
-        targetRotation = Quaternion.Euler(0f, 0f, 0f);
-        elapsedTime = 0f;
-        while (elapsedTime < 1) {
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 1f);
-            elapsedTime += Time.deltaTime;
-            yield return null;
         }
     }
 
