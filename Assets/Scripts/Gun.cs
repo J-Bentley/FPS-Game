@@ -125,7 +125,7 @@ public class Gun : MonoBehaviour {
         }
     }
 
-    IEnumerator CameraShake(float duration, float magnitude) { // TODO: change values based on gun picked up
+    IEnumerator CameraShake(float duration, float magnitude) { // TODO: change magnitude based on gun picked up
         Vector3 orignalPosition = fpsCam.transform.localPosition;
         float elapsed = 0f;
         while(elapsed < duration) {
@@ -138,7 +138,7 @@ public class Gun : MonoBehaviour {
         fpsCam.transform.localPosition = orignalPosition;
     }
 
-     IEnumerator GunRecoil() {
+     IEnumerator GunRecoil() { // TODO: change recoil amount based on gun picked up
         Quaternion targetRotation = Quaternion.Euler(-100f, 0f, 0f);
         float elapsedTime = 0f;
         while (elapsedTime < 0.1) {
@@ -146,7 +146,7 @@ public class Gun : MonoBehaviour {
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        //yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         targetRotation = Quaternion.Euler(0f, 0f, 0f);
         elapsedTime = 0f;
         while (elapsedTime < 1) {

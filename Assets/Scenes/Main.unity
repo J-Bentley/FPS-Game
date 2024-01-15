@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 154859647}
   - component: {fileID: 154859646}
   - component: {fileID: 154859649}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 291025870}
   - component: {fileID: 291025872}
   - component: {fileID: 291025871}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -854,7 +854,7 @@ GameObject:
   - component: {fileID: 295627393}
   - component: {fileID: 295627395}
   - component: {fileID: 295627394}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Paused
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6242,7 +6242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 671464493}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6378,7 +6378,7 @@ GameObject:
   - component: {fileID: 732487490}
   - component: {fileID: 732487492}
   - component: {fileID: 732487491}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6512,7 +6512,7 @@ GameObject:
   - component: {fileID: 736155407}
   - component: {fileID: 736155409}
   - component: {fileID: 736155408}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6677,7 +6677,7 @@ GameObject:
   - component: {fileID: 929489746}
   - component: {fileID: 929489748}
   - component: {fileID: 929489747}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7114,7 +7114,7 @@ GameObject:
   - component: {fileID: 1053719403}
   - component: {fileID: 1053719402}
   - component: {fileID: 1053719401}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: QuitGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7780,7 +7780,7 @@ GameObject:
   - component: {fileID: 1351886641}
   - component: {fileID: 1351886643}
   - component: {fileID: 1351886642}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: WaveText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8027,7 +8027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1430238868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8081,7 +8081,7 @@ GameObject:
   - component: {fileID: 1486626736}
   - component: {fileID: 1486626735}
   - component: {fileID: 1486626738}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: ResumeGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8229,7 +8229,7 @@ GameObject:
   - component: {fileID: 1713900523}
   - component: {fileID: 1713900525}
   - component: {fileID: 1713900524}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8937,7 +8937,7 @@ GameObject:
   - component: {fileID: 3873371057469716632}
   - component: {fileID: 6013761721539938611}
   - component: {fileID: 2058670876220108545}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: EquipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9405,7 +9405,7 @@ GameObject:
   - component: {fileID: 7497155083506148069}
   - component: {fileID: 8792761502638410257}
   - component: {fileID: 5816406409628018842}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9569,7 +9569,7 @@ GameObject:
   - component: {fileID: 3943804593771850337}
   - component: {fileID: 3665915805593598368}
   - component: {fileID: 3571368389688124579}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: ClipAmmoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9741,7 +9741,7 @@ GameObject:
   - component: {fileID: 6464191937385757111}
   - component: {fileID: 7286134443279822499}
   - component: {fileID: 1855988685449153244}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9810,7 +9810,7 @@ GameObject:
   - component: {fileID: 8542426243342850545}
   - component: {fileID: 5857870092873267374}
   - component: {fileID: 8995221541464298269}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16079,7 +16079,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1e-44, z: 2.1472e-41, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 4e-45, z: 1.4862e-41, w: -7.138581e+30}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -16114,7 +16114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1661790161634083559}
   - component: {fileID: 1459451059804427979}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21905,7 +21905,7 @@ GameObject:
   - component: {fileID: 5302874914732731106}
   - component: {fileID: 6093720502925992638}
   - component: {fileID: 4775713273429241161}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22449,7 +22449,7 @@ GameObject:
   - component: {fileID: 9050038477443517176}
   - component: {fileID: 3329231977728932575}
   - component: {fileID: 9050038477443517179}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -22737,7 +22737,7 @@ GameObject:
   - component: {fileID: 7315939711980300390}
   - component: {fileID: 2533746762829316727}
   - component: {fileID: 4462136854674486050}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22808,7 +22808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7232560298569123171}
   - component: {fileID: 6980647217165045129}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: StaminaBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28309,7 +28309,7 @@ GameObject:
   - component: {fileID: 8110047877139849111}
   - component: {fileID: 8010884484645596121}
   - component: {fileID: 9018370227959237861}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: PlayerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
