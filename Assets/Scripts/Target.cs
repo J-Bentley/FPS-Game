@@ -30,7 +30,7 @@ public class Target : MonoBehaviour {
         enemyHealthbar.value = targetHealth;
 
         if (playHurtSound) {
-            hurtSound.pitch = Random.Range(0.8f, 1.2f); hurtSound.Play();
+            hurtSound.pitch = Random.Range(0.9f, 1.1f); hurtSound.Play();
         }
 
         if (targetHealth <= 0f) {
@@ -55,7 +55,7 @@ public class Target : MonoBehaviour {
 
         if (playDeathSound) {
             deathSound = destroyedObject.GetComponent<AudioSource>(); 
-            deathSound.pitch = Random.Range(0.8f, 1.2f); deathSound.Play();
+            deathSound.pitch = Random.Range(0.9f, 1.1f); deathSound.Play();
         }
 
         if(destroyPeices) {

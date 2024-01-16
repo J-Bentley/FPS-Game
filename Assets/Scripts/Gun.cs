@@ -16,8 +16,8 @@ public class Gun : MonoBehaviour {
     [SerializeField] private LayerMask gunLayers;
     [SerializeField] private LayerMask shootableLayers;
     [SerializeField] private float gunRange = 1000f;
-    [SerializeField] private float SwayAmount = 0.02f;
-    [SerializeField] private float SwaySpeed = 2f;
+    [SerializeField] private float SwayAmount = 0.01f;
+    [SerializeField] private float SwaySpeed = 1f;
     [SerializeField] private float swaySmoothing;
     [SerializeField] private float swayMultiplier;
     private Vector3 originalEquipPoint;
@@ -197,7 +197,7 @@ public class Gun : MonoBehaviour {
                 ParticleSystem impactInstance = Instantiate(impactEffect, shot.point, Quaternion.LookRotation(shot.normal)); impactInstance.Play(); Destroy(impactInstance.gameObject, 2f);
                 impactSounds = impactInstance.GetComponents<AudioSource>();
                 muzzleFlashObject.GetComponent<ParticleSystem>().Play();
-                gunSounds[0].pitch = Random.Range(0.7f, 1.3f); gunSounds[0].Play();
+                gunSounds[0].pitch = Random.Range(0.8f, 1.2f); gunSounds[0].Play();
                 StartCoroutine("GunRecoil");
                 StartCoroutine(CameraShake(0.1f, 0.1f));
                 usedAmmo++;
@@ -205,9 +205,9 @@ public class Gun : MonoBehaviour {
 
                 if (target != null) {
                     target.TakeTargetDamage(damage);
-                    impactSounds[0].pitch = Random.Range(0.8f, 1.2f); impactSounds[0].Play(); //flesh impact sound
+                    impactSounds[0].pitch = Random.Range(0.9f, 1.1f); impactSounds[0].Play(); //flesh impact sound
                 } else {
-                    impactSounds[1].pitch = Random.Range(0.6f, 1.3f); impactSounds[1].Play(); //impact sound
+                    impactSounds[1].pitch = Random.Range(0.8f, 1.2f); impactSounds[1].Play(); //impact sound
                 }
 
                 if (shot.rigidbody != null) {

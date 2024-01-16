@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
     private float originalSpeed;
     private AudioSource[] audioSources;
     public static float totalMoney = 0f;
+    private float wallet = 0f;
     [SerializeField] private TextMeshProUGUI moneyText;
     public GameManager gameManagerScript;
 
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour {
 
         if (controller.velocity.magnitude > 0.1f) {
             if (isGrounded && !audioSources[0].isPlaying) {
-                audioSources[0].Play(); //footsteps sound
+                audioSources[0].pitch = Random.Range(0.9f, 1.1f); audioSources[0].Play(); //footsteps sound
             }
         } else {
             audioSources[0].Stop(); 
@@ -121,7 +122,8 @@ public class Player : MonoBehaviour {
 
     public void ReceiveMoney(float money) {
         totalMoney += money;
-        moneyText.text = "$" + totalMoney;
+        wallet += money;
+        moneyText.text = "$" + wallet;
     }
 
     public void TakeDamage (float damage) {
