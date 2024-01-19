@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Collections;
 
 public class Gun : MonoBehaviour {
     [SerializeField] private Camera fpsCam;
@@ -14,43 +13,28 @@ public class Gun : MonoBehaviour {
     [SerializeField] private Image crosshair;
     [SerializeField] private float equipRange;
     [SerializeField] private LayerMask gunLayers;
-    [SerializeField] private LayerMask shootableLayers;
-    [SerializeField] private float gunRange;
-    [SerializeField] private float swayAmount;
-    [SerializeField] private float swaySpeed;
-    [SerializeField] private float swaySmoothing;
-    [SerializeField] private float swayMultiplier;
+    [SerializeField] private GameObject bullet;
     private Vector3 originalEquipPoint;
-    private GameObject gunObject;
-    public ParticleSystem impactEffect;
+    public GameObject gunObject;
     private GameObject muzzleFlashObject;
     private Animator animator;
     private AudioSource[] gunSounds;
-    private AudioSource[] impactSounds;
     private float nextTimeToFire = 0;
-    private bool gunEquipped = false;
-    private float damage;
+    public bool gunEquipped = false;
+    public float damage;
     private float fireRate;
-    private float impactForce;
+    public float impactForce;
+    private float bulletForce;
     private float clipAmmo = 1f;
     private float usedAmmo = 0f;
     private RaycastHit grab;
     public Player playerScript;
-    private float cameraShakeMagnitude;
-    private float cameraShakeDuration;
-    private Vector3 orignalCameraPosition;
-    private float recoilAngle;
 
     void Start() {
         originalEquipPoint = equipPoint.transform.localPosition;
-        orignalCameraPosition = fpsCam.transform.localPosition;
     }
 
     void Update() {
-
-        IdleSway();
-        LookSway();
-
         if (gunEquipped == false && Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out grab, equipRange, gunLayers)) {   
             equipUI.text = "[E] Equip";
             equipUI.enabled = true;
@@ -59,7 +43,7 @@ public class Gun : MonoBehaviour {
                 gunSounds = gunObject.GetComponents<AudioSource>();
                 muzzleFlashObject = gunObject.transform.Find("Muzzleflash").gameObject;
                 animator = gunObject.transform.Find("Model").GetComponent<Animator>();
-                Physics.IgnoreCollision(gunObject.GetComponent<Collider>(), GetComponent<Collider>(), true);
+                gunObject.GetComponent<Collider>().enabled = false;                
                 gunObject.GetComponent<Rigidbody>().useGravity = false;
                 gunObject.GetComponent<Rigidbody>().isKinematic = true;
                 gunObject.transform.position = equipPoint.transform.position;
@@ -74,18 +58,14 @@ public class Gun : MonoBehaviour {
                     fireRate = 2f;
                     impactForce = 50f;
                     clipAmmo = 6f;
-                    recoilAngle = -70f;
-                    cameraShakeDuration = 0.1f;
-                    cameraShakeMagnitude = 1f;
+                    bulletForce = 50f;
                 }
                 if (gunObject.tag == "Rifle") {
                     damage = 5f;
                     fireRate = 5f;
                     impactForce = 100f;
                     clipAmmo = 16;
-                    recoilAngle = -90f;
-                    cameraShakeDuration = 0.2f;
-                    cameraShakeMagnitude = 5f;
+                    bulletForce = 80f;
                 }
                 clipAmmoText.enabled = true;
                 clipAmmoText.text = clipAmmo.ToString();
@@ -97,7 +77,9 @@ public class Gun : MonoBehaviour {
         if (!GameManager.gamePaused && gunEquipped == true && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f/fireRate;
             if (usedAmmo < clipAmmo) {
-                Shoot();
+                if (!gunSounds[2].isPlaying) {
+                    Shoot();
+                }
             } 
         }
 
@@ -121,6 +103,7 @@ public class Gun : MonoBehaviour {
         if (gunEquipped && Input.GetKeyDown(KeyCode.F)) {
             crosshair.enabled = false;
             clipAmmoText.enabled = false;
+            gunObject.GetComponent<Collider>().enabled = true; 
             gunObject.transform.parent = null;
             grab.rigidbody.useGravity = true;
             grab.rigidbody.isKinematic = false;
@@ -136,93 +119,40 @@ public class Gun : MonoBehaviour {
         }
     }
 
-    IEnumerator CameraShake() {
-        float elapsed = 0f;
-        while(elapsed < cameraShakeDuration) {
-            elapsed += Time.deltaTime;
-            float randomZ = Random.Range(-1f, 1f) * cameraShakeMagnitude;
-            Vector3 shakePosition = new Vector3(fpsCam.transform.localPosition.x, fpsCam.transform.localPosition.y, randomZ);
-            fpsCam.transform.localPosition = Vector3.Lerp(fpsCam.transform.localPosition, shakePosition, Time.deltaTime * 6f);
-        }
-        fpsCam.transform.localPosition = Vector3.Lerp(fpsCam.transform.localPosition, orignalCameraPosition, Time.deltaTime * 6f);
-        yield return 0;
+    void Shoot(){
+        GameObject bulletInstance = Instantiate(bullet, muzzleFlashObject.transform.position, Quaternion.LookRotation(transform.forward));
+        bulletInstance.GetComponent<Rigidbody>().AddForce(gunObject.transform.forward * bulletForce, ForceMode.Impulse);
+        Destroy(bulletInstance, 8f);
+        usedAmmo++;
+        clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
+        gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
+        gunSounds[0].Play();
+        muzzleFlashObject.GetComponent<ParticleSystem>().Play();
     }
-
-    IEnumerator GunRecoil() {
-        Quaternion targetRotation = Quaternion.Euler(recoilAngle, 0f, 0f);
-        float elapsedTime = 0f;
-        while (elapsedTime < 0.1) {
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 6f);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        yield return new WaitForSeconds(0.2f);
-        targetRotation = Quaternion.Euler(0f, 0f, 0f);
-        elapsedTime = 0f;
-        while (elapsedTime < 1) {
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 0.5f);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    void IdleSway() { // TODO: change values in update instead of copying code
-        if (gunEquipped) {    
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
-                float walkSwayX = Mathf.Sin(Time.time * swaySpeed * 2f) * swayAmount;
-                float walkSwayY = Mathf.Cos(Time.time * swaySpeed * 7f) * swayAmount * 2f;
-                Vector3 walkSway = new Vector3(walkSwayX, walkSwayY, 0f);
-                gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, walkSway, Time.deltaTime * 6f);
-                if (Input.GetKey("left shift") && playerScript.currentStamina > 0) {
-                    float sprintSwayX = Mathf.Sin(Time.time * swaySpeed * 4f) * swayAmount;
-                    float sprintSwayY = Mathf.Cos(Time.time * swaySpeed * 12f) * swayAmount * 6f;
-                    Vector3 sprintSway = new Vector3(sprintSwayX, sprintSwayY, 0f);
-                    gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, sprintSway, Time.deltaTime * 6f);
-                }
-            } else {
-                float idleSwayX = Mathf.Sin(Time.time * swaySpeed) * swayAmount;
-                float idleSwayY = Mathf.Cos(Time.time * swaySpeed) * swayAmount;
-                Vector3 idleSway = new Vector3(idleSwayX, idleSwayY, 0f);
-                gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, idleSway, Time.deltaTime * 6f);
-            }
-        }
-    }
-
-    void LookSway() {
-        if (gunEquipped) {
-            float mouseX = Input.GetAxisRaw("Mouse X") * swayMultiplier;
-            float mouseY = Input.GetAxisRaw("Mouse Y") * swayMultiplier;
-            Quaternion rotX = Quaternion.AngleAxis(-mouseY, Vector3.right);
-            Quaternion rotY = Quaternion.AngleAxis(mouseX, Vector3.up);
-            Quaternion targetRot = rotX * rotY;
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRot, swaySmoothing * Time.deltaTime);
-        }
-    }
-
-    void ProjectileShoot(){
-        StartCoroutine("GunRecoil");
-        StartCoroutine("CameraShake");
-    }
-
-    void Shoot() {
+}
+    /*void RaycastShoot() {
         RaycastHit shot;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out shot, gunRange, shootableLayers)) {
-            if (!gunSounds[2].isPlaying) { // this is dumb but it works - cannot shoot when reloading
+            if (!gunSounds[2].isPlaying) { // dumb but it works - cannot shoot when reloading
                 Target target = shot.transform.GetComponent<Target>();
-                ParticleSystem impactInstance = Instantiate(impactEffect, shot.point, Quaternion.LookRotation(shot.normal)); impactInstance.Play(); Destroy(impactInstance.gameObject, 2f);
+                ParticleSystem impactInstance = Instantiate(impactEffect, shot.point, Quaternion.LookRotation(shot.normal));
+                impactInstance.Play();
+                Destroy(impactInstance.gameObject, 2f);
                 impactSounds = impactInstance.GetComponents<AudioSource>();
                 muzzleFlashObject.GetComponent<ParticleSystem>().Play();
-                gunSounds[0].pitch = Random.Range(0.8f, 1.2f); gunSounds[0].Play();
-                StartCoroutine("GunRecoil");
-                StartCoroutine("CameraShake");
+                gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
+                gunSounds[0].Play();
+
                 usedAmmo++;
                 clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
 
                 if (target != null) {
                     target.TakeTargetDamage(damage);
-                    impactSounds[0].pitch = Random.Range(0.9f, 1.1f); impactSounds[0].Play(); //flesh impact sound
+                    impactSounds[0].pitch = Random.Range(0.9f, 1.1f);
+                    impactSounds[0].Play(); //flesh impact sound
                 } else {
-                    impactSounds[1].pitch = Random.Range(0.8f, 1.2f); impactSounds[1].Play(); //impact sound
+                    impactSounds[1].pitch = Random.Range(0.8f, 1.2f);
+                    impactSounds[1].Play(); //impact sound
                 }
 
                 if (shot.rigidbody != null) {
@@ -230,5 +160,4 @@ public class Gun : MonoBehaviour {
                 }
             }
         }
-    }
-}
+    } */
