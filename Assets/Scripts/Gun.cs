@@ -58,14 +58,14 @@ public class Gun : MonoBehaviour {
                     fireRate = 2f;
                     impactForce = 50f;
                     clipAmmo = 6f;
-                    bulletForce = 50f;
+                    bulletForce = 125f;
                 }
                 if (gunObject.tag == "Rifle") {
                     damage = 5f;
                     fireRate = 5f;
                     impactForce = 100f;
                     clipAmmo = 16;
-                    bulletForce = 80f;
+                    bulletForce = 175f;
                 }
                 clipAmmoText.enabled = true;
                 clipAmmoText.text = clipAmmo.ToString();
@@ -79,8 +79,18 @@ public class Gun : MonoBehaviour {
             if (usedAmmo < clipAmmo) {
                 if (!gunSounds[2].isPlaying) {
                     Shoot();
+                    clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
                 }
             } 
+        }
+        
+        if (usedAmmo == clipAmmo) {
+            equipUI.enabled = true;
+            equipUI.text = "[R] Reload";
+
+            if (Input.GetButton("Fire1")) {
+                gunSounds[1].Play(); //no ammo sound
+            }
         }
 
         if (usedAmmo > 0 && Input.GetKeyDown(KeyCode.R)) {
@@ -91,13 +101,11 @@ public class Gun : MonoBehaviour {
             clipAmmoText.text = clipAmmo.ToString();
         }
 
-        if (usedAmmo == clipAmmo) {
-            equipUI.enabled = true;
-            equipUI.text = "[R] Reload";
-
-            if (Input.GetButton("Fire1")) {
-                gunSounds[1].Play(); //no ammo sound
-            }
+        if (gunEquipped && Input.GetButton("Fire2")) {
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
+        } else if (gunEquipped && !Input.GetButton("Fire2")) {
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, originalEquipPoint, 6f * Time.deltaTime);
         }
 
         if (gunEquipped && Input.GetKeyDown(KeyCode.F)) {
@@ -110,54 +118,14 @@ public class Gun : MonoBehaviour {
             gunEquipped = false;
             usedAmmo = 0f;
         }
-
-        if (gunEquipped && Input.GetButton("Fire2")) {
-            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
-            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
-        } else if (gunEquipped && !Input.GetButton("Fire2")) {
-            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, originalEquipPoint, 6f * Time.deltaTime);
-        }
     }
 
-    void Shoot(){
+    void Shoot() {
         GameObject bulletInstance = Instantiate(bullet, muzzleFlashObject.transform.position, Quaternion.LookRotation(transform.forward));
-        bulletInstance.GetComponent<Rigidbody>().AddForce(gunObject.transform.forward * bulletForce, ForceMode.Impulse);
-        Destroy(bulletInstance, 8f);
+        bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce, ForceMode.Impulse);
         usedAmmo++;
-        clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
         gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
         gunSounds[0].Play();
         muzzleFlashObject.GetComponent<ParticleSystem>().Play();
     }
 }
-    /*void RaycastShoot() {
-        RaycastHit shot;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out shot, gunRange, shootableLayers)) {
-            if (!gunSounds[2].isPlaying) { // dumb but it works - cannot shoot when reloading
-                Target target = shot.transform.GetComponent<Target>();
-                ParticleSystem impactInstance = Instantiate(impactEffect, shot.point, Quaternion.LookRotation(shot.normal));
-                impactInstance.Play();
-                Destroy(impactInstance.gameObject, 2f);
-                impactSounds = impactInstance.GetComponents<AudioSource>();
-                muzzleFlashObject.GetComponent<ParticleSystem>().Play();
-                gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
-                gunSounds[0].Play();
-
-                usedAmmo++;
-                clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
-
-                if (target != null) {
-                    target.TakeTargetDamage(damage);
-                    impactSounds[0].pitch = Random.Range(0.9f, 1.1f);
-                    impactSounds[0].Play(); //flesh impact sound
-                } else {
-                    impactSounds[1].pitch = Random.Range(0.8f, 1.2f);
-                    impactSounds[1].Play(); //impact sound
-                }
-
-                if (shot.rigidbody != null) {
-                    shot.rigidbody.AddForce(-shot.normal * impactForce);
-                }
-            }
-        }
-    } */

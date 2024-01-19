@@ -1765,7 +1765,7 @@ Transform:
   m_GameObject: {fileID: 331076038}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.28499985, z: 0.4169922}
+  m_LocalPosition: {x: 0, y: -0.235, z: 0.4169922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7070,7 +7070,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6d3e6fce7d4ca74789823b986f1c910, type: 2}
+  - {fileID: 2100000, guid: e0acb64efa57e3b478f4c7d0d0ce9ea4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13591,7 +13591,7 @@ Transform:
   m_GameObject: {fileID: 5121208940302258850}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.18799973, y: -0.2539997, z: 0.33599854}
+  m_LocalPosition: {x: 0.18799973, y: -0.228, z: 0.33599854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24594,7 +24594,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunScript: {fileID: 7529857375457173721}
-  impactEffect: {fileID: 1673712406583481907, guid: 2d890e5155f7ad743a00d0ef728b3049, type: 3}
+  impact: {fileID: 1673712406583481907, guid: 2d890e5155f7ad743a00d0ef728b3049, type: 3}
+  fleshImpact: {fileID: 5561012755062079586, guid: 82e413ec94d8ba54a9bf0c877f3ffa69, type: 3}
 --- !u!222 &6093720502925992638
 CanvasRenderer:
   m_ObjectHideFlags: 0
