@@ -38,15 +38,12 @@ public class Gun : MonoBehaviour {
     public Player playerScript;
     private float cameraShakeMagnitude;
     private float cameraShakeDuration;
+    private Vector3 orignalCameraPosition;
     private float recoilAngle;
-    private float originalSwayAmount;
-    private float originalSwaySpeed;
-    
 
     void Start() {
         originalEquipPoint = equipPoint.transform.localPosition;
-        originalSwayAmount = swayAmount;
-        originalSwaySpeed = swaySpeed;
+        orignalCameraPosition = fpsCam.transform.localPosition;
     }
 
     void Update() {
@@ -79,7 +76,7 @@ public class Gun : MonoBehaviour {
                     clipAmmo = 6f;
                     recoilAngle = -70f;
                     cameraShakeDuration = 0.1f;
-                    cameraShakeMagnitude = 0.1f;
+                    cameraShakeMagnitude = 1f;
                 }
                 if (gunObject.tag == "Rifle") {
                     damage = 5f;
@@ -87,8 +84,8 @@ public class Gun : MonoBehaviour {
                     impactForce = 100f;
                     clipAmmo = 16;
                     recoilAngle = -90f;
-                    cameraShakeDuration = 0.15f;
-                    cameraShakeMagnitude = 1.5f;
+                    cameraShakeDuration = 0.2f;
+                    cameraShakeMagnitude = 5f;
                 }
                 clipAmmoText.enabled = true;
                 clipAmmoText.text = clipAmmo.ToString();
@@ -140,23 +137,22 @@ public class Gun : MonoBehaviour {
     }
 
     IEnumerator CameraShake() {
-        Vector3 orignalPosition = fpsCam.transform.localPosition;
         float elapsed = 0f;
         while(elapsed < cameraShakeDuration) {
-            float randomX = Random.Range(-0.5f, 0.5f) * cameraShakeMagnitude;
-            float randomZ = Random.Range(-1f, 1f) * cameraShakeMagnitude;
-            fpsCam.transform.localPosition = new Vector3(randomX, fpsCam.transform.localPosition.y, randomZ);
             elapsed += Time.deltaTime;
-            yield return 0;
+            float randomZ = Random.Range(-1f, 1f) * cameraShakeMagnitude;
+            Vector3 shakePosition = new Vector3(fpsCam.transform.localPosition.x, fpsCam.transform.localPosition.y, randomZ);
+            fpsCam.transform.localPosition = Vector3.Lerp(fpsCam.transform.localPosition, shakePosition, Time.deltaTime * 6f);
         }
-        fpsCam.transform.localPosition = orignalPosition;
+        fpsCam.transform.localPosition = Vector3.Lerp(fpsCam.transform.localPosition, orignalCameraPosition, Time.deltaTime * 6f);
+        yield return 0;
     }
 
     IEnumerator GunRecoil() {
         Quaternion targetRotation = Quaternion.Euler(recoilAngle, 0f, 0f);
         float elapsedTime = 0f;
         while (elapsedTime < 0.1) {
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 4f);
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 6f);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -164,7 +160,7 @@ public class Gun : MonoBehaviour {
         targetRotation = Quaternion.Euler(0f, 0f, 0f);
         elapsedTime = 0f;
         while (elapsedTime < 1) {
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 1f);
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 0.5f);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -178,7 +174,7 @@ public class Gun : MonoBehaviour {
                 Vector3 walkSway = new Vector3(walkSwayX, walkSwayY, 0f);
                 gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, walkSway, Time.deltaTime * 6f);
                 if (Input.GetKey("left shift") && playerScript.currentStamina > 0) {
-                    float sprintSwayX = Mathf.Sin(Time.time * swaySpeed * 4f) * swayAmount * 2f;
+                    float sprintSwayX = Mathf.Sin(Time.time * swaySpeed * 4f) * swayAmount;
                     float sprintSwayY = Mathf.Cos(Time.time * swaySpeed * 12f) * swayAmount * 6f;
                     Vector3 sprintSway = new Vector3(sprintSwayX, sprintSwayY, 0f);
                     gunObject.transform.localPosition = Vector3.Lerp(gunObject.transform.localPosition, sprintSway, Time.deltaTime * 6f);
@@ -201,6 +197,11 @@ public class Gun : MonoBehaviour {
             Quaternion targetRot = rotX * rotY;
             gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRot, swaySmoothing * Time.deltaTime);
         }
+    }
+
+    void ProjectileShoot(){
+        StartCoroutine("GunRecoil");
+        StartCoroutine("CameraShake");
     }
 
     void Shoot() {
