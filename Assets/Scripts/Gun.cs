@@ -56,15 +56,15 @@ public class Gun : MonoBehaviour {
                 if (gunObject.tag == "Pistol") {
                     damage = 10f;
                     fireRate = 2f;
-                    impactForce = 50f;
+                    impactForce = 25f;
                     clipAmmo = 6f;
                     bulletForce = 125f;
                 }
                 if (gunObject.tag == "Rifle") {
                     damage = 5f;
                     fireRate = 5f;
-                    impactForce = 100f;
-                    clipAmmo = 16;
+                    impactForce = 50f;
+                    clipAmmo = 16f;
                     bulletForce = 175f;
                 }
                 clipAmmoText.enabled = true;
