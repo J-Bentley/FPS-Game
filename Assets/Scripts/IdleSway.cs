@@ -8,18 +8,18 @@ public class IdleSway : MonoBehaviour {
 
     void Update() {// TODO: do this smarterer
         if (gunScript.gunEquipped) {
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) { 
                 float walkSwayX = Mathf.Sin(Time.time * swaySpeed * 2f) * swayAmount;
                 float walkSwayY = Mathf.Cos(Time.time * swaySpeed * 7f) * swayAmount * Random.Range(1f, 3f);
                 Vector3 walkSway = new Vector3(walkSwayX, walkSwayY, 0f);
                 gunScript.gunObject.transform.localPosition = Vector3.Lerp(gunScript.gunObject.transform.localPosition, walkSway, Time.deltaTime * 6f);
-                if (Input.GetKey("left shift") && playerScript.currentStamina > 0) {
+                if (Input.GetKey("left shift") && playerScript.currentStamina > 0) { 
                     float sprintSwayX = Mathf.Sin(Time.time * swaySpeed * 4f) * swayAmount;
                     float sprintSwayY = Mathf.Cos(Time.time * swaySpeed * 12f) * swayAmount * Random.Range(5f, 8f);
                     Vector3 sprintSway = new Vector3(sprintSwayX, sprintSwayY, 0f);
                     gunScript.gunObject.transform.localPosition = Vector3.Lerp(gunScript.gunObject.transform.localPosition, sprintSway, Time.deltaTime * 6f);
                 }
-            } else {
+            } else { 
                 float idleSwayX = Mathf.Sin(Time.time * swaySpeed) * swayAmount;
                 float idleSwayY = Mathf.Cos(Time.time * swaySpeed) * swayAmount;
                 Vector3 idleSway = new Vector3(idleSwayX, idleSwayY, 0f);

@@ -6,6 +6,11 @@ public class Bullet : MonoBehaviour {
     [SerializeField] ParticleSystem fleshImpact;
     private ParticleSystem particlesystem;
     private int collisionCount;
+    [SerializeField] GameObject playerObject;
+
+    void Start() {
+        Physics.IgnoreCollision(playerObject.GetComponent<Collider>(), GetComponent<Collider>(), true);
+    }
 
     void OnCollisionEnter(Collision collision) {
         collisionCount++;
