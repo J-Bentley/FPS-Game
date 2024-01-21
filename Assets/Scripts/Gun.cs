@@ -117,6 +117,7 @@ public class Gun : MonoBehaviour {
             grab.rigidbody.isKinematic = false;
             gunEquipped = false;
             usedAmmo = 0f;
+            gunObject.GetComponent<Rigidbody>().AddForce(equipPoint.transform.forward * 10f, ForceMode.Impulse);
         }
     }
 
