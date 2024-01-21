@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0
   m_LinearFogStart: -8.37
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -22548,7 +22548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -71415,7 +71415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restPosition: {x: 0, y: 1.257, z: 0}
   bobAmount: 0.4
-  bobSpeed: 6
+  bobSpeed: 7
   sprintBobAmount: 0.5
   sprintBobSpeed: 8
   playerScript: {fileID: 6597763200590041486}
@@ -71471,7 +71471,7 @@ Transform:
   m_GameObject: {fileID: 5121208940302258850}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.18799973, y: -0.228, z: 0.33599854}
+  m_LocalPosition: {x: 0.18799973, y: -0.295, z: 0.33599854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82962,6 +82962,7 @@ MonoBehaviour:
   gunScript: {fileID: 7529857375457173721}
   impact: {fileID: 1673712406583481907, guid: 2d890e5155f7ad743a00d0ef728b3049, type: 3}
   fleshImpact: {fileID: 5561012755062079586, guid: 82e413ec94d8ba54a9bf0c877f3ffa69, type: 3}
+  bulletHole: {fileID: 617965431665429163, guid: cb99109370d6fcc4bba9a2fa9245177b, type: 3}
   playerObject: {fileID: 5161659342787115844}
 --- !u!222 &6093720502925992638
 CanvasRenderer:
@@ -89639,8 +89640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunScript: {fileID: 7529857375457173721}
-  swayMultiplier: 20
-  swaySmoothing: 5
+  swayMultiplier: 10
+  swaySmoothing: 10
 --- !u!114 &8316277167977690169
 MonoBehaviour:
   m_ObjectHideFlags: 0

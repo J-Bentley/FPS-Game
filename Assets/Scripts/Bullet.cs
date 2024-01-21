@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour {
     public Gun gunScript;
     [SerializeField] ParticleSystem impact;
     [SerializeField] ParticleSystem fleshImpact;
+    [SerializeField] ParticleSystem bulletHole;
     private ParticleSystem particlesystem;
     private int collisionCount;
     [SerializeField] GameObject playerObject;
@@ -22,14 +23,15 @@ public class Bullet : MonoBehaviour {
             } else {
                 particlesystem = impact;
             }
-        
-            Quaternion correctRot = Quaternion.FromToRotation(Vector3.up, collision.contacts[0].normal);
-            ParticleSystem impactInstance = Instantiate(particlesystem, collision.contacts[0].point, correctRot);
-            impactInstance.GetComponent<AudioSource>().Play();
-            Destroy(impactInstance.gameObject, 3f);
-        
-            if (collision.transform.GetComponent<Rigidbody>() != null) {
-                collision.transform.GetComponent<Rigidbody>().AddForce(transform.forward * gunScript.impactForce, ForceMode.Impulse);
+
+            Quaternion normalizedRot = Quaternion.FromToRotation(Vector3.up, collision.contacts[0].normal);
+            ParticleSystem impactInstance = Instantiate(particlesystem, collision.contacts[0].point, normalizedRot);
+            Destroy(impactInstance.gameObject, 3f); //should be enough time for sound to play/particles to despawn
+
+            if (collision.gameObject.transform.GetComponent<Rigidbody>() != null) {
+                collision.gameObject.transform.GetComponent<Rigidbody>().AddForce(transform.forward * gunScript.impactForce, ForceMode.Impulse);
+            } else {
+                Instantiate(bulletHole, collision.contacts[0].point, normalizedRot);
             }
         } else {
             Destroy(gameObject);
