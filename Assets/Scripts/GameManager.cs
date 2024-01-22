@@ -14,13 +14,13 @@ public class GameManager : MonoBehaviour {
             try {
                 PauseGame();
             } catch {
-                Debug.Log("Cannot pause in the menu!");
+                QuitGame();
             }
         } else if (gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
             try {
                 ResumeGame();
             } catch {
-                Debug.Log("Cannot pause in the menu!");
+                QuitGame();
             }
         }
     }

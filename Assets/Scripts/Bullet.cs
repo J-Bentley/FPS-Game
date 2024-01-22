@@ -26,16 +26,16 @@ public class Bullet : MonoBehaviour {
 
             Quaternion normalizedRot = Quaternion.FromToRotation(Vector3.up, collision.contacts[0].normal);
             ParticleSystem impactInstance = Instantiate(particlesystem, collision.contacts[0].point, normalizedRot);
-            Destroy(impactInstance.gameObject, 3f); //give enough time for impact sound to play/particles to despawn
+            Destroy(impactInstance.gameObject, 3f); //gives time for impact sound to play/particles to despawn
 
-            ParticleSystem bulletHoleInstance = Instantiate(bulletHole, collision.contacts[0].point, normalizedRot); //bulletHole PS destroys self after lifetime
+            ParticleSystem bulletHoleInstance = Instantiate(bulletHole, collision.contacts[0].point, normalizedRot);
             bulletHoleInstance.transform.parent = collision.gameObject.transform;
 
             if (collision.gameObject.transform.GetComponent<Rigidbody>() != null) {
                 collision.gameObject.transform.GetComponent<Rigidbody>().AddForce(transform.forward * gunScript.impactForce, ForceMode.Impulse);
             }
         } else {
-            Destroy(gameObject);
+            Destroy(gameObject, 3f); //gives time for SmokeTrail particles to despawn
         }
     }
 }
