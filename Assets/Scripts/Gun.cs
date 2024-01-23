@@ -123,6 +123,7 @@ public class Gun : MonoBehaviour {
 
     void Shoot() {
         GameObject bulletInstance = Instantiate(bullet, muzzleFlashObject.transform.position, Quaternion.LookRotation(muzzleFlashObject.transform.forward));
+        Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>(), true);
         bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce, ForceMode.Impulse);
         usedAmmo++;
         gunSounds[0].pitch = Random.Range(0.8f, 1.2f);

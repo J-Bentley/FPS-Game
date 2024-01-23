@@ -6,12 +6,8 @@ public class Bullet : MonoBehaviour {
     [SerializeField] ParticleSystem fleshImpact;
     [SerializeField] ParticleSystem bulletHole;
     private ParticleSystem particlesystem;
-    [SerializeField] GameObject playerObject;
+    [SerializeField] CharacterController playerObject;
     private int collisionCount;
-
-    void Start() {
-        Physics.IgnoreCollision(playerObject.GetComponent<Collider>(), GetComponent<Collider>(), true);
-    }
 
     void OnCollisionEnter(Collision collision) {
         collisionCount++;
@@ -23,10 +19,10 @@ public class Bullet : MonoBehaviour {
             } else {
                 particlesystem = impact;
             }
-
+            
             Quaternion normalizedRot = Quaternion.FromToRotation(Vector3.up, collision.contacts[0].normal);
             ParticleSystem impactInstance = Instantiate(particlesystem, collision.contacts[0].point, normalizedRot);
-            Destroy(impactInstance.gameObject, 3f); //gives time for impact sound to play/particles to despawn
+            Destroy(impactInstance.gameObject, 3f);
 
             ParticleSystem bulletHoleInstance = Instantiate(bulletHole, collision.contacts[0].point, normalizedRot);
             bulletHoleInstance.transform.parent = collision.gameObject.transform;
@@ -35,7 +31,7 @@ public class Bullet : MonoBehaviour {
                 collision.gameObject.transform.GetComponent<Rigidbody>().AddForce(transform.forward * gunScript.impactForce, ForceMode.Impulse);
             }
         } else {
-            Destroy(gameObject, 3f); //gives time for SmokeTrail particles to despawn
+            Destroy(gameObject, 3f); 
         }
     }
 }
