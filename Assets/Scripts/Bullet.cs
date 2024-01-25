@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
-    public Gun gunScript;
     [SerializeField] ParticleSystem impact;
     [SerializeField] ParticleSystem fleshImpact;
     [SerializeField] ParticleSystem bulletHole;
@@ -14,7 +13,7 @@ public class Bullet : MonoBehaviour {
         if (collisionCount == 1) {
             Target target = collision.gameObject.transform.GetComponent<Target>();
             if (target != null) {
-                target.TakeTargetDamage(gunScript.damage);
+                target.TakeTargetDamage(Gun.damage);
                 particlesystem = fleshImpact;
             } else {
                 particlesystem = impact;
@@ -28,7 +27,7 @@ public class Bullet : MonoBehaviour {
             bulletHoleInstance.transform.parent = collision.gameObject.transform;
 
             if (collision.gameObject.transform.GetComponent<Rigidbody>() != null) {
-                collision.gameObject.transform.GetComponent<Rigidbody>().AddForce(transform.forward * gunScript.impactForce, ForceMode.Impulse);
+                collision.gameObject.transform.GetComponent<Rigidbody>().AddForce(transform.forward * Gun.bulletForce, ForceMode.Impulse);
             }
         } else {
             Destroy(gameObject, 3f); 

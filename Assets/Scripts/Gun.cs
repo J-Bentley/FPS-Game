@@ -21,10 +21,9 @@ public class Gun : MonoBehaviour {
     private AudioSource[] gunSounds;
     private float nextTimeToFire = 0;
     public bool gunEquipped = false;
-    public float damage;
+    public static float damage;
     private float fireRate;
-    public float impactForce;
-    private float bulletForce;
+    public static float bulletForce;
     private float clipAmmo = 1f;
     private float usedAmmo = 0f;
     private RaycastHit grab;
@@ -56,14 +55,12 @@ public class Gun : MonoBehaviour {
                 if (gunObject.tag == "Pistol") {
                     damage = 10f;
                     fireRate = 2f;
-                    impactForce = 25f;
                     clipAmmo = 6f;
                     bulletForce = 125f;
                 }
                 if (gunObject.tag == "Rifle") {
                     damage = 5f;
                     fireRate = 5f;
-                    impactForce = 50f;
                     clipAmmo = 16f;
                     bulletForce = 175f;
                 }
