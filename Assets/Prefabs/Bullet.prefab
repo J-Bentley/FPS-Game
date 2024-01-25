@@ -5008,10 +5008,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8244f1278ffec694f8a666ecac4a8a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunScript: {fileID: 3046362207753690822, guid: eb976fe3a5e84bf40b47262ca60ad4c6, type: 3}
   impact: {fileID: 1673712406583481907, guid: 2d890e5155f7ad743a00d0ef728b3049, type: 3}
   fleshImpact: {fileID: 5561012755062079586, guid: 82e413ec94d8ba54a9bf0c877f3ffa69, type: 3}
   bulletHole: {fileID: 617965431665429163, guid: cb99109370d6fcc4bba9a2fa9245177b, type: 3}
+  fleshBulletHole: {fileID: 617965431665429163, guid: d8f51f49ea8e5344399ea9800e6df0f3, type: 3}
   playerObject: {fileID: 1859897147156984541, guid: eb976fe3a5e84bf40b47262ca60ad4c6, type: 3}
 --- !u!54 &5422597527178672543
 Rigidbody:

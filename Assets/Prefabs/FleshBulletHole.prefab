@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 617965431665429163}
   - component: {fileID: 2785612508232781391}
   m_Layer: 0
-  m_Name: BulletHole
+  m_Name: FleshBulletHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4835,7 +4835,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e678a303fdb8fe843a1b973868fb5dd7, type: 2}
+  - {fileID: 2100000, guid: 594d879f322fd79428579707d9a162bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

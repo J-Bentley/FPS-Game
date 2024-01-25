@@ -3153,7 +3153,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 3.923636e-39}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 6e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -3730,12 +3730,12 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0, b: 0.03529412, a: 0.34901962}
+      minColor: {r: 1, g: 0, b: 0.03529412, a: 0.23529412}
       maxColor: {r: 1, g: 0, b: 0.035849094, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0, b: 0, a: 1}
-        key1: {r: 0.8207547, g: 0, b: 0.118996896, a: 1}
+        key0: {r: 1, g: 0.8518007, b: 0, a: 1}
+        key1: {r: 1, g: 0, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -3743,14 +3743,14 @@ ParticleSystem:
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 36623
+        ctime1: 65535
         ctime2: 0
         ctime3: 0
         ctime4: 0
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 13685
         atime1: 65535
         atime2: 0
         atime3: 0
@@ -4539,7 +4539,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 1
-      repeatInterval: 0.5
+      repeatInterval: 1
       probability: 1
   SizeModule:
     enabled: 1
@@ -8330,14 +8330,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030740212}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.085457504, y: -0, z: -0, w: 0.9963419}
+  m_LocalRotation: {x: 0.19456998, y: -0, z: -0, w: 0.98088866}
   m_LocalPosition: {x: 0.015, y: 2.83, z: -0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1008443610}
   m_Father: {fileID: 1057079275}
-  m_LocalEulerAnglesHint: {x: 9.805, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.439, y: 0, z: 0}
 --- !u!1 &1041106270
 GameObject:
   m_ObjectHideFlags: 0
