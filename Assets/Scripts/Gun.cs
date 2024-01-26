@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Gun : MonoBehaviour {
     [SerializeField] private Camera fpsCam;
@@ -11,9 +12,13 @@ public class Gun : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI equipUI;
     [SerializeField] private TextMeshProUGUI clipAmmoText;
     [SerializeField] private Image crosshair;
+    [SerializeField] private Image scopeOverlay;
     [SerializeField] private float equipRange;
     [SerializeField] private LayerMask gunLayers;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject rifleBullet;
+    [SerializeField] private GameObject pistolBullet;
+    [SerializeField] private float sniperFov;
+    private GameObject bullet;
     private Vector3 originalEquipPoint;
     public GameObject gunObject;
     private GameObject muzzleFlashObject;
@@ -24,6 +29,7 @@ public class Gun : MonoBehaviour {
     public static float damage;
     private float fireRate;
     public static float bulletForce;
+    private float recoilAngle;
     private float clipAmmo = 1f;
     private float usedAmmo = 0f;
     private RaycastHit grab;
@@ -56,13 +62,25 @@ public class Gun : MonoBehaviour {
                     damage = 10f;
                     fireRate = 2f;
                     clipAmmo = 6f;
-                    bulletForce = 125f;
+                    bulletForce = 150f;
+                    recoilAngle = -50f;
+                    bullet = pistolBullet;
                 }
                 if (gunObject.tag == "Rifle") {
                     damage = 5f;
                     fireRate = 5f;
                     clipAmmo = 16f;
-                    bulletForce = 175f;
+                    bulletForce = 200f;
+                    recoilAngle = -70f;
+                    bullet = rifleBullet;
+                }
+                if (gunObject.tag == "Sniper"){
+                    damage = 20f;
+                    fireRate = 1f;
+                    clipAmmo = 4f;
+                    bulletForce = 300f;
+                    recoilAngle = -80f;
+                    bullet = rifleBullet;
                 }
                 clipAmmoText.enabled = true;
                 clipAmmoText.text = clipAmmo.ToString();
@@ -100,9 +118,21 @@ public class Gun : MonoBehaviour {
 
         if (gunEquipped && Input.GetButton("Fire2")) {
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
-            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
+            if (gunObject.transform.tag == "Sniper") {
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sniperFov, adsFovSpeed * Time.deltaTime);
+                gunObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+                scopeOverlay.enabled = true;
+                crosshair.enabled = false;
+            } else {
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
+            }
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
-            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, originalEquipPoint, 6f * Time.deltaTime);
+            equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, originalEquipPoint, 10f * Time.deltaTime);
+            if (gunObject.transform.tag == "Sniper") {
+                gunObject.GetComponentInChildren<MeshRenderer>().enabled = true;
+                scopeOverlay.enabled = false;
+                crosshair.enabled = true;
+            }
         }
 
         if (gunEquipped && Input.GetKeyDown(KeyCode.F)) {
@@ -119,6 +149,7 @@ public class Gun : MonoBehaviour {
     }
 
     void Shoot() {
+        //StartCoroutine("Recoil");
         GameObject bulletInstance = Instantiate(bullet, muzzleFlashObject.transform.position, Quaternion.LookRotation(muzzleFlashObject.transform.forward));
         Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>(), true);
         bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce, ForceMode.Impulse);
@@ -126,5 +157,23 @@ public class Gun : MonoBehaviour {
         gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
         gunSounds[0].Play();
         muzzleFlashObject.GetComponent<ParticleSystem>().Play();
+    }
+
+    IEnumerator Recoil() {
+        Quaternion targetRotation = Quaternion.Euler(gunObject.transform.localRotation.x + recoilAngle, gunObject.transform.localRotation.y, gunObject.transform.localRotation.z);
+        float elapsedTime = 0f;
+        while (elapsedTime < 0.1) {
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 6f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.2f);
+        targetRotation = Quaternion.Euler(gunObject.transform.localRotation.x, gunObject.transform.localRotation.y, gunObject.transform.localRotation.z);
+        elapsedTime = 0f;
+        while (elapsedTime < 1) {
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 1f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 }
