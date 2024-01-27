@@ -90,6 +90,10 @@ public class Player : MonoBehaviour {
             audioSources[2].pitch = Random.Range(0.8f, 1.2f); audioSources[2].Play(); //jump sound
         }
 
+        if (!GameManager.gamePaused && Input.GetKey(KeyCode.C)) {
+            controller.Move(new Vector3(transform.position.x, transform.position.y, transform.position.z));
+        }
+
         if (controller.velocity.magnitude > 0.1f) {
             if (isGrounded && !audioSources[0].isPlaying) {
                 audioSources[0].pitch = Random.Range(0.9f, 1.1f); audioSources[0].Play(); //footsteps sound
