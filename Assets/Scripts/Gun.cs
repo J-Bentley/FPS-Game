@@ -25,7 +25,7 @@ public class Gun : MonoBehaviour {
     private Animator animator;
     private AudioSource[] gunSounds;
     private float nextTimeToFire = 0;
-    public static bool gunEquipped = false;
+    public bool gunEquipped = false;
     public static float damage;
     private float fireRate;
     public static float bulletForce;

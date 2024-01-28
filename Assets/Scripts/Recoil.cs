@@ -1,15 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Recoil : MonoBehaviour
 {
     Vector3 currentRotation, targetRotation, targetPosition, currentPosition, initialGunPosition;
-    [SerializeField] private Transform cam;
-    [SerializeField] private float recoilX;
-    [SerializeField] private float recoilY;
-    [SerializeField] private float recoilZ;
-    [SerializeField] private float kickBackZ;
-    [SerializeField] private float snappiness, returnAmount;
-    
+    public Transform cam;
+
+    public float recoilX;
+    public float recoilY;
+    public float recoilZ;
+
+    public float kickBackZ;
+
+    public float snappiness, returnAmount;
     void Start()
     {
         initialGunPosition = transform.localPosition;

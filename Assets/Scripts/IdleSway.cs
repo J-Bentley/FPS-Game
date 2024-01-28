@@ -1,28 +1,29 @@
 using UnityEngine;
 
 public class IdleSway : MonoBehaviour {
+    public Gun gunScript;
     public Player playerScript;
     public float swaySpeed;
     public float swayAmount;
 
     void Update() {// TODO: do this smarterer
-        if (Gun.gunEquipped) {
+        if (gunScript.gunEquipped) {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) { 
                 float walkSwayX = Mathf.Sin(Time.time * swaySpeed * 2f) * swayAmount;
                 float walkSwayY = Mathf.Cos(Time.time * swaySpeed * 7f) * swayAmount * Random.Range(1f, 3f);
                 Vector3 walkSway = new Vector3(walkSwayX, walkSwayY, 0f);
-                transform.localPosition = Vector3.Lerp(transform.localPosition, walkSway, Time.deltaTime * 6f);
+                gunScript.gunObject.transform.localPosition = Vector3.Lerp(gunScript.gunObject.transform.localPosition, walkSway, Time.deltaTime * 6f);
                 if (Input.GetKey("left shift") && playerScript.currentStamina > 0) { 
                     float sprintSwayX = Mathf.Sin(Time.time * swaySpeed * 4f) * swayAmount;
                     float sprintSwayY = Mathf.Cos(Time.time * swaySpeed * 12f) * swayAmount * Random.Range(5f, 8f);
                     Vector3 sprintSway = new Vector3(sprintSwayX, sprintSwayY, 0f);
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, sprintSway, Time.deltaTime * 6f);
+                    gunScript.gunObject.transform.localPosition = Vector3.Lerp(gunScript.gunObject.transform.localPosition, sprintSway, Time.deltaTime * 6f);
                 }
             } else { 
                 float idleSwayX = Mathf.Sin(Time.time * swaySpeed) * swayAmount;
                 float idleSwayY = Mathf.Cos(Time.time * swaySpeed) * swayAmount;
                 Vector3 idleSway = new Vector3(idleSwayX, idleSwayY, 0f);
-                transform.localPosition = Vector3.Lerp(transform.localPosition, idleSway, Time.deltaTime * 6f);
+                gunScript.gunObject.transform.localPosition = Vector3.Lerp(gunScript.gunObject.transform.localPosition, idleSway, Time.deltaTime * 6f);
             }
         }
     }

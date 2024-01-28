@@ -75384,8 +75384,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2487612565453711624}
-  - component: {fileID: 2487612565453711626}
-  - component: {fileID: 2487612565453711625}
   m_Layer: 7
   m_Name: Equip Point
   m_TagString: Untagged
@@ -77401,6 +77399,7 @@ MonoBehaviour:
   pistolBullet: {fileID: 2029392603362974865, guid: 2d36db46235e24f4abfbc193adfbcbb8, type: 3}
   sniperFov: 10
   gunObject: {fileID: 0}
+  gunEquipped: 0
   playerScript: {fileID: 3339374921590698744}
 --- !u!1 &2247422884152947419
 GameObject:
@@ -77693,35 +77692,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2418734889992969859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2487612565453711625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195693766713676321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3db01cf8e06e2c442854647e0365adf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerScript: {fileID: 3339374921590698744}
-  swaySpeed: 1
-  swayAmount: 0.01
---- !u!114 &2487612565453711626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195693766713676321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8143676c7d3bc0b4180ad637d172899f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swayMultiplier: 10
-  swaySmoothing: 10
 --- !u!224 &2491451867089999997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -88884,6 +88854,8 @@ GameObject:
   - component: {fileID: 3266152944320781904}
   - component: {fileID: 3339374921590698744}
   - component: {fileID: 2223300592704336459}
+  - component: {fileID: 5956839838731818136}
+  - component: {fileID: 5246315887394462842}
   - component: {fileID: 1279719684046492211}
   - component: {fileID: 5566651702658394086}
   - component: {fileID: 2632819132001802727}
@@ -89842,6 +89814,22 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
+--- !u!114 &5246315887394462842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986843352115670787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db01cf8e06e2c442854647e0365adf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunScript: {fileID: 2223300592704336459}
+  playerScript: {fileID: 3339374921590698744}
+  swaySpeed: 1.2
+  swayAmount: 0.01
 --- !u!1 &5384405322709565690
 GameObject:
   m_ObjectHideFlags: 0
@@ -90571,6 +90559,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2895979570407122788}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5956839838731818136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986843352115670787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8143676c7d3bc0b4180ad637d172899f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunScript: {fileID: 2223300592704336459}
+  swayMultiplier: 10
+  swaySmoothing: 10
 --- !u!224 &5957351255767388684
 RectTransform:
   m_ObjectHideFlags: 0
