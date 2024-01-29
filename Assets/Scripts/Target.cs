@@ -43,7 +43,7 @@ public class Target : MonoBehaviour {
         SpawnEnemies.totalEnemiesKilled++;
         Destroy(gameObject);
         GameObject destroyedObject = Instantiate(destroyedVersion, transform.position, transform.rotation);
-
+        
         if (spawnStaminapackOnDeath) {
             Instantiate(staminapack, transform.position, transform.rotation);
         }

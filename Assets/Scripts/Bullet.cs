@@ -7,22 +7,39 @@ public class Bullet : MonoBehaviour {
     [SerializeField] ParticleSystem fleshBulletHole;
     private ParticleSystem impactParticlesystem;
     private ParticleSystem bulletHoleParticlesystem;
+    private float collisionCount;
+    private float damage;
+    [SerializeField] float headshotMultiplier;
+
 
     void OnCollisionEnter(Collision collision) {
-        Target target = collision.gameObject.transform.GetComponent<Target>();
-        if (target != null) {
-            target.TakeTargetDamage(Gun.damage);
-            impactParticlesystem = fleshImpact;
-            bulletHoleParticlesystem = fleshBulletHole;
-        } else {
-            impactParticlesystem = impact;
-            bulletHoleParticlesystem = bulletHole;
+        collisionCount++;
+        if (collisionCount == 1) {
+            Target target = collision.gameObject.transform.parent.GetComponent<Target>();
+            damage = Gun.damage;
+            if (target != null) {
+                if (collision.transform.tag == "Arm") {
+                    target.TakeTargetDamage(Gun.damage);
+                    collision.transform.parent = null;
+                    collision.rigidbody.isKinematic = false;
+                    collision.rigidbody.useGravity = true;
+                }
+                if (collision.gameObject.transform.tag == "Head") {
+                    target.TakeTargetDamage(Gun.damage * headshotMultiplier);
+                } else {
+                    target.TakeTargetDamage(Gun.damage);
+                }
+                impactParticlesystem = fleshImpact;
+                bulletHoleParticlesystem = fleshBulletHole;
+            } else {
+                impactParticlesystem = impact;
+                bulletHoleParticlesystem = bulletHole;
+            }
+            Quaternion normalizedRot = Quaternion.FromToRotation(Vector3.up, collision.contacts[0].normal);
+            Instantiate(impactParticlesystem, collision.contacts[0].point, normalizedRot);
+            ParticleSystem bulletHoleInstance = Instantiate(bulletHoleParticlesystem, collision.contacts[0].point, normalizedRot);
+            bulletHoleInstance.transform.parent = collision.gameObject.transform; 
+            Destroy(gameObject, 1f); 
         }
-        
-        Quaternion normalizedRot = Quaternion.FromToRotation(Vector3.up, collision.contacts[0].normal);
-        Instantiate(impactParticlesystem, collision.contacts[0].point, normalizedRot);
-        ParticleSystem bulletHoleInstance = Instantiate(bulletHoleParticlesystem, collision.contacts[0].point, normalizedRot);
-        bulletHoleInstance.transform.parent = collision.gameObject.transform; 
-        Destroy(gameObject); 
     }
 }

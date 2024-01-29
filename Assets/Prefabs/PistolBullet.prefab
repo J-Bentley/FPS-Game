@@ -56,7 +56,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.02
+    scalar: 0.04
     minScalar: 0.05
     maxCurve:
       serializedVersion: 2
@@ -4982,7 +4982,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029392603362974865}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 89cd8897551b4a94eac206586e20d389, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5039,3 +5039,4 @@ MonoBehaviour:
   fleshImpact: {fileID: 5561012755062079586, guid: 82e413ec94d8ba54a9bf0c877f3ffa69, type: 3}
   bulletHole: {fileID: 617965431665429163, guid: cb99109370d6fcc4bba9a2fa9245177b, type: 3}
   fleshBulletHole: {fileID: 617965431665429163, guid: d8f51f49ea8e5344399ea9800e6df0f3, type: 3}
+  headshotMultiplier: 2

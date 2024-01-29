@@ -8,6 +8,8 @@ TagManager:
   - Rifle
   - Enemy
   - Sniper
+  - Head
+  - Arm
   layers:
   - Default
   - TransparentFX

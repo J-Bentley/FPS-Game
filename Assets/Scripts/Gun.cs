@@ -6,7 +6,6 @@ using System.Collections;
 public class Gun : MonoBehaviour {
     [SerializeField] private Camera fpsCam;
     [SerializeField] private float adsFov;
-    [SerializeField] private float adsFovSpeed;
     [SerializeField] private Transform equipPoint;
     [SerializeField] private Transform adsPoint;
     [SerializeField] private TextMeshProUGUI equipUI;
@@ -117,21 +116,21 @@ public class Gun : MonoBehaviour {
         }
 
         if (gunEquipped && Input.GetButton("Fire2")) {
+            crosshair.enabled = false;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
             if (gunObject.transform.tag == "Sniper") {
-                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sniperFov, adsFovSpeed * Time.deltaTime);
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sniperFov, 6f * Time.deltaTime);
                 gunObject.GetComponentInChildren<MeshRenderer>().enabled = false;
                 scopeOverlay.enabled = true;
-                crosshair.enabled = false;
             } else {
-                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, adsFovSpeed * Time.deltaTime);
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, 6f * Time.deltaTime);
             }
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
+            crosshair.enabled = true;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, originalEquipPoint, 10f * Time.deltaTime);
             if (gunObject.transform.tag == "Sniper") {
                 gunObject.GetComponentInChildren<MeshRenderer>().enabled = true;
                 scopeOverlay.enabled = false;
-                crosshair.enabled = true;
             }
         }
 
@@ -145,6 +144,7 @@ public class Gun : MonoBehaviour {
             gunEquipped = false;
             usedAmmo = 0f;
             gunObject.GetComponent<Rigidbody>().AddForce(equipPoint.transform.forward * 10f, ForceMode.Impulse);
+            gunObject = null;
         }
     }
 
