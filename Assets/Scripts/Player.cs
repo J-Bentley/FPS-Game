@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
 
     void Update() {
         if (!audioSources[5].isPlaying) {
-            audioSources[5].Play(); //loops background music
+            //audioSources[5].Play();
         }
         
         staminaBar.value = currentStamina;
@@ -77,11 +77,10 @@ public class Player : MonoBehaviour {
                 }
             }
         } else if (currentStamina < maxStamina) {
-            currentStamina += staminaRegen * Time.deltaTime;
+            currentStamina += staminaRegen * Time.deltaTime;            
         }
-
+        
         if (!Input.GetKey("left shift")) {
-            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, defaultFov, fovSpeed * Time.deltaTime);
             speed = originalSpeed;
         }
 

@@ -18,12 +18,6 @@ public class Bullet : MonoBehaviour {
             Target target = collision.gameObject.transform.parent.GetComponent<Target>();
             damage = Gun.damage;
             if (target != null) {
-                if (collision.transform.tag == "Arm") {
-                    target.TakeTargetDamage(Gun.damage);
-                    collision.transform.parent = null;
-                    collision.rigidbody.isKinematic = false;
-                    collision.rigidbody.useGravity = true;
-                }
                 if (collision.gameObject.transform.tag == "Head") {
                     target.TakeTargetDamage(Gun.damage * headshotMultiplier);
                 } else {

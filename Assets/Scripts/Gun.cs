@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour {
     [SerializeField] private GameObject rifleBullet;
     [SerializeField] private GameObject pistolBullet;
     [SerializeField] private float sniperFov;
+    private float originalFov;
     private GameObject bullet;
     private Vector3 originalEquipPoint;
     public GameObject gunObject;
@@ -36,6 +37,7 @@ public class Gun : MonoBehaviour {
 
     void Start() {
         originalEquipPoint = equipPoint.transform.localPosition;
+        originalFov = fpsCam.fieldOfView;
     }
 
     void Update() {
@@ -119,7 +121,7 @@ public class Gun : MonoBehaviour {
             crosshair.enabled = false;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
             if (gunObject.transform.tag == "Sniper") {
-                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sniperFov, 6f * Time.deltaTime);
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sniperFov, 10f * Time.deltaTime);
                 gunObject.GetComponentInChildren<MeshRenderer>().enabled = false;
                 scopeOverlay.enabled = true;
             } else {
@@ -128,6 +130,7 @@ public class Gun : MonoBehaviour {
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
             crosshair.enabled = true;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, originalEquipPoint, 10f * Time.deltaTime);
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, originalFov, 6f * Time.deltaTime);
             if (gunObject.transform.tag == "Sniper") {
                 gunObject.GetComponentInChildren<MeshRenderer>().enabled = true;
                 scopeOverlay.enabled = false;

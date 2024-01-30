@@ -77566,7 +77566,7 @@ MonoBehaviour:
     m_Bits: 512
   rifleBullet: {fileID: 7322114231794724802, guid: ba1b848e38ac9904582bffb8f5e46824, type: 3}
   pistolBullet: {fileID: 2029392603362974865, guid: 2d36db46235e24f4abfbc193adfbcbb8, type: 3}
-  sniperFov: 10
+  sniperFov: 30
   gunObject: {fileID: 0}
   gunEquipped: 0
   playerScript: {fileID: 3339374921590698744}
@@ -78510,7 +78510,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 34.724205
   m_Depth: 2
@@ -78952,7 +78952,7 @@ MonoBehaviour:
   gravity: -35
   jumpHeight: 4
   sprintSpeed: 16
-  sprintFov: 103
+  sprintFov: 110
   staminaRegen: 1.5
   maxHealth: 100
   currentStamina: 0
@@ -91950,7 +91950,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 7826498349298130912}
-  m_PlaneDistance: 0.05
+  m_PlaneDistance: 0.09
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -97796,8 +97796,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5384405322709565690}
   serializedVersion: 8
-  lengthInSec: 1
-  simulationSpeed: 100
+  lengthInSec: 3
+  simulationSpeed: 80
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -97871,7 +97871,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 6
+      scalar: 8
       minScalar: 4
       maxCurve:
         serializedVersion: 2
@@ -97924,7 +97924,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -97976,8 +97976,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
+      minMaxState: 2
+      minColor: {r: 1, g: 1, b: 1, a: 0.33333334}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -98042,8 +98042,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.8
-      minScalar: 1.2
+      scalar: 1
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -98734,9 +98734,9 @@ ParticleSystem:
       time: 0
       countCurve:
         serializedVersion: 2
-        minMaxState: 0
-        scalar: 1
-        minScalar: 30
+        minMaxState: 3
+        scalar: 3
+        minScalar: 1
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -98786,7 +98786,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 1
-      repeatInterval: 0.01
+      repeatInterval: 1
       probability: 1
   SizeModule:
     enabled: 1
@@ -99116,13 +99116,13 @@ ParticleSystem:
     enabled: 1
     gradient:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.46095705, b: 0, a: 1}
+        key0: {r: 1, g: 1, b: 0, a: 1}
+        key1: {r: 1, g: 0.357633, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -101883,9 +101883,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     widthOverTrail:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 5
-      minScalar: 1
+      minMaxState: 3
+      scalar: 8
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
