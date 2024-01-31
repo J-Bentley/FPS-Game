@@ -10,7 +10,7 @@ public class IdleSway : MonoBehaviour {
         if (gunScript.gunEquipped) {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) { 
                 float walkSwayX = Mathf.Sin(Time.time * swaySpeed * 2f) * swayAmount;
-                float walkSwayY = Mathf.Cos(Time.time * swaySpeed * 7f) * swayAmount * Random.Range(1f, 3f);
+                float walkSwayY = Mathf.Cos(Time.time * swaySpeed * 8f) * swayAmount * Random.Range(1f, 3f);
                 Vector3 walkSway = new Vector3(walkSwayX, walkSwayY, 0f);
                 gunScript.gunObject.transform.localPosition = Vector3.Lerp(gunScript.gunObject.transform.localPosition, walkSway, Time.deltaTime * 6f);
                 if (Input.GetKey("left shift") && playerScript.currentStamina > 0) { 

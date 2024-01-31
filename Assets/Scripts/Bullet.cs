@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
+    [SerializeField] float headshotMultiplier;
     [SerializeField] ParticleSystem impact;
     [SerializeField] ParticleSystem fleshImpact;
     [SerializeField] ParticleSystem bulletHole;
@@ -8,15 +9,13 @@ public class Bullet : MonoBehaviour {
     private ParticleSystem impactParticlesystem;
     private ParticleSystem bulletHoleParticlesystem;
     private float collisionCount;
-    private float damage;
-    [SerializeField] float headshotMultiplier;
+    
 
 
     void OnCollisionEnter(Collision collision) {
         collisionCount++;
         if (collisionCount == 1) {
             Target target = collision.gameObject.transform.parent.GetComponent<Target>();
-            damage = Gun.damage;
             if (target != null) {
                 if (collision.gameObject.transform.tag == "Head") {
                     target.TakeTargetDamage(Gun.damage * headshotMultiplier);

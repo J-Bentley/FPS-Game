@@ -6,6 +6,7 @@ using System.Collections;
 public class Gun : MonoBehaviour {
     [SerializeField] private Camera fpsCam;
     [SerializeField] private float adsFov;
+    [SerializeField] private float sniperFov;
     [SerializeField] private Transform equipPoint;
     [SerializeField] private Transform adsPoint;
     [SerializeField] private TextMeshProUGUI equipUI;
@@ -16,7 +17,7 @@ public class Gun : MonoBehaviour {
     [SerializeField] private LayerMask gunLayers;
     [SerializeField] private GameObject rifleBullet;
     [SerializeField] private GameObject pistolBullet;
-    [SerializeField] private float sniperFov;
+    [SerializeField] private GameObject shotgunBullet;
     private float originalFov;
     private GameObject bullet;
     private Vector3 originalEquipPoint;
@@ -58,30 +59,41 @@ public class Gun : MonoBehaviour {
                 crosshair.enabled = true;
                 gunEquipped = true;
                 gunSounds[3].Play(); //cock sound
-
-                if (gunObject.tag == "Pistol") {
-                    damage = 10f;
-                    fireRate = 2f;
-                    clipAmmo = 6f;
-                    bulletForce = 150f;
-                    recoilAngle = -50f;
-                    bullet = pistolBullet;
-                }
-                if (gunObject.tag == "Rifle") {
-                    damage = 5f;
-                    fireRate = 5f;
-                    clipAmmo = 16f;
-                    bulletForce = 200f;
-                    recoilAngle = -70f;
-                    bullet = rifleBullet;
-                }
-                if (gunObject.tag == "Sniper"){
-                    damage = 20f;
-                    fireRate = 1f;
-                    clipAmmo = 4f;
-                    bulletForce = 300f;
-                    recoilAngle = -80f;
-                    bullet = rifleBullet;
+                switch (gunObject.tag) {
+                    case "Pistol":
+                        damage = 10f;
+                        fireRate = 2f;
+                        clipAmmo = 5f;
+                        bulletForce = 150f;
+                        recoilAngle = -20f;
+                        bullet = pistolBullet;
+                        break;
+                    case "Rifle":
+                        damage = 5f;
+                        fireRate = 5f;
+                        clipAmmo = 16f;
+                        bulletForce = 200f;
+                        recoilAngle = -50f;
+                        bullet = rifleBullet;
+                        break;
+                    case "Sniper":
+                        damage = 20f;
+                        fireRate = 1f;
+                        clipAmmo = 3f;
+                        bulletForce = 300f;
+                        recoilAngle = -30f;
+                        bullet = rifleBullet;
+                        break;
+                    case "Shotgun":
+                        damage = 20f;
+                        fireRate = 1f;
+                        clipAmmo = 2f;
+                        bulletForce = 200f;
+                        recoilAngle = -80f;
+                        bullet = shotgunBullet;
+                        break;
+                    default:
+                        break;
                 }
                 clipAmmoText.enabled = true;
                 clipAmmoText.text = clipAmmo.ToString();
