@@ -164,7 +164,6 @@ public class Gun : MonoBehaviour {
     }
 
     void Shoot() {
-        //StartCoroutine("Recoil");
         GameObject bulletInstance = Instantiate(bullet, muzzleFlashObject.transform.position, Quaternion.LookRotation(muzzleFlashObject.transform.forward));
         Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>(), true);
         bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce, ForceMode.Impulse);
@@ -172,13 +171,14 @@ public class Gun : MonoBehaviour {
         gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
         gunSounds[0].Play();
         muzzleFlashObject.GetComponent<ParticleSystem>().Play();
+        StartCoroutine("Recoil");
     }
 
     IEnumerator Recoil() {
         Quaternion targetRotation = Quaternion.Euler(gunObject.transform.localRotation.x + recoilAngle, gunObject.transform.localRotation.y, gunObject.transform.localRotation.z);
         float elapsedTime = 0f;
         while (elapsedTime < 0.1) {
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 6f);
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 5f);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -186,7 +186,7 @@ public class Gun : MonoBehaviour {
         targetRotation = Quaternion.Euler(gunObject.transform.localRotation.x, gunObject.transform.localRotation.y, gunObject.transform.localRotation.z);
         elapsedTime = 0f;
         while (elapsedTime < 1) {
-            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 1f);
+            gunObject.transform.localRotation = Quaternion.Slerp(gunObject.transform.localRotation, targetRotation, Time.deltaTime * 5f);
             elapsedTime += Time.deltaTime;
             yield return null;
         }

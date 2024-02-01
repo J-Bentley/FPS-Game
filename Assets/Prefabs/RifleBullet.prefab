@@ -56,7 +56,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.04
+    scalar: 0.08
     minScalar: 0.05
     maxCurve:
       serializedVersion: 2
@@ -117,7 +117,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1
-      minScalar: 0.5
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -222,7 +222,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 1, b: 1, a: 0.48235294}
+      minColor: {r: 1, g: 1, b: 1, a: 0.21176471}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -611,7 +611,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.1
+      scalar: -0.01
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5035,8 +5035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8244f1278ffec694f8a666ecac4a8a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  headshotMultiplier: 2.5
   impact: {fileID: 1673712406583481907, guid: 2d890e5155f7ad743a00d0ef728b3049, type: 3}
   fleshImpact: {fileID: 5561012755062079586, guid: 82e413ec94d8ba54a9bf0c877f3ffa69, type: 3}
   bulletHole: {fileID: 617965431665429163, guid: cb99109370d6fcc4bba9a2fa9245177b, type: 3}
   fleshBulletHole: {fileID: 617965431665429163, guid: d8f51f49ea8e5344399ea9800e6df0f3, type: 3}
-  headshotMultiplier: 2.5
