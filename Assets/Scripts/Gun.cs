@@ -73,7 +73,7 @@ public class Gun : MonoBehaviour {
                         fireRate = 5f;
                         clipAmmo = 16f;
                         bulletForce = 200f;
-                        recoilAngle = -50f;
+                        recoilAngle = -20f;
                         bullet = rifleBullet;
                         break;
                     case "Sniper":

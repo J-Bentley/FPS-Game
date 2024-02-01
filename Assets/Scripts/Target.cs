@@ -30,7 +30,8 @@ public class Target : MonoBehaviour {
         enemyHealthbar.value = targetHealth;
 
         if (playHurtSound) {
-            hurtSound.pitch = Random.Range(0.9f, 1.1f); hurtSound.Play();
+            hurtSound.pitch = Random.Range(0.9f, 1.1f);
+            hurtSound.Play();
         }
 
         if (targetHealth <= 0f) {
@@ -41,8 +42,13 @@ public class Target : MonoBehaviour {
     void Die () {
         SpawnEnemies.enemiesKilledThisRound++;
         SpawnEnemies.totalEnemiesKilled++;
+
         Destroy(gameObject);
         GameObject destroyedObject = Instantiate(destroyedVersion, transform.position, transform.rotation);
+
+        foreach (Transform child in destroyedObject.transform) {
+            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 4f, ForceMode.Impulse);
+        }
         
         if (spawnStaminapackOnDeath) {
             Instantiate(staminapack, transform.position, transform.rotation);
@@ -55,7 +61,8 @@ public class Target : MonoBehaviour {
 
         if (playDeathSound) {
             deathSound = destroyedObject.GetComponent<AudioSource>(); 
-            deathSound.pitch = Random.Range(0.9f, 1.1f); deathSound.Play();
+            deathSound.pitch = Random.Range(0.9f, 1.1f);
+            deathSound.Play();
         }
 
         if(destroyPeices) {
