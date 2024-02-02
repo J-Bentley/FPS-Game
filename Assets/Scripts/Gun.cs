@@ -85,7 +85,7 @@ public class Gun : MonoBehaviour {
                         bullet = rifleBullet;
                         break;
                     case "Shotgun":
-                        damage = 20f;
+                        damage = 10f;
                         fireRate = 1f;
                         clipAmmo = 2f;
                         bulletForce = 200f;
@@ -166,6 +166,13 @@ public class Gun : MonoBehaviour {
     void Shoot() {
         GameObject bulletInstance = Instantiate(bullet, muzzleFlashObject.transform.position, Quaternion.LookRotation(muzzleFlashObject.transform.forward));
         Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>(), true);
+
+        foreach (Transform child in bulletInstance.transform) { // for shotgun
+            if (child.GetComponent<Rigidbody>() != null){
+                child.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce, ForceMode.Impulse);
+            }
+        }
+
         bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce, ForceMode.Impulse);
         usedAmmo++;
         gunSounds[0].pitch = Random.Range(0.8f, 1.2f);

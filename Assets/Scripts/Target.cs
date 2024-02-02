@@ -18,6 +18,7 @@ public class Target : MonoBehaviour {
     [SerializeField] private Slider enemyHealthbar = null;
     private AudioSource hurtSound;
     private AudioSource deathSound;
+    private bool isDead = false;
 
     void Start(){
         enemyHealthbar.maxValue = targetHealth;
@@ -31,15 +32,22 @@ public class Target : MonoBehaviour {
 
         if (playHurtSound) {
             hurtSound.pitch = Random.Range(0.9f, 1.1f);
-            hurtSound.Play();
+            if (!hurtSound.isPlaying) {
+                hurtSound.Play();
+            }
         }
 
         if (targetHealth <= 0f) {
-            Die();
+            if(!isDead) {
+                Die();
+            }
+            
         }
     }
 
     void Die () {
+        isDead = true;
+
         SpawnEnemies.enemiesKilledThisRound++;
         SpawnEnemies.totalEnemiesKilled++;
 
@@ -47,7 +55,7 @@ public class Target : MonoBehaviour {
         GameObject destroyedObject = Instantiate(destroyedVersion, transform.position, transform.rotation);
 
         foreach (Transform child in destroyedObject.transform) {
-            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 4f, ForceMode.Impulse);
+            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 5f, ForceMode.Impulse);
         }
         
         if (spawnStaminapackOnDeath) {
@@ -62,7 +70,9 @@ public class Target : MonoBehaviour {
         if (playDeathSound) {
             deathSound = destroyedObject.GetComponent<AudioSource>(); 
             deathSound.pitch = Random.Range(0.9f, 1.1f);
-            deathSound.Play();
+            if(!deathSound.isPlaying) {
+                deathSound.Play();
+            }
         }
 
         if(destroyPeices) {
