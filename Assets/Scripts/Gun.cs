@@ -173,7 +173,7 @@ public class Gun : MonoBehaviour {
             }
         }
 
-        bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce, ForceMode.Impulse);
+        bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce , ForceMode.Impulse);
         usedAmmo++;
         gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
         gunSounds[0].Play();

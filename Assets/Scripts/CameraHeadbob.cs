@@ -25,7 +25,7 @@ public class CameraHeadBob : MonoBehaviour {
             bobSpeed = originalBobSpeed;
         }
 
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) {
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 && playerScript.isGrounded) {
             timer += bobSpeed * Time.deltaTime;
             Vector3 newPosition = new Vector3(Mathf.Cos(timer) * bobAmount, restPosition.y + Mathf.Abs(Mathf.Sin(timer) * bobAmount), restPosition.z);
             transform.localPosition = newPosition;

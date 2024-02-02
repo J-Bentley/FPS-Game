@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private float sprintFov;
     [SerializeField] private float staminaRegen;
     private Vector3 velocity;
-    private bool isGrounded;
+    public bool isGrounded;
     private float defaultFov;
     public float maxHealth = 100f;
     public float currentStamina;
@@ -133,7 +133,8 @@ public class Player : MonoBehaviour {
         currentHealth -= damage;
         healthBar.value = currentHealth;
         if(!audioSources[3].isPlaying) { 
-            audioSources[3].pitch = Random.Range(0.8f, 1.2f); audioSources[3].Play(); //take damage sound
+            audioSources[3].pitch = Random.Range(0.8f, 1.2f);
+            audioSources[3].Play(); //take damage sound
         }
         if (currentHealth <= 0) {
             Death();
