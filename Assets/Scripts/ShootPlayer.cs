@@ -22,7 +22,7 @@ public class ShootPlayer : MonoBehaviour {
     }
 
     void Shoot() {
-        Rigidbody bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Rigidbody bulletInstance = Instantiate(bulletPrefab, transform.GetChild(1).position, transform.rotation);
         Vector3 directionToPlayer = (playerTransform.position - bulletInstance.transform.position).normalized;
         bulletInstance.AddForce(directionToPlayer * shootForce, ForceMode.Impulse);
         Destroy(bulletInstance.gameObject, bulletLifetime);

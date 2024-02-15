@@ -133,16 +133,16 @@ public class Gun : MonoBehaviour {
             crosshair.enabled = false;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
             if (gunObject.transform.tag == "Sniper") {
-                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sniperFov, 10f * Time.deltaTime);
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sniperFov, Time.deltaTime * 6f);
                 gunObject.GetComponentInChildren<MeshRenderer>().enabled = false;
                 scopeOverlay.enabled = true;
             } else {
-                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, 6f * Time.deltaTime);
+                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, adsFov, Time.deltaTime * 6f);
             }
         } else if (gunEquipped && !Input.GetButton("Fire2")) {
             crosshair.enabled = true;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, originalEquipPoint, 10f * Time.deltaTime);
-            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, originalFov, 6f * Time.deltaTime);
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, originalFov, Time.deltaTime * 6f);
             if (gunObject.transform.tag == "Sniper") {
                 gunObject.GetComponentInChildren<MeshRenderer>().enabled = true;
                 scopeOverlay.enabled = false;
@@ -150,6 +150,10 @@ public class Gun : MonoBehaviour {
         }
 
         if (gunEquipped && Input.GetKeyDown(KeyCode.F)) {
+            if (gunObject.transform.tag == "Sniper") {
+                gunObject.GetComponentInChildren<MeshRenderer>().enabled = true;
+                scopeOverlay.enabled = false;
+            }
             crosshair.enabled = false;
             clipAmmoText.enabled = false;
             gunObject.GetComponent<Collider>().enabled = true; 
@@ -160,6 +164,7 @@ public class Gun : MonoBehaviour {
             usedAmmo = 0f;
             gunObject.GetComponent<Rigidbody>().AddForce(equipPoint.transform.forward * 10f, ForceMode.Impulse);
             gunObject = null;
+            StartCoroutine(changeFov(originalFov));
         }
     }
 
@@ -179,6 +184,15 @@ public class Gun : MonoBehaviour {
         gunSounds[0].Play();
         muzzleFlashObject.GetComponent<ParticleSystem>().Play();
         StartCoroutine("Recoil");
+    }
+
+    IEnumerator changeFov(float newFov) {
+        float elapsedTime = 0f;
+        while (elapsedTime < 1) {
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, newFov, Time.deltaTime * 6f);
+            elapsedTime += Time.deltaTime;
+        }
+        yield return null;
     }
 
     IEnumerator Recoil() {

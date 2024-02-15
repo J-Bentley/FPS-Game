@@ -64,13 +64,13 @@ public class Player : MonoBehaviour {
         if (!GameManager.gamePaused && Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) {
             if (currentStamina > 0f) {
                 speed = sprintSpeed;
-                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sprintFov, fovSpeed * Time.deltaTime);
+                //fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sprintFov, fovSpeed * Time.deltaTime);
                 currentStamina -= Time.deltaTime;   
             }
 
             if (currentStamina <= 0f) {
                 speed = originalSpeed;
-                fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, defaultFov, fovSpeed * Time.deltaTime);
+                //fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, defaultFov, fovSpeed * Time.deltaTime);
                 currentStamina = 0;
                 if (!audioSources[1].isPlaying) {
                     audioSources[1].Play(); //no stamina sound
