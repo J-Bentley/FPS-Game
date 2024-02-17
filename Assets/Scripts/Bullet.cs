@@ -10,8 +10,6 @@ public class Bullet : MonoBehaviour {
     private ParticleSystem bulletHoleParticlesystem;
     private float collisionCount;
     
-
-
     void OnCollisionEnter(Collision collision) {
         collisionCount++;
         if (collisionCount == 1) {
