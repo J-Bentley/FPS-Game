@@ -860,9 +860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61504b18b7fa68439a78192c2479af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveText: {fileID: 0}
-  enemiesKilledText: {fileID: 0}
-  moneyText: {fileID: 0}
 --- !u!1 &1189630777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1443,7 @@ AudioSource:
   m_GameObject: {fileID: 2122550526}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5099401977227105765, guid: 96da0a47a8f1f134bafa37d1fb775405, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7df4e988dcff9744b83a4cfa1693b56c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
