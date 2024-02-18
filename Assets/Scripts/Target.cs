@@ -5,25 +5,23 @@ public class Target : MonoBehaviour {
 
     public Player playerScript;
     [SerializeField] private GameObject destroyedVersion;
-    [SerializeField] private GameObject staminapack;
-    [SerializeField] private bool spawnStaminapackOnDeath = true;
     [SerializeField] private bool giveMoneyOnDeath = true;
     [SerializeField] private bool destroyPeices = false;
     [SerializeField] private bool playHurtSound = false;
     [SerializeField] private bool playDeathSound = false;
-    [SerializeField] private float destroyPeicesTimer = 10;
-    [SerializeField] private float targetHealth = 50f;
-    [SerializeField] private int minRandomMoney = 10;
-    [SerializeField] private int maxRandomMoney = 20;
+    [SerializeField] private float destroyPeicesTimer;
+    [SerializeField] private float targetHealth;
+    [SerializeField] private int minRandomMoney;
+    [SerializeField] private int maxRandomMoney;
     [SerializeField] private Slider enemyHealthbar = null;
-    private AudioSource hurtSound;
+    private AudioSource[] hurtSound;
     private AudioSource deathSound;
     private bool isDead = false;
 
     void Start(){
         enemyHealthbar.maxValue = targetHealth;
         enemyHealthbar.value = targetHealth;
-        hurtSound = GetComponent<AudioSource>();
+        hurtSound = GetComponents<AudioSource>();
     }
 
     public void TakeTargetDamage (float amount) { 
@@ -31,9 +29,9 @@ public class Target : MonoBehaviour {
         enemyHealthbar.value = targetHealth;
 
         if (playHurtSound) {
-            hurtSound.pitch = Random.Range(0.9f, 1.1f);
-            if (!hurtSound.isPlaying) {
-                hurtSound.Play();
+            hurtSound[0].pitch = Random.Range(0.9f, 1.1f);
+            if (!hurtSound[0].isPlaying) {
+                hurtSound[0].Play();
             }
         }
 
@@ -41,25 +39,17 @@ public class Target : MonoBehaviour {
             if(!isDead) {
                 Die();
             }
-            
         }
     }
 
     void Die () {
         isDead = true;
 
-        SpawnEnemies.enemiesKilledThisRound++;
-        SpawnEnemies.totalEnemiesKilled++;
-
         Destroy(gameObject);
         GameObject destroyedObject = Instantiate(destroyedVersion, transform.position, transform.rotation);
 
         foreach (Transform child in destroyedObject.transform) {
-            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 5f, ForceMode.Impulse);
-        }
-        
-        if (spawnStaminapackOnDeath) {
-            Instantiate(staminapack, transform.position, transform.rotation);
+            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 10f, ForceMode.Impulse);
         }
 
         if (giveMoneyOnDeath) {

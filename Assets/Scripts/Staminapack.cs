@@ -1,8 +1,6 @@
 using UnityEngine;
 
 public class Staminapack : MonoBehaviour {
-    [SerializeField] private Player playerScript;
-    [SerializeField] private CharacterController playerController;
     private AudioSource[] audioSource;
     [SerializeField] private float staminaAmount = 5f;
     [SerializeField] private bool destroyAfterUse = true;
@@ -10,12 +8,12 @@ public class Staminapack : MonoBehaviour {
 
 
     void Start() {
-        audioSource = playerController.GetComponents<AudioSource>();
+        audioSource = SpawnPlayer.playerInstance.GetComponents<AudioSource>();
     }
 
     void OnTriggerEnter(Collider collider) {
         if (collider.transform.tag == "Player") {
-            playerScript.ReceiveStamina(staminaAmount);
+            SpawnPlayer.playerInstance.GetComponent<Player>().ReceiveStamina(staminaAmount);
             if (playSound) {
                 audioSource[6].Play(); //stamina pack sound
             }

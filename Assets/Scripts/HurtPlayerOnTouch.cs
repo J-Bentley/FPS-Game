@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class HurtPlayerOnTouch : MonoBehaviour {
 
-    public Player playerScript;
-    [SerializeField] private float damage = 10f;
+    [SerializeField] private float damage;
 
     void OnTriggerEnter(Collider collider) {
         if (collider.transform.tag == "Player") {
-            Debug.Log("test");
-            playerScript.TakeDamage(damage);
+            Debug.Log("Test");
+            SpawnPlayer.playerInstance.GetComponent<Player>().TakeDamage(damage);
         }
     }
 }
