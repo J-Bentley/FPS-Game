@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
 
     void Update() {
         if (!audioSources[5].isPlaying) {
-            //audioSources[5].Play();
+            audioSources[5].Play();
         }
         
         staminaBar.value = currentStamina;

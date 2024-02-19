@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour {
 
-    [SerializeField] private GameObject pistolEnemy;
+    [SerializeField] private GameObject enemy;
 
     void Start() {
-        Instantiate(pistolEnemy, gameObject.transform.position, Quaternion.identity);
+        Instantiate(enemy, gameObject.transform.position, Quaternion.identity);
     }
 }

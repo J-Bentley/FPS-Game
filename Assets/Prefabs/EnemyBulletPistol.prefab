@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5914209212341437481}
   - component: {fileID: 5104726406815727777}
   m_Layer: 0
-  m_Name: EnemyBullet
+  m_Name: EnemyBulletPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c9e1a781de658459ec65edeb5e62a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 10
   impact: {fileID: 1673712406583481907, guid: 2d890e5155f7ad743a00d0ef728b3049, type: 3}
   fleshImpact: {fileID: 5561012755062079586, guid: 82e413ec94d8ba54a9bf0c877f3ffa69, type: 3}
   bulletHole: {fileID: 617965431665429163, guid: cb99109370d6fcc4bba9a2fa9245177b, type: 3}
