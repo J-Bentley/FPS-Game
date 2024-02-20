@@ -12,8 +12,8 @@ public class Bullet : MonoBehaviour {
     
     void OnCollisionEnter(Collision collision) {
         collisionCount++;
-        if (collisionCount == 1) {
-            Target target = collision.gameObject.transform.parent.GetComponent<Target>();
+        if (collisionCount >= 1) {
+            Target target = collision.gameObject.transform.parent.GetComponent<Target>(); //returns "null object" error if object shot at has no parent
             if (target != null) {
                 if (collision.gameObject.transform.tag == "Head") {
                     target.TakeTargetDamage(Gun.damage * headshotMultiplier);

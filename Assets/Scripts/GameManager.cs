@@ -8,9 +8,13 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject creditsMenu;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject shopMenu;
 
     void Update() {
         if (!gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
+            if(Shop.isShopping) {
+                shopMenu.SetActive(false);
+            }
             try {
                 PauseGame();
             } catch {

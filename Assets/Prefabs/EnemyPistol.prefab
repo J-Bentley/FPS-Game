@@ -11314,7 +11314,6 @@ GameObject:
   - component: {fileID: 3488831817661110542}
   - component: {fileID: 217096393851960386}
   - component: {fileID: 1313765994280865388}
-  - component: {fileID: -7065843267661130823}
   m_Layer: 8
   m_Name: EnemyPistol
   m_TagString: Untagged
@@ -11358,7 +11357,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 25
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -11610,19 +11609,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-7065843267661130823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8444392974325161828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b17d0cd0f335194e98d25a59becaa6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
 --- !u!1 &8470986442870789314
 GameObject:
   m_ObjectHideFlags: 0

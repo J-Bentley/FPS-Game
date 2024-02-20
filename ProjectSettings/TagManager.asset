@@ -11,6 +11,7 @@ TagManager:
   - Head
   - Arm
   - Shotgun
+  - Shop
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Target
   - Gun
   - Post Process
-  - 
+  - Shop
   - 
   - 
   - 

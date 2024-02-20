@@ -295,7 +295,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9189759589814317042}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -7012855817409956406}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: Shotgun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &502216659549910939
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +428,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1121923011645935153}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -7012855817409956406}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: Sniper
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &618197333263688075
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +827,7 @@ GameObject:
   - component: {fileID: 3316875013830372655}
   - component: {fileID: 712575545307926677}
   - component: {fileID: 5503722602293815613}
+  - component: {fileID: 4094771183243777491}
   m_Layer: 7
   m_Name: Exit
   m_TagString: Untagged
@@ -911,7 +936,49 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 712575545307926677}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4094771183243777491}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: ExitShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+--- !u!114 &4094771183243777491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610928215737669711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981e5ae87dd823647bfa75bdecd4ba52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  interactRange: 0
+  equipUI: {fileID: 0}
+  shopMenu: {fileID: 2861721620246295734}
+  pistolPrefab: {fileID: 0}
+  riflePrefab: {fileID: 0}
+  sniperPrefab: {fileID: 0}
+  shotgunPrefab: {fileID: 0}
+  healthpackPrefab: {fileID: 0}
+  pistolCost: 0
+  rifleCost: 0
+  sniperCost: 0
+  shotgunCost: 0
+  healthpackCost: 0
+  dropPoint: {fileID: 0}
+  moneyText: {fileID: 0}
 --- !u!1 &1739621569261111319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,6 +1291,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 0}
   creditsMenu: {fileID: 0}
   mainMenu: {fileID: 0}
+  shopMenu: {fileID: 0}
 --- !u!1 &2150995573520485872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,7 +1868,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3415449875947750786}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -7012855817409956406}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: Rifle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &2541638829400162691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,7 +2249,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 404342730042882341}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -7012855817409956406}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: Pistol
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &3400414151783099585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,6 +2887,7 @@ GameObject:
   - component: {fileID: 3401068224892153914}
   - component: {fileID: 7321969115220448642}
   - component: {fileID: 6787111674379616391}
+  - component: {fileID: -7012855817409956406}
   - component: {fileID: 3545070574297135558}
   - component: {fileID: 5156824133040148919}
   - component: {fileID: 4532153493359794693}
@@ -2804,6 +2897,8 @@ GameObject:
   - component: {fileID: 3470230828277392623}
   - component: {fileID: 7464462092274876936}
   - component: {fileID: 887443856346966533}
+  - component: {fileID: 2036276427190231517}
+  - component: {fileID: 1750238528527556690}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2824,6 +2919,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8792365340257191088}
   - {fileID: 2709851631967173831}
   - {fileID: 1531015292040818837}
   - {fileID: 2688930156065748879}
@@ -2874,7 +2970,7 @@ MonoBehaviour:
   groundDistance: 0.6
   groundMask:
     serializedVersion: 2
-    m_Bits: 776
+    m_Bits: 2824
   speed: 8
   gravity: -35
   jumpHeight: 4
@@ -2952,6 +3048,36 @@ MonoBehaviour:
   playerScript: {fileID: 6236167599871710705}
   swaySpeed: 1.2
   swayAmount: 0.01
+--- !u!114 &-7012855817409956406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758362747671422635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981e5ae87dd823647bfa75bdecd4ba52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  interactRange: 5
+  equipUI: {fileID: 1177291974893233419}
+  shopMenu: {fileID: 2861721620246295734}
+  pistolPrefab: {fileID: 7315227390248259091, guid: d5a80685665b4394ea7ad75157102641, type: 3}
+  riflePrefab: {fileID: 531803581631067743, guid: c9fa97d3f7ef2894586e65e000d68ba2, type: 3}
+  sniperPrefab: {fileID: 8833828682656405218, guid: a4a7ad0d0db8cdd40bbcdd118c4a3f49, type: 3}
+  shotgunPrefab: {fileID: 502843656967420221, guid: b87be7a817dd8de47ad0ba7ecca0fb2a, type: 3}
+  healthpackPrefab: {fileID: 7908830995386078082, guid: e272a31f0c2180d4d8ad9e4551a19a58, type: 3}
+  pistolCost: 2
+  rifleCost: 20
+  sniperCost: 0
+  shotgunCost: 0
+  healthpackCost: 0
+  dropPoint: {fileID: 7145195788853654344}
+  moneyText: {fileID: 620722996578073247}
 --- !u!114 &3545070574297135558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2968,6 +3094,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 0}
   creditsMenu: {fileID: 0}
   mainMenu: {fileID: 0}
+  shopMenu: {fileID: 2861721620246295734}
 --- !u!82 &5156824133040148919
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3736,6 +3863,198 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &2036276427190231517
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758362747671422635}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5099401977227105765, guid: 96da0a47a8f1f134bafa37d1fb775405, type: 2}
+  m_audioClip: {fileID: 8300000, guid: f33bac519c381054fa63ea93aee70c4a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1750238528527556690
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758362747671422635}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5099401977227105765, guid: 96da0a47a8f1f134bafa37d1fb775405, type: 2}
+  m_audioClip: {fileID: 8300000, guid: affbcc07e86684c4ca26c5fbb7479821, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4847633455130904325
 GameObject:
   m_ObjectHideFlags: 0
@@ -4396,6 +4715,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 0}
   creditsMenu: {fileID: 0}
   mainMenu: {fileID: 0}
+  shopMenu: {fileID: 0}
 --- !u!1 &6323396114850725456
 GameObject:
   m_ObjectHideFlags: 0
@@ -4546,6 +4866,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 0}
   creditsMenu: {fileID: 0}
   mainMenu: {fileID: 0}
+  shopMenu: {fileID: 0}
 --- !u!1 &6389942101501745799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,6 +5092,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 0}
   creditsMenu: {fileID: 0}
   mainMenu: {fileID: 0}
+  shopMenu: {fileID: 0}
 --- !u!1 &6828927800661094332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4905,6 +5227,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7145195788853654344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8792365340257191088}
+  m_Layer: 7
+  m_Name: Shop Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8792365340257191088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7145195788853654344}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.37, z: 1.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3830613065604854406}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7162945047281068271
 GameObject:
   m_ObjectHideFlags: 0
@@ -5457,7 +5810,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7072012551372399708}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -7012855817409956406}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: Healthpack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &9150257828604669841
 GameObject:
   m_ObjectHideFlags: 0

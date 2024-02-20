@@ -27,8 +27,7 @@ public class Player : MonoBehaviour {
     public Slider healthBar;
     private float originalSpeed;
     private AudioSource[] audioSources;
-    public static float totalMoney = 0f;
-    private float wallet = 0f;
+    public static float wallet = 10f;
     [SerializeField] private TextMeshProUGUI moneyText;
     public GameManager gameManagerScript;
 
@@ -124,7 +123,6 @@ public class Player : MonoBehaviour {
     }
 
     public void ReceiveMoney(float money) {
-        totalMoney += money;
         wallet += money;
         moneyText.text = "$" + wallet;
     }
