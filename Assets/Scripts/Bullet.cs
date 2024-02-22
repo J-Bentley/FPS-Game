@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour {
     
     void OnCollisionEnter(Collision collision) {
         collisionCount++;
-        if (collisionCount >= 1) {
+        if (collisionCount == 1) {
             Target target = collision.gameObject.transform.parent.GetComponent<Target>(); //returns "null object" error if object shot at has no parent
             if (target != null) {
                 if (collision.gameObject.transform.tag == "Head") {
@@ -26,10 +26,15 @@ public class Bullet : MonoBehaviour {
                 impactParticlesystem = impact;
                 bulletHoleParticlesystem = bulletHole;
             }
+
             Quaternion normalizedRot = Quaternion.FromToRotation(Vector3.up, collision.contacts[0].normal);
-            Instantiate(impactParticlesystem, collision.contacts[0].point, normalizedRot);
+
+            ParticleSystem impactInstance = Instantiate(impactParticlesystem, collision.contacts[0].point, normalizedRot);
+            impactInstance.GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
+
             ParticleSystem bulletHoleInstance = Instantiate(bulletHoleParticlesystem, collision.contacts[0].point, normalizedRot);
-            bulletHoleInstance.transform.parent = collision.gameObject.transform; 
+            bulletHoleInstance.transform.parent = collision.gameObject.transform;
+
             Destroy(gameObject, 1f); 
         }
     }

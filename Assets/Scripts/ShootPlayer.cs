@@ -9,13 +9,15 @@ public class ShootPlayer : MonoBehaviour {
     [SerializeField] private ParticleSystem muzzleflash;
     private float timer;
     private AudioSource[] shootSound;
+    private Vector3 player;
 
     void Start() {
         shootSound = GetComponents<AudioSource>();
+        player = SpawnPlayer.playerInstance.transform.position;
     }
 
     void Update() {
-        float distanceFromPlayer = Vector3.Distance (SpawnPlayer.playerInstance.transform.position, transform.position);
+        float distanceFromPlayer = Vector3.Distance (player, transform.position);
         if (distanceFromPlayer <= aggroRadius) {
             timer += Time.deltaTime;
             if (timer >= shootInterval) {

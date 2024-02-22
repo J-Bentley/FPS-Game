@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour {
     private GameObject bullet;
     private Vector3 originalEquipPoint;
     public GameObject gunObject;
-    private GameObject muzzleFlashObject;
+    private ParticleSystem muzzleFlash;
     private Animator animator;
     private AudioSource[] gunSounds;
     private float nextTimeToFire = 0;
@@ -48,8 +48,8 @@ public class Gun : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E)) {
                 gunObject = grab.transform.gameObject;
                 gunSounds = gunObject.GetComponents<AudioSource>();
-                muzzleFlashObject = gunObject.transform.Find("Muzzleflash").gameObject;
-                animator = gunObject.transform.Find("Model").GetComponent<Animator>();
+                muzzleFlash = gunObject.transform.GetComponentInChildren<ParticleSystem>();
+                animator = gunObject.transform.GetComponentInChildren<Animator>();
                 gunObject.GetComponent<Collider>().enabled = false;                
                 gunObject.GetComponent<Rigidbody>().useGravity = false;
                 gunObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -169,20 +169,20 @@ public class Gun : MonoBehaviour {
     }
 
     void Shoot() {
-        GameObject bulletInstance = Instantiate(bullet, muzzleFlashObject.transform.position, Quaternion.LookRotation(muzzleFlashObject.transform.forward));
+        GameObject bulletInstance = Instantiate(bullet, muzzleFlash.transform.position, Quaternion.LookRotation(muzzleFlash.transform.forward));
         Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>(), true);
 
         foreach (Transform child in bulletInstance.transform) { // for shotgun
             if (child.GetComponent<Rigidbody>() != null){
-                child.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce, ForceMode.Impulse);
+                child.GetComponent<Rigidbody>().AddForce(muzzleFlash.transform.forward * bulletForce, ForceMode.Impulse);
             }
         }
 
-        bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlashObject.transform.forward * bulletForce , ForceMode.Impulse);
+        bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlash.transform.forward * bulletForce , ForceMode.Impulse);
         usedAmmo++;
         gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
         gunSounds[0].Play();
-        muzzleFlashObject.GetComponent<ParticleSystem>().Play();
+        muzzleFlash.Play();
         StartCoroutine("Recoil");
     }
 
