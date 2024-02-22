@@ -1945,7 +1945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $0
+  m_text: $37
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3326de1b7c4f3e42a1282bc6ee83ce7, type: 2}
   m_sharedMaterial: {fileID: -198485804816536082, guid: b3326de1b7c4f3e42a1282bc6ee83ce7, type: 2}
@@ -2899,7 +2899,7 @@ GameObject:
   - component: {fileID: 2036276427190231517}
   - component: {fileID: 1750238528527556690}
   m_Layer: 7
-  m_Name: Char Controller Player
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3010,9 +3010,9 @@ MonoBehaviour:
   gunLayers:
     serializedVersion: 2
     m_Bits: 512
-  rifleBullet: {fileID: 7322114231794724802, guid: ba1b848e38ac9904582bffb8f5e46824, type: 3}
-  pistolBullet: {fileID: 2029392603362974865, guid: 2d36db46235e24f4abfbc193adfbcbb8, type: 3}
-  shotgunBullet: {fileID: 2029392603362974865, guid: e9cba9d1dd4f6b24a90b12030a38a69c, type: 3}
+  rifleBullet: {fileID: 5313304442880781948, guid: ba1b848e38ac9904582bffb8f5e46824, type: 3}
+  pistolBullet: {fileID: 1315575355120372626, guid: 2d36db46235e24f4abfbc193adfbcbb8, type: 3}
+  shotgunBullet: {fileID: 381232129065732270, guid: e9cba9d1dd4f6b24a90b12030a38a69c, type: 3}
   gunObject: {fileID: 0}
   gunEquipped: 0
   playerScript: {fileID: 6236167599871710705}

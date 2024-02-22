@@ -65,7 +65,7 @@ public class Gun : MonoBehaviour {
                         fireRate = 2f;
                         clipAmmo = 5f;
                         bulletForce = 150f;
-                        recoilAngle = -20f;
+                        recoilAngle = -30f;
                         bullet = pistolBullet;
                         break;
                     case "Rifle":
@@ -73,7 +73,7 @@ public class Gun : MonoBehaviour {
                         fireRate = 5f;
                         clipAmmo = 16f;
                         bulletForce = 200f;
-                        recoilAngle = -20f;
+                        recoilAngle = -30f;
                         bullet = rifleBullet;
                         break;
                     case "Sniper":
@@ -81,7 +81,7 @@ public class Gun : MonoBehaviour {
                         fireRate = 1f;
                         clipAmmo = 3f;
                         bulletForce = 300f;
-                        recoilAngle = -30f;
+                        recoilAngle = -40f;
                         bullet = rifleBullet;
                         break;
                     case "Shotgun":
@@ -89,7 +89,7 @@ public class Gun : MonoBehaviour {
                         fireRate = 1f;
                         clipAmmo = 2f;
                         bulletForce = 200f;
-                        recoilAngle = -80f;
+                        recoilAngle = -90f;
                         bullet = shotgunBullet;
                         break;
                     default:
