@@ -9,11 +9,16 @@ public class Bullet : MonoBehaviour {
     private ParticleSystem impactParticlesystem;
     private ParticleSystem bulletHoleParticlesystem;
     private float collisionCount;
+    private Target target;
     
     void OnCollisionEnter(Collision collision) {
         collisionCount++;
         if (collisionCount == 1) {
-            Target target = collision.gameObject.transform.parent.GetComponent<Target>(); //returns "null object" error if object shot at has no parent
+            try {
+                target = collision.gameObject.transform.parent.GetComponent<Target>();
+            } catch {
+                target = collision.gameObject.transform.GetComponent<Target>();
+            }
             if (target != null) {
                 if (collision.gameObject.transform.tag == "Head") {
                     target.TakeTargetDamage(Gun.damage * headshotMultiplier);
