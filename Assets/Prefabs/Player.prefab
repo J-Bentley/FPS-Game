@@ -1011,9 +1011,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1346649448261945425}
   - {fileID: 6812746298483206819}
   - {fileID: 7345477175490695322}
-  - {fileID: 1346649448261945425}
   - {fileID: 3652287679490193173}
   - {fileID: 5244547531918023925}
   - {fileID: 6111752715774073406}
@@ -1945,7 +1945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $37
+  m_text: $0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3326de1b7c4f3e42a1282bc6ee83ce7, type: 2}
   m_sharedMaterial: {fileID: -198485804816536082, guid: b3326de1b7c4f3e42a1282bc6ee83ce7, type: 2}
@@ -2887,6 +2887,7 @@ GameObject:
   - component: {fileID: 7321969115220448642}
   - component: {fileID: 6787111674379616391}
   - component: {fileID: -7012855817409956406}
+  - component: {fileID: 1040310800767054035}
   - component: {fileID: 3545070574297135558}
   - component: {fileID: 5156824133040148919}
   - component: {fileID: 4532153493359794693}
@@ -2946,7 +2947,7 @@ CharacterController:
   m_Height: 3
   m_Radius: 0.6
   m_SlopeLimit: 45
-  m_StepOffset: 1
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -3030,7 +3031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunScript: {fileID: 3401068224892153914}
   swayMultiplier: 15
-  swaySmoothing: 5
+  swaySmoothing: 7
 --- !u!114 &6787111674379616391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3077,6 +3078,24 @@ MonoBehaviour:
   healthpackCost: 1
   dropPoint: {fileID: 7145195788853654344}
   moneyText: {fileID: 620722996578073247}
+--- !u!114 &1040310800767054035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758362747671422635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b187d52a2e9f2584aa4706e523de7981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRange: 10
+  doorLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  cost: 1
+  equipText: {fileID: 1177291974893233419}
 --- !u!114 &3545070574297135558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5362,8 +5381,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -307.59, y: 21.755005}
-  m_SizeDelta: {x: 150.01, y: 26.104}
+  m_AnchoredPosition: {x: 313.8, y: 131}
+  m_SizeDelta: {x: 150, y: 101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7246843665088395871
 CanvasRenderer:
@@ -5393,7 +5412,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[E] Equip'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3326de1b7c4f3e42a1282bc6ee83ce7, type: 2}
   m_sharedMaterial: {fileID: -198485804816536082, guid: b3326de1b7c4f3e42a1282bc6ee83ce7, type: 2}
@@ -5428,7 +5447,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
