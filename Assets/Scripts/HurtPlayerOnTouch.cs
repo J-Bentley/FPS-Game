@@ -6,7 +6,6 @@ public class HurtPlayerOnTouch : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider) {
         if (collider.transform.tag == "Player") {
-            Debug.Log("Test");
             SpawnPlayer.playerInstance.GetComponent<Player>().TakeDamage(damage);
         }
     }

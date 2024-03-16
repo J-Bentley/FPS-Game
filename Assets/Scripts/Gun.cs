@@ -42,7 +42,7 @@ public class Gun : MonoBehaviour {
     }
 
     void Update() {
-        if (gunEquipped == false && Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out grab, equipRange, gunLayers)) {   
+        if (!gunEquipped && Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out grab, equipRange, gunLayers)) {   
             equipUI.text = "[E] Equip";
             equipUI.enabled = true;
             if (Input.GetKeyDown(KeyCode.E)) {

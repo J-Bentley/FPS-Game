@@ -26,14 +26,14 @@ public class GameManager : MonoBehaviour {
     }
 
     public void PauseGame() {
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         gamePaused = true;
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
     }
 
     public void ResumeGame() {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         gamePaused = false;
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -44,11 +44,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void QuitGame() {
-        Application.Quit(); 
+        Application.Quit();
+        Debug.Log("Quit.");
     }
 
     public void Menu() {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         gamePaused = false;
         pauseMenu.SetActive(false);
         SceneManager.LoadScene(0); 

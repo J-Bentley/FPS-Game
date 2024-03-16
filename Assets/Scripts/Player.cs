@@ -6,7 +6,6 @@ using TMPro;
 public class Player : MonoBehaviour {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Camera fpsCam;
-    [SerializeField] private float fovSpeed;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance;
     [SerializeField] private LayerMask groundMask;
@@ -18,7 +17,6 @@ public class Player : MonoBehaviour {
     [SerializeField] private float staminaRegen;
     private Vector3 velocity;
     public bool isGrounded;
-    private float defaultFov;
     public float maxHealth = 100f;
     public float currentStamina;
     public float maxStamina = 10f;
@@ -32,7 +30,6 @@ public class Player : MonoBehaviour {
     public GameManager gameManagerScript;
 
     void Start () {
-        defaultFov = fpsCam.fieldOfView;
         currentHealth = maxHealth;
         currentStamina = maxStamina;
         staminaBar.maxValue = maxStamina;
@@ -63,13 +60,11 @@ public class Player : MonoBehaviour {
         if (!GameManager.gamePaused && Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) {
             if (currentStamina > 0f) {
                 speed = sprintSpeed;
-                //fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, sprintFov, fovSpeed * Time.deltaTime);
                 currentStamina -= Time.deltaTime;   
             }
 
             if (currentStamina <= 0f) {
                 speed = originalSpeed;
-                //fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, defaultFov, fovSpeed * Time.deltaTime);
                 currentStamina = 0;
                 if (!audioSources[1].isPlaying) {
                     audioSources[1].Play(); //no stamina sound
@@ -86,10 +81,6 @@ public class Player : MonoBehaviour {
         if (!GameManager.gamePaused && Input.GetButtonDown("Jump") && isGrounded) {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             audioSources[2].pitch = Random.Range(0.8f, 1.2f); audioSources[2].Play(); //jump sound
-        }
-
-        if (!GameManager.gamePaused && Input.GetKey(KeyCode.C)) {
-            controller.Move(new Vector3(transform.position.x, transform.position.y, transform.position.z));
         }
 
         if (controller.velocity.magnitude > 0.1f) {

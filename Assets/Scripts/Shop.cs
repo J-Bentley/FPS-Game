@@ -29,6 +29,14 @@ public class Shop : MonoBehaviour {
     }
 
     void Update() {
+        if(isShopping) {
+            Time.timeScale = 0.2f;
+        } else {
+            if(!GameManager.gamePaused) {
+                Time.timeScale = 1f;
+            }
+        }
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, interactRange, shopLayers)) {
             equipUI.enabled = true;
             equipUI.text = "[E] Shop";

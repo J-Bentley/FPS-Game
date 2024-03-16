@@ -11,7 +11,7 @@ public class MouseLook : MonoBehaviour {
     }
 
     void Update() {
-        if (!Shop.isShopping) {
+        if (!Shop.isShopping && !GameManager.gamePaused) {
             float mouseX = Input.GetAxis("Mouse X") * lookSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity * Time.deltaTime;
             xRotation -= mouseY;
