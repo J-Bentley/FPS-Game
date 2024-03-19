@@ -16,7 +16,7 @@ public class CameraHeadBob : MonoBehaviour {
         originalBobSpeed = bobSpeed;
     }
 
-    void FixedUpdate() {
+    void Update() {
         if (Input.GetKey("left shift") && playerScript.currentStamina > 0) {
             bobAmount = sprintBobAmount;
             bobSpeed = sprintBobSpeed;

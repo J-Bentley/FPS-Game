@@ -30,7 +30,7 @@ public class Shop : MonoBehaviour {
 
     void Update() {
         if(isShopping) {
-            Time.timeScale = 0.2f;
+            Time.timeScale = 0f;
         } else {
             if(!GameManager.gamePaused) {
                 Time.timeScale = 1f;
