@@ -1,40 +1,22 @@
 using UnityEngine;
 
 public class CameraHeadBob : MonoBehaviour {
-    [SerializeField] private Vector3 restPosition;
-    [SerializeField] private float bobAmount;
-    [SerializeField] private float bobSpeed;
-    [SerializeField] private float sprintBobAmount;
-    [SerializeField] private float sprintBobSpeed;
-    [SerializeField] private Player playerScript;
-    private float originalBobAmount;
-    private float originalBobSpeed;
-    private float timer = Mathf.PI / 2;
+    [SerializeField] private float swayMultiplier;
+    [SerializeField] private float swaySmoothing;
+
 
     void Start() {
-        originalBobAmount = bobAmount;
-        originalBobSpeed = bobSpeed;
+
     }
 
     void Update() {
-        if (Input.GetKey("left shift") && playerScript.currentStamina > 0) {
-            bobAmount = sprintBobAmount;
-            bobSpeed = sprintBobSpeed;
-        } else {
-            bobAmount = originalBobAmount;
-            bobSpeed = originalBobSpeed;
-        }
+        float forward = Input.GetAxis("Vertical") * swayMultiplier;
+        float left = Input.GetAxis("Horizontal") * swayMultiplier;
 
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 && playerScript.isGrounded) {
-            timer += bobSpeed * Time.deltaTime;
-            Vector3 newPosition = new Vector3(Mathf.Cos(timer) * bobAmount, restPosition.y + Mathf.Abs(Mathf.Sin(timer) * bobAmount), restPosition.z);
-            transform.localPosition = newPosition;
-        } else {
-            timer = Mathf.PI / 2;
-        }
+        Quaternion rotForward = Quaternion.AngleAxis(forward, Vector3.right);
+        Quaternion rotLeft = Quaternion.AngleAxis(left, Vector3.forward);
 
-        if (timer > Mathf.PI * 2) {
-            timer = 0;    
-        }
+        Quaternion targetRot = rotForward * rotLeft;
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRot, swaySmoothing * Time.deltaTime);
     }
 }
