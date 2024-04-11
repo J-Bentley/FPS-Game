@@ -41,9 +41,6 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
-        if (!audioSources[5].isPlaying) {
-            audioSources[5].Play();
-        }
         
         staminaBar.value = currentStamina;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -127,7 +124,7 @@ public class Player : MonoBehaviour {
         }
         if (currentHealth <= 0) {
             Death();
-        }   
+        }
     }
 
     public void Jumpad(float jumpadHeight) {

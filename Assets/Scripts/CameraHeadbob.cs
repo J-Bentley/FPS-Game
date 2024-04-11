@@ -19,4 +19,4 @@ public class CameraHeadBob : MonoBehaviour {
         Quaternion targetRot = rotForward * rotLeft;
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRot, swaySmoothing * Time.deltaTime);
     }
-}
+} 
