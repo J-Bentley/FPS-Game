@@ -4417,7 +4417,7 @@ MonoBehaviour:
   shopLayers:
     serializedVersion: 2
     m_Bits: 2048
-  interactRange: 5
+  interactRange: 6
   equipUI: {fileID: 1177291974893233419}
   shopMenu: {fileID: 2861721620246295734}
   pistolPrefab: {fileID: 7315227390248259091, guid: d5a80685665b4394ea7ad75157102641, type: 3}
@@ -4425,7 +4425,7 @@ MonoBehaviour:
   sniperPrefab: {fileID: 8833828682656405218, guid: a4a7ad0d0db8cdd40bbcdd118c4a3f49, type: 3}
   shotgunPrefab: {fileID: 502843656967420221, guid: b87be7a817dd8de47ad0ba7ecca0fb2a, type: 3}
   healthpackPrefab: {fileID: 7908830995386078082, guid: e272a31f0c2180d4d8ad9e4551a19a58, type: 3}
-  pistolCost: 2
+  pistolCost: 1
   rifleCost: 1
   sniperCost: 1
   shotgunCost: 1
