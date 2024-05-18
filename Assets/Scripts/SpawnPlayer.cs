@@ -8,4 +8,7 @@ public class SpawnPlayer : MonoBehaviour {
     void Start() {
         playerInstance = Instantiate(player, gameObject.transform.position, Quaternion.identity);
     }
+    void Update() {
+        //Debug.Log(playerInstance.transform.position.x);
+    }
 }

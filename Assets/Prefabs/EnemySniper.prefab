@@ -10972,12 +10972,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5914209212341437481, guid: 0071f3f273bb0c54bbf1b26ce43dbae5, type: 3}
-  shootInterval: 5
   shootForce: 150
-  aggroRadius: 150
+  aggroRadius: 500
   muzzleflash: {fileID: 1885878322199307310}
-  ammo: 3
-  reloadTime: 5
+  shootInterval: 5
 --- !u!114 &3488831817661110542
 MonoBehaviour:
   m_ObjectHideFlags: 0
