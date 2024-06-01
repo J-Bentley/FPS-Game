@@ -1,5 +1,5 @@
 # FPS-Game
-(PLAY GAME) [https://play.unity.com/mg/other/build1-di]  
+PLAY GAME: https://play.unity.com/mg/other/build1-di  
 
 # CONTROLS
 Mouse: Look around  
