@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.48235294, g: 0.28235295, b: 0.1764706, a: 1}
   m_FogMode: 2
-  m_FogDensity: 0
+  m_FogDensity: 0.02
   m_LinearFogStart: -8.37
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 705507994}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -843,11 +843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a0b0c0efb5ccb4bbe6688147ab85ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistolEnemy: {fileID: 8444392974325161828, guid: 2ac28617ba115c245831ee106f0fae2e, type: 3}
-  rifleEnemy: {fileID: 8444392974325161828, guid: 2d7d7914980b35447a3001fab2e0b162, type: 3}
-  sniperEnemy: {fileID: 8444392974325161828, guid: 0e8cf6cc7957380468ed6a8b28a2f623, type: 3}
-  shotgunEnemy: {fileID: 0}
-  spawnInterval: 10
+  enemy: {fileID: 8444392974325161828, guid: 2ac28617ba115c245831ee106f0fae2e, type: 3}
+  spawnInterval: 5
 --- !u!4 &95570878
 Transform:
   m_ObjectHideFlags: 0
@@ -863,6 +860,7 @@ Transform:
   m_Children:
   - {fileID: 596397970}
   - {fileID: 575215879}
+  - {fileID: 687442174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &102326839
@@ -4133,7 +4131,7 @@ GameObject:
   - component: {fileID: 575215879}
   - component: {fileID: 575215880}
   m_Layer: 0
-  m_Name: SpawnEnemy (2)
+  m_Name: SpawnPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4148,7 +4146,7 @@ Transform:
   m_GameObject: {fileID: 575215878}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.47, z: -195.3}
+  m_LocalPosition: {x: 25.5, y: 0.47, z: 29.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4166,10 +4164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a0b0c0efb5ccb4bbe6688147ab85ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistolEnemy: {fileID: 0}
-  rifleEnemy: {fileID: 0}
-  sniperEnemy: {fileID: 0}
-  shotgunEnemy: {fileID: 0}
+  enemy: {fileID: 0}
   spawnInterval: 10
 --- !u!1001 &583873002
 PrefabInstance:
@@ -4379,7 +4374,7 @@ GameObject:
   - component: {fileID: 596397970}
   - component: {fileID: 596397971}
   m_Layer: 0
-  m_Name: SpawnEnemy (1)
+  m_Name: SpawnPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4394,7 +4389,7 @@ Transform:
   m_GameObject: {fileID: 596397969}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.37, z: -98.6}
+  m_LocalPosition: {x: -27.5, y: 0.37, z: 42.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4412,10 +4407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a0b0c0efb5ccb4bbe6688147ab85ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistolEnemy: {fileID: 0}
-  rifleEnemy: {fileID: 0}
-  sniperEnemy: {fileID: 0}
-  shotgunEnemy: {fileID: 0}
+  enemy: {fileID: 0}
   spawnInterval: 10
 --- !u!1 &600462094 stripped
 GameObject:
@@ -4858,6 +4850,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 05aec82adc02f16409639716322b1673, type: 3}
   m_PrefabInstance: {fileID: 675150956}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &687442173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 687442174}
+  - component: {fileID: 687442175}
+  m_Layer: 0
+  m_Name: SpawnPoint (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &687442174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687442173}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.47, z: 19.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 95570878}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &687442175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687442173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a0b0c0efb5ccb4bbe6688147ab85ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  spawnInterval: 10
 --- !u!1 &698185619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: b74c48c2e73e17c418c9394124b75daf, type: 3}
@@ -5091,7 +5129,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.01
   m_Range: 200
   m_SpotAngle: 179
   m_InnerSpotAngle: 21.80208
