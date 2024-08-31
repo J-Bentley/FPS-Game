@@ -955,16 +955,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f1eabcfbd9d304784a8bce35294802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 6236167599871710705, guid: 9842ec200751e0241a017f20dd0a7cda, type: 3}
   destroyedVersion: {fileID: 1118923007082944813, guid: 53a5d41c2032f77478efb9e727b50d2a, type: 3}
-  giveMoneyOnDeath: 1
+  giveMoneyOnDeath: 0
+  giveMoneyOnDamage: 1
   destroyPeices: 1
   playHurtSound: 1
   playDeathSound: 1
   destroyPeicesTimer: 10
   targetHealth: 50
-  minRandomMoney: 10
-  maxRandomMoney: 20
+  minRandomDeathMoney: 3
+  maxRandomDeathMoney: 6
+  minRandomHurtMoney: 1
+  maxRandomHurtMoney: 3
   enemyHealthbar: {fileID: 523263642921698674}
 --- !u!114 &3488831817661110542
 MonoBehaviour:

@@ -7,18 +7,11 @@ public class SpawnEnemy : MonoBehaviour {
 
 
     void Start() {
-        InvokeRepeating("SpawnRandomEnemy", spawnInterval, spawnInterval);
+        InvokeRepeating("Spawn", spawnInterval, spawnInterval);
     }
 
-    void SpawnRandomEnemy() {
-        int childCount = transform.childCount;
-        if (childCount == 0) {
-            Debug.LogWarning("No children to spawn enemy at!");
-            return;
-        }
-        int randomIndex = Random.Range(0, childCount);
-        Transform randomChild = transform.GetChild(randomIndex);
-        Instantiate(enemy, randomChild.position, Quaternion.identity);
-        Debug.Log("Spawned enemy at index " + randomIndex);
+    void Spawn() {
+        Instantiate(enemy, transform.position, Quaternion.identity);
+        Debug.Log("Spawned enemy at " + gameObject.name);
     }
 }

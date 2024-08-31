@@ -14,11 +14,11 @@ public class Shop : MonoBehaviour {
     [SerializeField] private GameObject sniperPrefab;
     [SerializeField] private GameObject shotgunPrefab;
     [SerializeField] private GameObject healthpackPrefab;
-    [SerializeField] private float pistolCost;
-    [SerializeField] private float rifleCost;
-    [SerializeField] private float sniperCost;
-    [SerializeField] private float shotgunCost;
-    [SerializeField] private float healthpackCost;
+    [SerializeField] private int pistolCost;
+    [SerializeField] private int rifleCost;
+    [SerializeField] private int sniperCost;
+    [SerializeField] private int shotgunCost;
+    [SerializeField] private int healthpackCost;
     [SerializeField] private GameObject dropPoint;
     private AudioSource[] audioSources;
     [SerializeField] private TextMeshProUGUI moneyText;

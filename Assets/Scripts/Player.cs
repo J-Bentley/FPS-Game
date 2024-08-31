@@ -2,20 +2,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour {
-    [SerializeField] private CharacterController controller;
-    [SerializeField] private Camera fpsCam;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundDistance;
-    [SerializeField] private LayerMask groundMask;
-    [SerializeField] private float speed;
-    [SerializeField] private float gravity;
-    [SerializeField] private float jumpHeight;
-    [SerializeField] private float sprintSpeed;
-    [SerializeField] private float sprintFov;
-    [SerializeField] private float staminaRegen;
-    private Vector3 velocity;
+    [SerializeField] CharacterController controller;
+    [SerializeField] Camera fpsCam;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] float groundDistance;
+    [SerializeField] LayerMask groundMask;
+    [SerializeField] float speed;
+    [SerializeField] float gravity;
+    [SerializeField] float jumpHeight;
+    [SerializeField] float sprintSpeed;
+    [SerializeField] float sprintFov;
+    [SerializeField] float staminaRegen;
+    public static int wallet;
+    public GameManager gameManagerScript;
     public bool isGrounded;
     public float maxHealth = 100f;
     public float currentStamina;
@@ -23,11 +25,9 @@ public class Player : MonoBehaviour {
     public float currentHealth;
     public Slider staminaBar;
     public Slider healthBar;
-    private float originalSpeed;
-    private AudioSource[] audioSources;
-    public static float wallet = 10f;
-    [SerializeField] private TextMeshProUGUI moneyText;
-    public GameManager gameManagerScript;
+    Vector3 velocity;
+    float originalSpeed;
+    AudioSource[] audioSources;
 
     void Start () {
         currentHealth = maxHealth;
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
-        
         staminaBar.value = currentStamina;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -110,9 +109,11 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void ReceiveMoney(float money) {
+    public static void ReceiveMoney(int money) { 
         wallet += money;
-        moneyText.text = "$" + wallet;
+        Transform walletText = SpawnPlayer.playerInstance.transform.GetChild(0).Find("WalletText"); //must grab the instance of WalletText that is created from SpawnPlayer class
+        walletText.ConvertTo<TextMeshProUGUI>().SetText("$" + wallet.ToString());
+        Debug.Log("Received $" + money + ". Wallet is $" + wallet);
     }
 
     public void TakeDamage (float damage) {

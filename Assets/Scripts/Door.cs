@@ -5,12 +5,13 @@ public class Door : MonoBehaviour {
     
     [SerializeField] private float interactRange;
     [SerializeField] private LayerMask doorLayer;
-    [SerializeField] private float cost;
+    [SerializeField] private int cost;
     [SerializeField] TextMeshProUGUI equipText;
     private Camera cam;
     private AudioSource[] audioSources;
     private RaycastHit hit;
     private GameObject doorObject;
+    //[SerializeField] private Player playerScript;
 
     void Start() {
         cam = Camera.main;

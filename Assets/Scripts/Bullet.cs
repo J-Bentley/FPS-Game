@@ -6,10 +6,10 @@ public class Bullet : MonoBehaviour {
     [SerializeField] ParticleSystem fleshImpact;
     [SerializeField] ParticleSystem bulletHole;
     [SerializeField] ParticleSystem fleshBulletHole;
-    private ParticleSystem impactParticlesystem;
-    private ParticleSystem bulletHoleParticlesystem;
-    private float collisionCount;
-    private Target target;
+    ParticleSystem impactParticlesystem;
+    ParticleSystem bulletHoleParticlesystem;
+    float collisionCount;
+    Target target;
     
     void OnCollisionEnter(Collision collision) {
         collisionCount++;

@@ -3,42 +3,44 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 
+// WARNING: SPAGHETTI CODE AHEAD !!!
+
 public class Gun : MonoBehaviour {
-    [SerializeField] private Camera fpsCam;
-    [SerializeField] private float adsFov;
-    [SerializeField] private float sniperFov;
-    [SerializeField] private Transform equipPoint;
-    [SerializeField] private Transform adsPoint;
-    [SerializeField] private TextMeshProUGUI equipUI;
-    [SerializeField] private TextMeshProUGUI clipAmmoText;
-    [SerializeField] private Image crosshair;
-    [SerializeField] private Image scopeOverlay;
-    [SerializeField] private float equipRange;
-    [SerializeField] private LayerMask gunLayers;
-    [SerializeField] private GameObject rifleBullet;
-    [SerializeField] private GameObject pistolBullet;
-    [SerializeField] private GameObject shotgunBullet;
-    private float originalFov;
-    private GameObject bullet;
-    private Vector3 originalEquipPoint;
+    [SerializeField] Camera fpsCam;
+    [SerializeField] float adsFov;
+    [SerializeField] float sniperFov;
+    [SerializeField] Transform equipPoint;
+    [SerializeField] Transform adsPoint;
+    [SerializeField] TextMeshProUGUI equipUI;
+    [SerializeField] TextMeshProUGUI clipAmmoText;
+    [SerializeField] Image crosshair;
+    [SerializeField] Image scopeOverlay;
+    [SerializeField] float equipRange;
+    [SerializeField] LayerMask gunLayers;
+    [SerializeField] GameObject rifleBullet;
+    [SerializeField] GameObject pistolBullet;
+    [SerializeField] GameObject shotgunBullet;
     public GameObject gunObject;
-    private ParticleSystem muzzleFlash;
-    private Animator animator;
-    private AudioSource[] gunSounds;
-    private float nextTimeToFire = 0;
     public bool gunEquipped = false;
     public static float damage;
-    private float fireRate;
     public static float bulletForce;
-    private float recoilAngle;
-    private float clipAmmo = 1f;
-    private float usedAmmo = 0f;
-    private RaycastHit grab;
-    public Player playerScript;
+    float originalFov;
+    GameObject bullet;
+    Vector3 originalEquipPoint;
+    ParticleSystem muzzleFlash;
+    Animator animator;
+    AudioSource[] gunSounds;
+    float nextTimeToFire = 0;
+    float fireRate;
+    float recoilAngle;
+    float clipAmmo = 1f;
+    float usedAmmo = 0f;
+    RaycastHit grab;
 
     void Start() {
         originalEquipPoint = equipPoint.transform.localPosition;
         originalFov = fpsCam.fieldOfView;
+
     }
 
     void Update() {
@@ -163,7 +165,7 @@ public class Gun : MonoBehaviour {
             gunEquipped = false;
             usedAmmo = 0f;
             gunObject.GetComponent<Rigidbody>().AddForce(equipPoint.transform.forward * 10f, ForceMode.Impulse);
-            gunObject = null;
+            //gunObject = null;
             StartCoroutine(changeFov(originalFov));
         }
     }
@@ -194,7 +196,7 @@ public class Gun : MonoBehaviour {
         }
         yield return null;
     }
-
+ // fuck it
     IEnumerator Recoil() {
         Quaternion targetRotation = Quaternion.Euler(gunObject.transform.localRotation.x + recoilAngle, gunObject.transform.localRotation.y, gunObject.transform.localRotation.z);
         float elapsedTime = 0f;

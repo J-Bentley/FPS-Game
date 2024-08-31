@@ -1,22 +1,26 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Target : MonoBehaviour {
 
-    public Player playerScript;
-    [SerializeField] private GameObject destroyedVersion;
-    [SerializeField] private bool giveMoneyOnDeath = true;
-    [SerializeField] private bool destroyPeices = false;
-    [SerializeField] private bool playHurtSound = false;
-    [SerializeField] private bool playDeathSound = false;
-    [SerializeField] private float destroyPeicesTimer;
-    [SerializeField] private float targetHealth;
-    [SerializeField] private int minRandomMoney;
-    [SerializeField] private int maxRandomMoney;
-    [SerializeField] private Slider enemyHealthbar = null;
-    private AudioSource[] hurtSound;
-    private AudioSource deathSound;
-    private bool isDead = false;
+    [SerializeField] GameObject destroyedVersion;
+    [SerializeField] bool giveMoneyOnDeath;
+    [SerializeField] bool giveMoneyOnDamage;
+    [SerializeField] bool destroyPeices;
+    [SerializeField] bool playHurtSound;
+    [SerializeField] bool playDeathSound;
+    [SerializeField] float destroyPeicesTimer;
+    [SerializeField] float targetHealth;
+    [SerializeField] int minRandomDeathMoney;
+    [SerializeField] int maxRandomDeathMoney;
+    [SerializeField] int minRandomHurtMoney;
+    [SerializeField] int maxRandomHurtMoney;
+    [SerializeField] Slider enemyHealthbar = null;
+    //[SerializeField] Player playerScript;
+    AudioSource[] hurtSound;
+    AudioSource deathSound;
+    bool isDead = false;
 
     void Start(){
         enemyHealthbar.maxValue = targetHealth;
@@ -27,6 +31,11 @@ public class Target : MonoBehaviour {
     public void TakeTargetDamage (float amount) { 
         targetHealth -= amount;
         enemyHealthbar.value = targetHealth;
+        
+        if (giveMoneyOnDamage) {
+            int randomAmount = Random.Range(minRandomHurtMoney, maxRandomHurtMoney);
+            Player.ReceiveMoney(randomAmount);        
+        }
 
         if (playHurtSound) {
             hurtSound[0].pitch = Random.Range(0.9f, 1.1f);
@@ -44,23 +53,22 @@ public class Target : MonoBehaviour {
 
     void Die () {
         isDead = true;
-
         Destroy(gameObject);
         GameObject destroyedObject = Instantiate(destroyedVersion, transform.position, transform.rotation);
-
+        
         foreach (Transform child in destroyedObject.transform) {
-            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 10f, ForceMode.Impulse);
+            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 15f, ForceMode.Impulse);
         }
 
         if (giveMoneyOnDeath) {
-            int randomAmount = Random.Range(minRandomMoney, maxRandomMoney);
-            playerScript.ReceiveMoney(randomAmount);
+            int randomAmount = Random.Range(minRandomDeathMoney, maxRandomDeathMoney);
+            Player.ReceiveMoney(randomAmount);
         }
 
         if (playDeathSound) {
-            deathSound = destroyedObject.GetComponent<AudioSource>(); 
+            deathSound = destroyedObject.GetComponent<AudioSource>(); //death sound component is on destroyed version prefab
             deathSound.pitch = Random.Range(0.9f, 1.1f);
-            if(!deathSound.isPlaying) {
+            if (!deathSound.isPlaying) {
                 deathSound.Play();
             }
         }
