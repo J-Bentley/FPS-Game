@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class Staminapack : MonoBehaviour {
-    private AudioSource[] audioSource;
-    [SerializeField] private float staminaAmount = 5f;
-    [SerializeField] private bool destroyAfterUse = true;
-    [SerializeField] private bool playSound = true;
+    AudioSource[] audioSource;
+    [SerializeField] float staminaAmount = 5f;
+    [SerializeField] bool destroyAfterUse = true;
+    [SerializeField] bool playSound = true;
 
 
     void Start() {

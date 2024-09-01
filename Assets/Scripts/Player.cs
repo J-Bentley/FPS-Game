@@ -17,10 +17,9 @@ public class Player : MonoBehaviour {
     [SerializeField] float sprintFov;
     [SerializeField] float staminaRegen;
     public static int wallet;
-    public GameManager gameManagerScript;
     public bool isGrounded;
     public float maxHealth = 100f;
-    public float currentStamina;
+    public static float currentStamina;
     public float maxStamina = 10f;
     public float currentHealth;
     public Slider staminaBar;
@@ -109,11 +108,11 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public static void ReceiveMoney(int money) { 
+    public void ReceiveMoney(int money) { 
         wallet += money;
         Transform walletText = SpawnPlayer.playerInstance.transform.GetChild(0).Find("WalletText"); //must grab the instance of WalletText that is created from SpawnPlayer class
         walletText.ConvertTo<TextMeshProUGUI>().SetText("$" + wallet.ToString());
-        Debug.Log("Received $" + money + ". Wallet is $" + wallet);
+        //Debug.Log("Received $" + money + ". Wallet is $" + wallet);
     }
 
     public void TakeDamage (float damage) {

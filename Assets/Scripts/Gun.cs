@@ -20,8 +20,8 @@ public class Gun : MonoBehaviour {
     [SerializeField] GameObject rifleBullet;
     [SerializeField] GameObject pistolBullet;
     [SerializeField] GameObject shotgunBullet;
-    public GameObject gunObject;
-    public bool gunEquipped = false;
+    public static GameObject gunObject;
+    public static bool gunEquipped = false;
     public static float damage;
     public static float bulletForce;
     float originalFov;

@@ -1,25 +1,26 @@
-using System.Collections;
 using UnityEngine;
-
+ /// <summary>
+ /// DEPRECATED
+ /// </summary>
 public class ShootPlayer : MonoBehaviour {
 
     [SerializeField] Rigidbody bulletPrefab;
     [SerializeField] float shootForce = 100f;
-    [SerializeField] float aggroRadius = 10f;
-    [SerializeField] ParticleSystem muzzleflash;
+    [SerializeField] float aggroDistance = 10f;
+    ParticleSystem muzzleflash;
     [SerializeField] float shootInterval;
     float timer;
     AudioSource[] audioSources;
-    Vector3 player;
 
     void Start() {
         audioSources = GetComponents<AudioSource>();
-        player = SpawnPlayer.playerInstance.transform.position;
     }
 
     void Update() {
-        float distanceFromPlayer = Vector3.Distance (player, transform.position);
-        if (distanceFromPlayer <= aggroRadius) {
+        Transform playerTransform = SpawnPlayer.playerInstance.transform;
+        float distanceFromPlayer = Vector3.Distance (playerTransform.position, transform.position);
+
+        if (distanceFromPlayer <= aggroDistance) {
             timer += Time.deltaTime;
             if (timer >= shootInterval) {
                 timer = 0f;

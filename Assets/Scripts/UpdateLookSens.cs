@@ -1,19 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UpdateLookSens : MonoBehaviour {
 
-    [SerializeField] private Slider slider;
-    [SerializeField] private TextMeshProUGUI LookSensText;
+    [SerializeField] Slider sensitivitySlider;
+    [SerializeField] TextMeshProUGUI SensitivityText;
 
     void Start() {
-        slider.value = MouseLook.lookSensitivity;
-        LookSensText.text = MouseLook.lookSensitivity.ToString();
+        sensitivitySlider.value = MouseLook.lookSensitivity;
+        SensitivityText.text = MouseLook.lookSensitivity.ToString();
     }
 
     public void UpdateLookSensitivity() {
-        MouseLook.lookSensitivity = slider.value;
-        LookSensText.text = MouseLook.lookSensitivity.ToString();
+        MouseLook.lookSensitivity = sensitivitySlider.value;
+        SensitivityText.text = MouseLook.lookSensitivity.ToString();
     }
 }

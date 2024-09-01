@@ -17,7 +17,6 @@ public class Target : MonoBehaviour {
     [SerializeField] int minRandomHurtMoney;
     [SerializeField] int maxRandomHurtMoney;
     [SerializeField] Slider enemyHealthbar = null;
-    //[SerializeField] Player playerScript;
     AudioSource[] hurtSound;
     AudioSource deathSound;
     bool isDead = false;
@@ -34,7 +33,7 @@ public class Target : MonoBehaviour {
         
         if (giveMoneyOnDamage) {
             int randomAmount = Random.Range(minRandomHurtMoney, maxRandomHurtMoney);
-            Player.ReceiveMoney(randomAmount);        
+            SpawnPlayer.playerInstance.GetComponent<Player>().ReceiveMoney(randomAmount);
         }
 
         if (playHurtSound) {
@@ -62,7 +61,7 @@ public class Target : MonoBehaviour {
 
         if (giveMoneyOnDeath) {
             int randomAmount = Random.Range(minRandomDeathMoney, maxRandomDeathMoney);
-            Player.ReceiveMoney(randomAmount);
+            SpawnPlayer.playerInstance.GetComponent<Player>().ReceiveMoney(randomAmount);
         }
 
         if (playDeathSound) {

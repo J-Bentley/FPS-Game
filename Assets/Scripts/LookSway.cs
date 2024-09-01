@@ -1,12 +1,11 @@
 using UnityEngine;
 
 public class LookSway : MonoBehaviour {
-    public Gun gunScript;
     [SerializeField] private float swayMultiplier;
     [SerializeField] private float swaySmoothing;
 
     void Update() {
-        if (gunScript.gunEquipped) {
+        if (Gun.gunEquipped) {
             float mouseX = Input.GetAxisRaw("Mouse X") * swayMultiplier;
             float mouseY = Input.GetAxisRaw("Mouse Y") * swayMultiplier;
             float mouseZ = Input.GetAxisRaw("Mouse X") * swayMultiplier;
@@ -23,7 +22,7 @@ public class LookSway : MonoBehaviour {
             Quaternion rotStrafe = Quaternion.AngleAxis(strafe, Vector3.back);
 
             Quaternion targetRot = rotX * rotY * rotZ * rotStrafe;
-            gunScript.gunObject.transform.localRotation = Quaternion.Slerp(gunScript.gunObject.transform.localRotation, targetRot, swaySmoothing * Time.deltaTime);
+            Gun.gunObject.transform.localRotation = Quaternion.Slerp(Gun.gunObject.transform.localRotation, targetRot, swaySmoothing * Time.deltaTime);
         }
     }
 }

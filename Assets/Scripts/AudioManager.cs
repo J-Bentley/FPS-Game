@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -5,10 +6,17 @@ using UnityEngine.UI;
 public class AudioScript : MonoBehaviour {
 
     public AudioMixer masterMixer;
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider sfxSlider;
+    Slider musicSlider;
+    Slider sfxSlider;
 
     void Start() {
+        try {
+            musicSlider = transform.parent.Find("MusicVolume").ConvertTo<Slider>();
+            sfxSlider = transform.parent.Find("SFXVolume").ConvertTo<Slider>();
+        } catch {
+            return;
+        }
+
         masterMixer.GetFloat("musicVol", out float musicVolume);
         musicSlider.value = musicVolume;
 

@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class SeekPlayer : MonoBehaviour {
 
-    private NavMeshAgent agent;
+    NavMeshAgent agent;
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
