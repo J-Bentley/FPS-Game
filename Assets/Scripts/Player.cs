@@ -40,6 +40,7 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
+        
         staminaBar.value = currentStamina;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 

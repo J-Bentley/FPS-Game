@@ -4,24 +4,30 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     
     public static bool gamePaused = false;
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject optionsMenu;
-    [SerializeField] private GameObject gameOptionsMenu;
-    [SerializeField] private GameObject creditsMenu;
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject optionsMenu;
+    [SerializeField] GameObject gameOptionsMenu;
+    [SerializeField] GameObject creditsMenu;
+    [SerializeField] GameObject mainMenu;
 
     void Update() {
-        if (!gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
-            try {
-                PauseGame();
-            } catch {
+        EscapeHandling();
+    }
+
+    private void EscapeHandling() {
+        Scene currentScene = SceneManager.GetActiveScene();
+        int sceneIndex = currentScene.buildIndex;
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (sceneIndex == 0) {
                 QuitGame();
             }
-        } else if (gamePaused && Input.GetKeyDown(KeyCode.Escape)) {
-            try {
-                ResumeGame();
-            } catch {
-                QuitGame();
+            else if (sceneIndex == 1) {
+                if (!gamePaused) {
+                    PauseGame();
+                }
+                else if (gamePaused) {
+                    ResumeGame();
+                }
             }
         }
     }
@@ -37,6 +43,7 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1f;
         gamePaused = false;
         pauseMenu.SetActive(false);
+        gameOptionsMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -49,19 +56,19 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Quit.");
     }
 
-    public void Menu() {
+    public void Menu() { //go back to main menu from ingame
         Time.timeScale = 1f;
         gamePaused = false;
         pauseMenu.SetActive(false);
         SceneManager.LoadScene(0); 
     }
 
-    public void OptionsMenu() {
+    public void OptionsMenu() { //main menu options
         mainMenu.SetActive(false);
         optionsMenu.SetActive(true);
     }
 
-    public void GameOptionsMenu() {
+    public void GameOptionsMenu() { //go to in game options from pause screen
         pauseMenu.SetActive(false);
         gameOptionsMenu.SetActive(true);
     }
@@ -71,12 +78,12 @@ public class GameManager : MonoBehaviour {
         creditsMenu.SetActive(true);
     }
 
-    public void GameBackButton() {
+    public void GameBackButton() { //go back to pause screen from in game options
         pauseMenu.SetActive(true);
         gameOptionsMenu.SetActive(false);
     }
 
-    public void BackButton() {
+    public void BackButton() { //back to main menu from options/credits at main menu
         mainMenu.SetActive(true);
         optionsMenu.SetActive(false);
         creditsMenu.SetActive(false);

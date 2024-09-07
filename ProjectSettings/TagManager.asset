@@ -13,6 +13,7 @@ TagManager:
   - Shotgun
   - Shop
   - Door
+  - Grass
   layers:
   - Default
   - TransparentFX

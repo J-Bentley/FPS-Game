@@ -11,8 +11,8 @@ public class AudioScript : MonoBehaviour {
 
     void Start() {
         try {
-            musicSlider = transform.parent.Find("MusicVolume").ConvertTo<Slider>();
-            sfxSlider = transform.parent.Find("SFXVolume").ConvertTo<Slider>();
+            musicSlider = transform.parent.Find("MusicSlider").ConvertTo<Slider>();
+            sfxSlider = transform.parent.Find("SFXSlider").ConvertTo<Slider>();
         } catch {
             return;
         }
@@ -22,6 +22,7 @@ public class AudioScript : MonoBehaviour {
 
         masterMixer.GetFloat("sfxVol", out float sfxVolume);
         sfxSlider.value = sfxVolume;
+
     }
 
     public void SetMusicVolume(float soundLevel) {

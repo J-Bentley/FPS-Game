@@ -3,8 +3,6 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 
-// WARNING: SPAGHETTI CODE AHEAD !!!
-
 public class Gun : MonoBehaviour {
     [SerializeField] Camera fpsCam;
     [SerializeField] float adsFov;
@@ -107,7 +105,7 @@ public class Gun : MonoBehaviour {
         if (!GameManager.gamePaused && gunEquipped == true && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f/fireRate;
             if (usedAmmo < clipAmmo) {
-                if (!gunSounds[2].isPlaying) {
+                if (!gunSounds[2].isPlaying) { // ?????????????????????????
                     Shoot();
                     clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
                 }
@@ -131,6 +129,7 @@ public class Gun : MonoBehaviour {
             clipAmmoText.text = clipAmmo.ToString();
         }
 
+        // Aim down sight
         if (gunEquipped && Input.GetButton("Fire2")) {
             crosshair.enabled = false;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);

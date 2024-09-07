@@ -1,13 +1,8 @@
 # FPS-Game
-PLAY GAME: https://play.unity.com/mg/other/build1-di  
+FPS zombie game made in Unity with third party assets.
 
-# CONTROLS
-Mouse: Look around  
-WASD: Move  
-E: Pickup gun  
-F: Drop gun  
-Left click: Shoot
-Right click: Aim
-
-# ABOUT
-Buy guns from the chest shop, kill enemies for more money, open doors to progress through levels.
+# Credits
+- Title music: "Dark March" by Enmei_ at https://pixabay.com/users/enmei_-40635205/
+- "Simple Poly City" by VenCreations at https://assetstore.unity.com/publishers/19573
+- "Modern Weapons" by Matias Hollmann at https://devassets.com/assets/modern-weapons/
+- Sound Effects found from Pixabay.com
