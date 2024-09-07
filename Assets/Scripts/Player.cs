@@ -14,7 +14,6 @@ public class Player : MonoBehaviour {
     [SerializeField] float gravity;
     [SerializeField] float jumpHeight;
     [SerializeField] float sprintSpeed;
-    [SerializeField] float sprintFov;
     [SerializeField] float staminaRegen;
     public static int wallet;
     public bool isGrounded;

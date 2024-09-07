@@ -2077,9 +2077,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1531015292040818837}
   - component: {fileID: 8924141831527149803}
+  - component: {fileID: 5225118193959837279}
   - component: {fileID: 6783284801719328479}
   - component: {fileID: 4931599011047934246}
-  - component: {fileID: 5225118193959837279}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2155,27 +2155,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6783284801719328479
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2247550291824852753}
-  m_Enabled: 1
---- !u!114 &4931599011047934246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2247550291824852753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e74b5d0f187d74b922e35065e4b6a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 3830613065604854406}
 --- !u!114 &5225118193959837279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2236,6 +2215,27 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!81 &6783284801719328479
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2247550291824852753}
+  m_Enabled: 1
+--- !u!114 &4931599011047934246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2247550291824852753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e74b5d0f187d74b922e35065e4b6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 3830613065604854406}
 --- !u!1 &2276194251529624129
 GameObject:
   m_ObjectHideFlags: 0
@@ -4224,7 +4224,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 2824
-  speed: 8
+  speed: 6
   gravity: -35
   jumpHeight: 4
   sprintSpeed: 16
