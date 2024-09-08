@@ -9,8 +9,8 @@ public class Gun : MonoBehaviour {
     [SerializeField] float sniperFov;
     [SerializeField] Transform equipPoint;
     [SerializeField] Transform adsPoint;
-    [SerializeField] TextMeshProUGUI equipUI;
-    [SerializeField] TextMeshProUGUI clipAmmoText;
+    [SerializeField] TextMeshProUGUI gunText;
+    [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] Image crosshair;
     [SerializeField] Image scopeOverlay;
     [SerializeField] float equipRange;
@@ -43,8 +43,8 @@ public class Gun : MonoBehaviour {
 
     void Update() {
         if (!gunEquipped && Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out grab, equipRange, gunLayers)) {   
-            equipUI.text = "[E] Equip";
-            equipUI.enabled = true;
+            gunText.text = "[E] Equip";
+            gunText.enabled = true;
             if (Input.GetKeyDown(KeyCode.E)) {
                 gunObject = grab.transform.gameObject;
                 gunSounds = gunObject.GetComponents<AudioSource>();
@@ -95,26 +95,26 @@ public class Gun : MonoBehaviour {
                     default:
                         break;
                 }
-                clipAmmoText.enabled = true;
-                clipAmmoText.text = clipAmmo.ToString();
+                ammoText.enabled = true;
+                ammoText.text = clipAmmo.ToString();
             }
         } else {
-            equipUI.enabled = false;
+            gunText.enabled = false;
         }
 
         if (!GameManager.gamePaused && gunEquipped == true && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f/fireRate;
             if (usedAmmo < clipAmmo) {
-                if (!gunSounds[2].isPlaying) { // ?????????????????????????
+                if (!gunSounds[2].isPlaying) { // ????????????????????????? brother hwat
                     Shoot();
-                    clipAmmoText.text = (clipAmmo - usedAmmo).ToString();
+                    ammoText.text = (clipAmmo - usedAmmo).ToString();
                 }
             } 
         }
         
         if (usedAmmo == clipAmmo) {
-            equipUI.enabled = true;
-            equipUI.text = "[R] Reload";
+            gunText.enabled = true;
+            gunText.text = "[R] Reload";
 
             if (Input.GetButton("Fire1")) {
                 gunSounds[1].Play(); //no ammo sound
@@ -123,13 +123,14 @@ public class Gun : MonoBehaviour {
 
         if (usedAmmo > 0 && Input.GetKeyDown(KeyCode.R)) {
             usedAmmo = 0f;
-            equipUI.enabled = false;
+            gunText.enabled = false;
             gunSounds[2].Play(); //reload sound
             animator.SetTrigger("onReload");
-            clipAmmoText.text = clipAmmo.ToString();
+            ammoText.text = clipAmmo.ToString();
         }
 
-        // Aim down sight
+        // Aiming Down Sights -- at least it works?
+        // todo: refactor this into an FOV class so this class and player can  dynamically change fov when sprinting/ADS and go between different values smoothly
         if (gunEquipped && Input.GetButton("Fire2")) {
             crosshair.enabled = false;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
@@ -150,13 +151,14 @@ public class Gun : MonoBehaviour {
             }
         }
 
+        //Dropping Gun
         if (gunEquipped && Input.GetKeyDown(KeyCode.F)) {
             if (gunObject.transform.tag == "Sniper") {
                 gunObject.GetComponentInChildren<MeshRenderer>().enabled = true;
                 scopeOverlay.enabled = false;
             }
             crosshair.enabled = false;
-            clipAmmoText.enabled = false;
+            ammoText.enabled = false;
             gunObject.GetComponent<Collider>().enabled = true; 
             gunObject.transform.parent = null;
             grab.rigidbody.useGravity = true;
@@ -165,7 +167,7 @@ public class Gun : MonoBehaviour {
             usedAmmo = 0f;
             gunObject.GetComponent<Rigidbody>().AddForce(equipPoint.transform.forward * 10f, ForceMode.Impulse);
             //gunObject = null;
-            StartCoroutine(changeFov(originalFov));
+            StartCoroutine(changeFov(originalFov)); // resets fov if gun is dropped while ADS
         }
     }
 
@@ -195,7 +197,8 @@ public class Gun : MonoBehaviour {
         }
         yield return null;
     }
- // fuck it
+    
+ // fuck it.
     IEnumerator Recoil() {
         Quaternion targetRotation = Quaternion.Euler(gunObject.transform.localRotation.x + recoilAngle, gunObject.transform.localRotation.y, gunObject.transform.localRotation.z);
         float elapsedTime = 0f;

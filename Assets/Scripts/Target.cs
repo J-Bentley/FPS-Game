@@ -1,9 +1,10 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Target : MonoBehaviour {
+// put on enemies: takes damage, displays healthbar, plays hurt sound, destroy on death, death sound, spawns destroyed version prefab
+// can be modified to also work for destructible props -- make healthbar optional, hurt/death sounds can be breaking sounds.
 
+public class Target : MonoBehaviour {
     [SerializeField] GameObject destroyedVersion;
     [SerializeField] bool giveMoneyOnDeath;
     [SerializeField] bool giveMoneyOnDamage;
@@ -17,14 +18,14 @@ public class Target : MonoBehaviour {
     [SerializeField] int minRandomHurtMoney;
     [SerializeField] int maxRandomHurtMoney;
     [SerializeField] Slider enemyHealthbar = null;
-    AudioSource[] hurtSound;
+    AudioSource hurtSound;
     AudioSource deathSound;
     bool isDead = false;
 
     void Start(){
         enemyHealthbar.maxValue = targetHealth;
         enemyHealthbar.value = targetHealth;
-        hurtSound = GetComponents<AudioSource>();
+        hurtSound = GetComponent<AudioSource>();
     }
 
     public void TakeTargetDamage (float amount) { 
@@ -33,13 +34,13 @@ public class Target : MonoBehaviour {
         
         if (giveMoneyOnDamage) {
             int randomAmount = Random.Range(minRandomHurtMoney, maxRandomHurtMoney);
-            SpawnPlayer.playerInstance.GetComponent<Player>().ReceiveMoney(randomAmount);
+            Player.instance.ReceiveMoney(randomAmount);
         }
 
         if (playHurtSound) {
-            hurtSound[0].pitch = Random.Range(0.9f, 1.1f);
-            if (!hurtSound[0].isPlaying) {
-                hurtSound[0].Play();
+            hurtSound.pitch = Random.Range(0.9f, 1.1f);
+            if (!hurtSound.isPlaying) {
+                hurtSound.Play();
             }
         }
 
@@ -56,12 +57,12 @@ public class Target : MonoBehaviour {
         GameObject destroyedObject = Instantiate(destroyedVersion, transform.position, transform.rotation);
         
         foreach (Transform child in destroyedObject.transform) {
-            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 15f, ForceMode.Impulse);
+            child.GetComponent<Rigidbody>().AddForce(-child.transform.forward * Gun.bulletForce / 20f, ForceMode.Impulse);
         }
 
         if (giveMoneyOnDeath) {
             int randomAmount = Random.Range(minRandomDeathMoney, maxRandomDeathMoney);
-            SpawnPlayer.playerInstance.GetComponent<Player>().ReceiveMoney(randomAmount);
+            Player.instance.ReceiveMoney(randomAmount);
         }
 
         if (playDeathSound) {

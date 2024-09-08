@@ -889,11 +889,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1501222049719688965}
   - component: {fileID: 767222567188918330}
+  - component: {fileID: 1799789962864299981}
   - component: {fileID: 6685308613258307240}
   - component: {fileID: 3488831817661110542}
-  - component: {fileID: 217096393851960386}
   - component: {fileID: 997691329113594438}
-  - component: {fileID: 1799789962864299981}
+  - component: {fileID: 217096393851960386}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -945,6 +945,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1799789962864299981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8444392974325161828}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.584534, y: 3.5362778, z: 1.5519501}
+  m_Center: {x: -0.056209028, y: 1.7237012, z: 0.39740604}
 --- !u!114 &6685308613258307240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,6 +1003,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3164747abd8bd4240a2fc3552633d596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+--- !u!114 &997691329113594438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8444392974325161828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9bca27f87f8ff42adcc42bd2ec9f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!82 &217096393851960386
 AudioSource:
   m_ObjectHideFlags: 0
@@ -993,7 +1028,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5099401977227105765, guid: 96da0a47a8f1f134bafa37d1fb775405, type: 2}
   m_audioClip: {fileID: 8300000, guid: ead930bbe8ce6974bb7c74eea001eee8, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1038,7 +1073,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1078,40 +1113,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &997691329113594438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8444392974325161828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb9bca27f87f8ff42adcc42bd2ec9f4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
---- !u!65 &1799789962864299981
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8444392974325161828}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.584534, y: 3.5362778, z: 1.5519501}
-  m_Center: {x: -0.056209028, y: 1.7237012, z: 0.39740604}
 --- !u!1 &8768380770890075218
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,51 +4,54 @@ using TMPro;
 public class Shop : MonoBehaviour {
 
     private Camera cam;
-    [SerializeField] private LayerMask shopLayers;
-    [SerializeField] private float interactRange;
-    [SerializeField] private TextMeshProUGUI equipUI;
-    [SerializeField] private GameObject shopMenu;
+    [SerializeField] LayerMask shopLayers;
+    [SerializeField] float interactRange;
+    [SerializeField] TextMeshProUGUI shopText;
+    [SerializeField] GameObject shopMenu;
     public static bool isShopping = false;
-    [SerializeField] private GameObject pistolPrefab;
-    [SerializeField] private GameObject riflePrefab;
-    [SerializeField] private GameObject sniperPrefab;
-    [SerializeField] private GameObject shotgunPrefab;
-    [SerializeField] private GameObject healthpackPrefab;
-    [SerializeField] private int pistolCost;
-    [SerializeField] private int rifleCost;
-    [SerializeField] private int sniperCost;
-    [SerializeField] private int shotgunCost;
-    [SerializeField] private int healthpackCost;
-    [SerializeField] private GameObject dropPoint;
-    private AudioSource[] audioSources;
-    [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] GameObject pistolPrefab;
+    [SerializeField] GameObject riflePrefab;
+    [SerializeField] GameObject sniperPrefab;
+    [SerializeField] GameObject shotgunPrefab;
+    [SerializeField] GameObject healthpackPrefab;
+    [SerializeField] int pistolCost;
+    [SerializeField] int rifleCost;
+    [SerializeField] int sniperCost;
+    [SerializeField] int shotgunCost;
+    [SerializeField] int healthpackCost;
+    [SerializeField] GameObject dropPoint;
 
     void Start() {
         cam = Camera.main;
-        audioSources = GetComponents<AudioSource>();
     }
 
     void Update() {
-        if(isShopping) {
-            Time.timeScale = 0f;
+        if(isShopping) { 
+            Time.timeScale = 0f; // pause time when shopping
         } else {
             if(!GameManager.gamePaused) {
                 Time.timeScale = 1f;
             }
         }
 
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, interactRange, shopLayers)) {
-            equipUI.enabled = true;
-            equipUI.text = "[E] Shop";
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, interactRange, shopLayers)) { // search for shop layers
+            shopText.text = "[E] Shop";
+            shopText.enabled = true;
             if (Input.GetKeyDown(KeyCode.E)) {
-                shopMenu.SetActive(true);
-                isShopping = true;
-                Cursor.lockState = CursorLockMode.None;
+                OpenShop();
             }
+        } else {
+            shopText.enabled = false;
         }
     }
 
-    public void ExitShop() {
+    void OpenShop() {
+        shopMenu.SetActive(true);
+        isShopping = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    void ExitShop() {
         shopMenu.SetActive(false);
         isShopping = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -56,61 +59,47 @@ public class Shop : MonoBehaviour {
 
     public void Pistol() {
         if (Player.wallet >= pistolCost){ 
-            Player.wallet -= pistolCost;
-            moneyText.text = "$" + Player.wallet;
+            Player.instance.SpendMoney(pistolCost);
             Instantiate(pistolPrefab, dropPoint.transform.position, Quaternion.identity);
-            audioSources[8].Play();
             ExitShop();
         } else {
-            audioSources[9].Play();
+            // play error sound
         }
     }
 
     public void Rifle() {
         if (Player.wallet >= rifleCost){ 
-            Player.wallet -= rifleCost;
-            moneyText.text = "$" + Player.wallet;
+            Player.instance.SpendMoney(rifleCost);
             Instantiate(riflePrefab, dropPoint.transform.position, Quaternion.identity);
-            audioSources[8].Play();
             ExitShop();
         } else {
-            audioSources[9].Play();
         }
     }
 
     public void Sniper() {
         if (Player.wallet >= sniperCost){ 
-            Player.wallet -= sniperCost;
-            moneyText.text = "$" + Player.wallet;
+            Player.instance.SpendMoney(sniperCost);
             Instantiate(sniperPrefab, dropPoint.transform.position, Quaternion.identity);
-            audioSources[8].Play();
             ExitShop();
         } else {
-            audioSources[9].Play();
         }
     }
 
     public void Shotgun() {
         if (Player.wallet >= shotgunCost){ 
-            Player.wallet -= shotgunCost;
-            moneyText.text = "$" + Player.wallet;
+            Player.instance.SpendMoney(shotgunCost);
             Instantiate(shotgunPrefab, dropPoint.transform.position, Quaternion.identity);
-            audioSources[8].Play();
             ExitShop();
         } else {
-            audioSources[9].Play();
         }
     }
 
     public void Healthpack() {
         if (Player.wallet >= healthpackCost){ 
-            Player.wallet -= healthpackCost;
-            moneyText.text = "$" + Player.wallet;
+            Player.instance.SpendMoney(healthpackCost);
             Instantiate(healthpackPrefab, dropPoint.transform.position, Quaternion.identity);
-            audioSources[8].Play();
             ExitShop();
         } else {
-            audioSources[9].Play();
         }
     }
 }

@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour {
     
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] Transform playerTransform;
     public static float lookSensitivity = 300f;
-    private float xRotation = 0f;
+    float xRotation = 0f;
 
-    void Start() {
+    void Start () {
         Cursor.lockState = CursorLockMode.Locked;
     }
 

@@ -13,7 +13,7 @@ public class IdleSway : MonoBehaviour {
                 Gun.gunObject.transform.localPosition = Vector3.Lerp(Gun.gunObject.transform.localPosition, walkSway, Time.deltaTime * 6f);
                 if (Input.GetKey("left shift") && Player.currentStamina > 0) { 
                     float sprintSwayX = Mathf.Sin(Time.time * swaySpeed * 4f) * swayAmount;
-                    float sprintSwayY = Mathf.Cos(Time.time * swaySpeed * 12f) * swayAmount * 3f; // any higher than 3 and cam will clip in gun when ads and sprinting
+                    float sprintSwayY = Mathf.Cos(Time.time * swaySpeed * 12f) * swayAmount * 3f; // any higher and may clip with headbob script
                     Vector3 sprintSway = new Vector3(sprintSwayX, sprintSwayY, 0f);
                     Gun.gunObject.transform.localPosition = Vector3.Lerp(Gun.gunObject.transform.localPosition, sprintSway, Time.deltaTime * 6f);
                 }

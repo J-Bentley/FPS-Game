@@ -4,12 +4,14 @@ using UnityEngine.AI;
 public class SeekPlayer : MonoBehaviour {
 
     NavMeshAgent agent;
+    public GameObject playerObject;
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
+        playerObject = Player.instance.gameObject;
     }
 
     void Update() {
-        agent.SetDestination(SpawnPlayer.playerInstance.transform.position);
+        agent.SetDestination(playerObject.transform.position);
     }
 }

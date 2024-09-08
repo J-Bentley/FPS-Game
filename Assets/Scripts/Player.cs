@@ -2,11 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using Unity.VisualScripting;
 
 public class Player : MonoBehaviour {
-    [SerializeField] CharacterController controller;
-    [SerializeField] Camera fpsCam;
     [SerializeField] Transform groundCheck;
     [SerializeField] float groundDistance;
     [SerializeField] LayerMask groundMask;
@@ -15,6 +12,9 @@ public class Player : MonoBehaviour {
     [SerializeField] float jumpHeight;
     [SerializeField] float sprintSpeed;
     [SerializeField] float staminaRegen;
+    [SerializeField] TextMeshProUGUI walletText;
+    public static CharacterController controller;
+    public static Player instance;
     public static int wallet;
     public bool isGrounded;
     public float maxHealth = 100f;
@@ -26,8 +26,21 @@ public class Player : MonoBehaviour {
     Vector3 velocity;
     float originalSpeed;
     AudioSource[] audioSources;
+    Vector3 platformVelocity;
+    Transform currentPlatform;
+    Vector3 lastPlatformPosition;
+
+    void Awake() {
+        if (instance == null){
+            instance = this;
+        }
+        else {
+            Destroy(gameObject);
+        }
+    }
 
     void Start () {
+        controller = GetComponent<CharacterController>();
         currentHealth = maxHealth;
         currentStamina = maxStamina;
         staminaBar.maxValue = maxStamina;
@@ -51,6 +64,12 @@ public class Player : MonoBehaviour {
         float z = Input.GetAxis("Vertical");
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
+
+         if (currentPlatform != null) {
+            platformVelocity = currentPlatform.position - lastPlatformPosition;
+            controller.Move(platformVelocity); 
+            lastPlatformPosition = currentPlatform.position;
+        }
     
         if (!GameManager.gamePaused && Input.GetKey("left shift") && controller.velocity.magnitude > 0.1f) {
             if (currentStamina > 0f) {
@@ -61,8 +80,8 @@ public class Player : MonoBehaviour {
             if (currentStamina <= 0f) {
                 speed = originalSpeed;
                 currentStamina = 0;
-                if (!audioSources[1].isPlaying) {
-                    audioSources[1].Play(); //no stamina sound
+                if (!audioSources[0].isPlaying) {
+                    audioSources[0].Play(); //no stamina sound
                 }
             }
         } else if (currentStamina < maxStamina) {
@@ -75,20 +94,10 @@ public class Player : MonoBehaviour {
 
         if (!GameManager.gamePaused && Input.GetButtonDown("Jump") && isGrounded) {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            audioSources[2].pitch = Random.Range(0.8f, 1.2f); audioSources[2].Play(); //jump sound
+            audioSources[1].pitch = Random.Range(0.8f, 1.2f);
+            audioSources[1].Play(); //jump sound
         }
 
-        if (controller.velocity.magnitude > 0.1f) {
-            if (isGrounded && !audioSources[0].isPlaying) {
-                audioSources[0].pitch = Random.Range(0.9f, 1.1f); audioSources[0].Play(); //footsteps sound
-            }
-        } else {
-            audioSources[0].Stop(); 
-        }
-
-        if (!isGrounded && audioSources[0].isPlaying) { 
-            audioSources[0].Stop();
-        }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
@@ -110,17 +119,22 @@ public class Player : MonoBehaviour {
 
     public void ReceiveMoney(int money) { 
         wallet += money;
-        Transform walletText = SpawnPlayer.playerInstance.transform.GetChild(0).Find("WalletText"); //must grab the instance of WalletText that is created from SpawnPlayer class
-        walletText.ConvertTo<TextMeshProUGUI>().SetText("$" + wallet.ToString());
-        //Debug.Log("Received $" + money + ". Wallet is $" + wallet);
+        walletText.SetText("$" + wallet.ToString()); 
+        Debug.Log("Received $" + money + ". Wallet is $" + wallet);
+    }
+
+    public void SpendMoney(int money) {
+        wallet -= money;
+        walletText.SetText("$" + wallet.ToString());
+        Debug.Log("Spent $" + money + ". Wallet is $" + wallet);
     }
 
     public void TakeDamage (float damage) {
         currentHealth -= damage;
         healthBar.value = currentHealth;
-        if(!audioSources[3].isPlaying) { 
-            audioSources[3].pitch = Random.Range(0.8f, 1.2f);
-            audioSources[3].Play(); //take damage sound
+        if(!audioSources[2].isPlaying) { 
+            audioSources[2].pitch = Random.Range(0.8f, 1.2f);
+            audioSources[2].Play(); //take damage sound
         }
         if (currentHealth <= 0) {
             Death();
@@ -133,5 +147,21 @@ public class Player : MonoBehaviour {
 
     void Death() {
         SceneManager.LoadScene(2);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.collider.tag == "MovingPlatform") {
+            if (hit.transform != currentPlatform) {
+                currentPlatform = hit.transform;
+                lastPlatformPosition = currentPlatform.position;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.tag == "MovingPlatform") {
+            currentPlatform = null;
+            platformVelocity = Vector3.zero;
+        }
     }
 }

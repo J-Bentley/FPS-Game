@@ -11,7 +11,7 @@ public class Jumpad : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider) {
         if (collider.transform.tag == "Player") {
-            SpawnPlayer.playerInstance.GetComponent<Player>().Jumpad(jumpadHeight);
+            Player.instance.Jumpad(jumpadHeight);
             if (playSound) {
                 audioSource.Play();
             }
