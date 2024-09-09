@@ -145,7 +145,6 @@ GameObject:
   - component: {fileID: 5329784092540890729}
   - component: {fileID: 5241493527457395883}
   - component: {fileID: 4904160848273417344}
-  - component: {fileID: 5087536505393222955}
   - component: {fileID: 1538640321071737911}
   m_Layer: 8
   m_Name: Torso
@@ -219,27 +218,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5087536505393222955
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563343869701157130}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1538640321071737911
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -278,7 +256,6 @@ GameObject:
   - component: {fileID: 3142909385692608487}
   - component: {fileID: 7062940124486811202}
   - component: {fileID: 27113072515432726}
-  - component: {fileID: 7357747003827311813}
   - component: {fileID: 4335130250135898780}
   m_Layer: 8
   m_Name: LegLeft
@@ -352,27 +329,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7357747003827311813
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6656663703255470309}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4335130250135898780
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -411,7 +367,6 @@ GameObject:
   - component: {fileID: 7972171822349710015}
   - component: {fileID: 6926819593804888148}
   - component: {fileID: 571479118303451890}
-  - component: {fileID: 1964459952859714767}
   - component: {fileID: 3773179063489829486}
   m_Layer: 8
   m_Name: ArmLeft
@@ -485,27 +440,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1964459952859714767
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6692757985845233559}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3773179063489829486
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -544,7 +478,6 @@ GameObject:
   - component: {fileID: 7043553863860338009}
   - component: {fileID: 4646649767564395433}
   - component: {fileID: 3145570047704071186}
-  - component: {fileID: 8963665248620022947}
   - component: {fileID: 4957975307394142753}
   m_Layer: 8
   m_Name: LegRight
@@ -618,27 +551,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8963665248620022947
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6909800925565445322}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4957975307394142753
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -677,7 +589,6 @@ GameObject:
   - component: {fileID: 2183432087844123047}
   - component: {fileID: 8009490342791326791}
   - component: {fileID: 3430457420924423364}
-  - component: {fileID: 240551700055692742}
   - component: {fileID: 6050263138918877010}
   m_Layer: 8
   m_Name: ArmRight
@@ -751,27 +662,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &240551700055692742
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8921341536768004614}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6050263138918877010
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -810,7 +700,6 @@ GameObject:
   - component: {fileID: 7026145511334904319}
   - component: {fileID: 4590518473250952967}
   - component: {fileID: 4179998580108715337}
-  - component: {fileID: 8703400136509162942}
   - component: {fileID: 7685820790486698872}
   m_Layer: 8
   m_Name: Head
@@ -884,27 +773,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8703400136509162942
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9061711863403054821}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7685820790486698872
 Rigidbody:
   m_ObjectHideFlags: 0

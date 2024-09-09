@@ -62,8 +62,6 @@ public class Shop : MonoBehaviour {
             Player.instance.SpendMoney(pistolCost);
             Instantiate(pistolPrefab, dropPoint.transform.position, Quaternion.identity);
             ExitShop();
-        } else {
-            // play error sound
         }
     }
 
@@ -72,7 +70,6 @@ public class Shop : MonoBehaviour {
             Player.instance.SpendMoney(rifleCost);
             Instantiate(riflePrefab, dropPoint.transform.position, Quaternion.identity);
             ExitShop();
-        } else {
         }
     }
 
@@ -81,7 +78,6 @@ public class Shop : MonoBehaviour {
             Player.instance.SpendMoney(sniperCost);
             Instantiate(sniperPrefab, dropPoint.transform.position, Quaternion.identity);
             ExitShop();
-        } else {
         }
     }
 
@@ -90,7 +86,6 @@ public class Shop : MonoBehaviour {
             Player.instance.SpendMoney(shotgunCost);
             Instantiate(shotgunPrefab, dropPoint.transform.position, Quaternion.identity);
             ExitShop();
-        } else {
         }
     }
 
@@ -99,7 +94,6 @@ public class Shop : MonoBehaviour {
             Player.instance.SpendMoney(healthpackCost);
             Instantiate(healthpackPrefab, dropPoint.transform.position, Quaternion.identity);
             ExitShop();
-        } else {
         }
     }
 }

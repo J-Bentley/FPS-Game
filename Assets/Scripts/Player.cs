@@ -108,6 +108,7 @@ public class Player : MonoBehaviour {
             currentHealth = maxHealth;
         }
         healthBar.value = currentHealth;
+        audioSources[4].Play(); //heals sound
     }
 
     public void ReceiveStamina (float stamina) {
@@ -126,6 +127,7 @@ public class Player : MonoBehaviour {
     public void SpendMoney(int money) {
         wallet -= money;
         walletText.SetText("$" + wallet.ToString());
+        audioSources[3].Play(); //cash register sound
         Debug.Log("Spent $" + money + ". Wallet is $" + wallet);
     }
 

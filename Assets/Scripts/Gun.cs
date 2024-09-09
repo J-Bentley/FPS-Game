@@ -130,7 +130,7 @@ public class Gun : MonoBehaviour {
         }
 
         // Aiming Down Sights -- at least it works?
-        // todo: refactor this into an FOV class so this class and player can  dynamically change fov when sprinting/ADS and go between different values smoothly
+        // should refactor this into an FOV class so this class and player can dynamically change fov when sprinting/ADS and go between different values smoothly
         if (gunEquipped && Input.GetButton("Fire2")) {
             crosshair.enabled = false;
             equipPoint.transform.localPosition = Vector3.Lerp(equipPoint.transform.localPosition, adsPoint.transform.localPosition, 6f * Time.deltaTime);
