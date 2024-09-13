@@ -3,19 +3,15 @@ using UnityEngine;
 public class CameraTilt : MonoBehaviour {
     [SerializeField] Transform playerTransform;
     [SerializeField]  float tiltAngle = 10f;    
-    [SerializeField]  float sprintTiltAngle = 15f;
     [SerializeField]  float tiltSpeed = 5f;      
     [SerializeField]  float returnSpeed = 2f;    
     Vector3 previousPosition;
-    float originalTiltAngle;
 
     void Start() {
         previousPosition = playerTransform.position;
-        originalTiltAngle = tiltAngle;
     }
 
-    void Update()
-    {
+    void Update() {
         // Manually calculate movement direction in world space
         Vector3 currentPosition = playerTransform.position;
         Vector3 worldMovementDirection = (currentPosition - previousPosition).normalized;
@@ -25,23 +21,17 @@ public class CameraTilt : MonoBehaviour {
         Vector3 localMovementDirection = playerTransform.InverseTransformDirection(worldMovementDirection);
 
         // Check if the player is moving
-        bool isMoving = Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 || Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0;
+        bool isMoving = Input.GetAxis("Horizontal") > 0  || Input.GetAxis("Horizontal") < 0;
 
         Quaternion targetRotation;
 
-        if (Input.GetKey(KeyCode.LeftShift)) {
-            tiltAngle = 15;
-        } else {
-            tiltAngle = originalTiltAngle;
-        }
-
         if (isMoving) {
             // Calculate tilt angles based on the local movement direction
-            float targetTiltX = localMovementDirection.z * tiltAngle; // Forward/Backward tilt (Z-axis)
+            //float targetTiltX = localMovementDirection.z * tiltAngle; // Forward/Backward tilt (Z-axis)
             float targetTiltZ = -localMovementDirection.x * tiltAngle;  // Side-to-side tilt (X-axis)
 
             // Create the target rotation based on the tilt angles
-            targetRotation = Quaternion.Euler(targetTiltX, 0, targetTiltZ);
+            targetRotation = Quaternion.Euler(0, 0, targetTiltZ);
         }
         else
         {
