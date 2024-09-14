@@ -12,12 +12,10 @@ public class Shop : MonoBehaviour {
     [SerializeField] GameObject pistolPrefab;
     [SerializeField] GameObject riflePrefab;
     [SerializeField] GameObject sniperPrefab;
-    [SerializeField] GameObject shotgunPrefab;
     [SerializeField] GameObject healthpackPrefab;
     [SerializeField] int pistolCost;
     [SerializeField] int rifleCost;
     [SerializeField] int sniperCost;
-    [SerializeField] int shotgunCost;
     [SerializeField] int healthpackCost;
     [SerializeField] GameObject dropPoint;
 
@@ -34,7 +32,7 @@ public class Shop : MonoBehaviour {
             }
         }
 
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, interactRange, shopLayers)) { // search for shop layers
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, interactRange, shopLayers)) { 
             shopText.text = "[E] Shop";
             shopText.enabled = true;
             if (Input.GetKeyDown(KeyCode.E)) {
@@ -77,14 +75,6 @@ public class Shop : MonoBehaviour {
         if (Player.wallet >= sniperCost){ 
             Player.instance.SpendMoney(sniperCost);
             Instantiate(sniperPrefab, dropPoint.transform.position, Quaternion.identity);
-            ExitShop();
-        }
-    }
-
-    public void Shotgun() {
-        if (Player.wallet >= shotgunCost){ 
-            Player.instance.SpendMoney(shotgunCost);
-            Instantiate(shotgunPrefab, dropPoint.transform.position, Quaternion.identity);
             ExitShop();
         }
     }

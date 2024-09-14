@@ -1348,12 +1348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Made by Arcaniist.
-
-    - "Modern Weapons" by Matias Hollmann at devassets.com
-
-    -
-    "Danger On The Horizon" by Geoff Harvey at pixabay.com'
+  m_text: Made by Arcaniist.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3326de1b7c4f3e42a1282bc6ee83ce7, type: 2}
   m_sharedMaterial: {fileID: -198485804816536082, guid: b3326de1b7c4f3e42a1282bc6ee83ce7, type: 2}

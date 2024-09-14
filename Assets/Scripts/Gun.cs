@@ -15,15 +15,11 @@ public class Gun : MonoBehaviour {
     [SerializeField] Image scopeOverlay;
     [SerializeField] float equipRange;
     [SerializeField] LayerMask gunLayers;
-    [SerializeField] GameObject rifleBullet;
-    [SerializeField] GameObject pistolBullet;
-    [SerializeField] GameObject shotgunBullet;
     public static GameObject gunObject;
     public static bool gunEquipped = false;
     public static float damage;
     public static float bulletForce;
     float originalFov;
-    GameObject bullet;
     Vector3 originalEquipPoint;
     ParticleSystem muzzleFlash;
     Animator animator;
@@ -34,6 +30,14 @@ public class Gun : MonoBehaviour {
     float clipAmmo = 1f;
     float usedAmmo = 0f;
     RaycastHit grab;
+    float maxDistance = 100f;
+
+    [SerializeField] ParticleSystem impact;
+    [SerializeField] ParticleSystem fleshImpact;
+    [SerializeField] ParticleSystem bulletHole;
+    [SerializeField] ParticleSystem fleshBulletHole;
+    ParticleSystem impactParticlesystem;
+    ParticleSystem bulletHoleParticlesystem;
 
     void Start() {
         originalEquipPoint = equipPoint.transform.localPosition;
@@ -66,7 +70,6 @@ public class Gun : MonoBehaviour {
                         clipAmmo = 5f;
                         bulletForce = 150f;
                         recoilAngle = -30f;
-                        bullet = pistolBullet;
                         break;
                     case "Rifle":
                         damage = 5f;
@@ -74,7 +77,6 @@ public class Gun : MonoBehaviour {
                         clipAmmo = 16f;
                         bulletForce = 200f;
                         recoilAngle = -30f;
-                        bullet = rifleBullet;
                         break;
                     case "Sniper":
                         damage = 20f;
@@ -82,7 +84,6 @@ public class Gun : MonoBehaviour {
                         clipAmmo = 3f;
                         bulletForce = 300f;
                         recoilAngle = -40f;
-                        bullet = rifleBullet;
                         break;
                     case "Shotgun":
                         damage = 10f;
@@ -90,7 +91,6 @@ public class Gun : MonoBehaviour {
                         clipAmmo = 2f;
                         bulletForce = 200f;
                         recoilAngle = -90f;
-                        bullet = shotgunBullet;
                         break;
                     default:
                         break;
@@ -105,7 +105,7 @@ public class Gun : MonoBehaviour {
         if (!GameManager.gamePaused && gunEquipped == true && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f/fireRate;
             if (usedAmmo < clipAmmo) {
-                if (!gunSounds[2].isPlaying) { // ????????????????????????? brother hwat
+                if (!gunSounds[2].isPlaying) { 
                     Shoot();
                     ammoText.text = (clipAmmo - usedAmmo).ToString();
                 }
@@ -172,21 +172,27 @@ public class Gun : MonoBehaviour {
     }
 
     void Shoot() {
-        GameObject bulletInstance = Instantiate(bullet, muzzleFlash.transform.position, Quaternion.LookRotation(muzzleFlash.transform.forward));
-        Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>(), true);
-
-        foreach (Transform child in bulletInstance.transform) { // for shotgun
-            if (child.GetComponent<Rigidbody>() != null){
-                child.GetComponent<Rigidbody>().AddForce(muzzleFlash.transform.forward * bulletForce, ForceMode.Impulse);
-            }
-        }
-
-        bulletInstance.GetComponent<Rigidbody>().AddForce(muzzleFlash.transform.forward * bulletForce , ForceMode.Impulse);
         usedAmmo++;
         gunSounds[0].pitch = Random.Range(0.8f, 1.2f);
         gunSounds[0].Play();
         muzzleFlash.Play();
         StartCoroutine("Recoil");
+
+        RaycastHit shot;
+        Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out shot, maxDistance);
+        Target target = shot.transform.GetComponent<Target>();
+        
+        if (target != null) {
+            target.TakeTargetDamage(damage);
+            impactParticlesystem = fleshImpact;
+            bulletHoleParticlesystem = fleshBulletHole;
+        } else {
+            impactParticlesystem = impact;
+            bulletHoleParticlesystem = bulletHole;
+        }
+        Instantiate(impactParticlesystem, shot.point, Quaternion.identity);
+        ParticleSystem bulletHoleInstance = Instantiate(bulletHoleParticlesystem, shot.point, Quaternion.identity);
+        bulletHoleInstance.transform.parent = shot.transform;
     }
 
     IEnumerator changeFov(float newFov) {

@@ -15,6 +15,8 @@ TagManager:
   - Door
   - Grass
   - MovingPlatform
+  - Wood
+  - Concrete
   layers:
   - Default
   - TransparentFX

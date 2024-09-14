@@ -22,8 +22,10 @@ public class SpawnEnemy : MonoBehaviour {
         Debug.Log("Enemy spawned at " + randomChild.name + " in " + transform.name);
     }
 
-    void OnTriggerExit() {
-        CancelInvoke("Spawn");
-        Debug.Log("Exited " + transform.name);
+    void OnTriggerExit(Collider other) {
+        if (other.CompareTag("Player")) {
+            CancelInvoke("Spawn");
+            Debug.Log("Exited " + transform.name);
+        }
     }
 }
